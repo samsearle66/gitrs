@@ -1,0 +1,2 @@
+Checks if within banking area and bank not visible
+Banks.newQuery().within(draynorBank).results().isEmpty();
