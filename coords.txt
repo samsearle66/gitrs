@@ -1,0 +1,13 @@
+me != null && edgevilleBank.contains(me) &&
+                (Inventory.contains("Jug of wine")  || Bank.isOpen() ||
+                Inventory.getQuantity("Law rune") < GC.LAWRUNES ||
+                        Inventory.getQuantity("Fire rune") < 1
+                ||  (!Equipment.contains("Staff of air") && Inventory.getQuantity("Air rune") < 3))
+
+
+
+x 2950 y 3821 alter
+
+x 2958 y 3820 door
+
+x 2957 y 3820 inside door

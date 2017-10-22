@@ -1,4 +1,4 @@
-package com.redeyed600.bots.wilderness_wine;
+package com.redeyed600.bots.wilderness_wine.old;
 
 import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.entities.Player;
@@ -71,14 +71,15 @@ public class IsAtDitch extends Task {
                         //Player on northside of ditch - walking to bank
                     (me.getPosition().getY() > wildernessDitch.getPosition().getY() && (Inventory.isFull()
                             || Inventory.getQuantity("Law rune") < 1 ||
-                            (!Equipment.contains("Staff of air") && Inventory.getQuantity("Air rune") < 3)))
-
+                            Inventory.getQuantity("Fire rune") < 1 ||
+                            !Equipment.contains("Staff of air")))
                             //I am running back because my inventory is full or i am out of runes.
                             ||
                         //Player on southside of ditch - walking to alter
                     (me.getPosition().getY() < wildernessDitch.getPosition().getY() && (!Inventory.isFull() &&
                             Equipment.contains("Staff of air") &&
-                            Inventory.getQuantity("Law rune") >= 1))
+                            Inventory.getQuantity("Law rune") >= 1 &&
+                            Inventory.getQuantity("Fire rune") >= 1))
                             //I am running to the alter because my inventory is not full.
                             //I have enough law, fire and a air staff.
 

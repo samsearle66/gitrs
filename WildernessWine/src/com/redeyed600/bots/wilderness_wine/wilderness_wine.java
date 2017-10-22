@@ -8,6 +8,9 @@ public class wilderness_wine extends TaskBot {
     public void onStart(String... strings){
         super.onStart(strings);
         setLoopDelay(0);
-        add(new WildernessDitchToBank(), new BankInterface(), new BankToWildernessDitch(), new WildernessDitchToAlter(), new AlterToWildernessDitch());//, new PickPotato());
+        add(new TravelToBank(), new BankInterface(),new BankToNorthOfDitch(),new NorthOfDitchToAlterDoor(),
+                new AlterDoorToAlter(), new AlterToNorthOfDitch(), new NorthOfDitchToSouthOfDitch());//, new PickPotato());
+        //add(new GrabWine());
+
     }
 }

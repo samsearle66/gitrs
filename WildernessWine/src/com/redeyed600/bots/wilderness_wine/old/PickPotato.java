@@ -1,4 +1,4 @@
-package com.redeyed600.bots.wilderness_wine;
+package com.redeyed600.bots.wilderness_wine.old;
 
 import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.entities.Player;

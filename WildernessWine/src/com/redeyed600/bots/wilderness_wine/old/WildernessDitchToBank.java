@@ -1,4 +1,4 @@
-package com.redeyed600.bots.wilderness_wine;
+package com.redeyed600.bots.wilderness_wine.old;
 
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
@@ -19,13 +19,6 @@ public class WildernessDitchToBank extends Task {
     //if bank no where to be found
     public boolean validate() {
         final Player me = Players.getLocal();
-
-        System.out.println("WildernessDitchToBank="+(me != null && !edgevilleBank.contains(me) && me.getPosition().getY() < 3519 &&
-                (Inventory.getQuantity("Law rune") < 1 ||
-                        Inventory.getQuantity("Fire rune") < 1 ||
-                        (!Equipment.contains("Staff of air") || Inventory.getQuantity("Air rune") < 3) ||
-                        Inventory.isFull())));
-
 
         //VALIDATE
         //inventory is full
