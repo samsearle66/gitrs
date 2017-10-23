@@ -19,8 +19,8 @@ public class TravelToBank extends Task {
         final Player me = Players.getLocal();
 
         System.out.println("TRAVELTOBANK::::me."+me+",contains."+!edgevilleBank.contains(me)+",law."+
-                (Inventory.getQuantity("Law rune")<1)+",fire."+(Inventory.getQuantity("Fire rune")<1)+
-                ",staffair."+!Equipment.contains("Staff of air")+",air."+(Inventory.getQuantity("Air rune")<3)+",inventoryFull."+Inventory.isFull());
+                Inventory.getQuantity("Law rune")+",fire."+Inventory.getQuantity("Fire rune")+
+                ",staffair."+!Equipment.contains("Staff of air")+",air."+Inventory.getQuantity("Air rune")+",inventoryFull."+Inventory.isFull());
 
         //VALIDATE
         //inventory is full
@@ -31,23 +31,20 @@ public class TravelToBank extends Task {
         //MAYBE
         //ran out of food?
 
-        if(Inventory.getQuantity("Law rune") < 1)
-            System.out.println("Law."+Inventory.getQuantity("Law rune"));
-        if(Inventory.getQuantity("Fire rune") < 1)
-            System.out.println("Fire."+Inventory.getQuantity("Fire rune"));
-        if(Inventory.isFull())
-           System.out.println("Invent."+Inventory.isFull());
+//        System.out.println("me."+me != null);
+//        System.out.println("edgevilleBank."+!edgevilleBank.contains(me));
+//        System.out.println("getY<3519."+(me.getPosition().getY() < 3519));
+//        System.out.println("Law."+(Inventory.getQuantity("Law rune") < 1));
+//        System.out.println("Fire."+(Inventory.getQuantity("Fire rune") < 1));
+//        System.out.println("InvFull."+Inventory.isFull());
+//        System.out.println("DontHaveStaff."+!Equipment.contains("Staff of air"));
+//        System.out.println("Air."+(Inventory.getQuantity("Air rune") < 3));
+//        System.out.println("DontHaveStaffbutAir"+(!Equipment.contains("Staff of air") && Inventory.getQuantity("Air rune") < 3));
 
-        if(Inventory.getQuantity("Law rune") < 1 ||
-                Inventory.getQuantity("Fire rune") < 1 ||
-                Inventory.isFull())
-            System.out.println("wtf_is_this_shit");
 
         return (me != null && !edgevilleBank.contains(me)  && me.getPosition().getY() < 3519 &&
                 (Inventory.getQuantity("Law rune") < 1 ||
-                Inventory.getQuantity("Fire rune") < 1 ||
-                Inventory.isFull()) ||
-                (!Equipment.contains("Staff of air") && Inventory.getQuantity("Air rune") < 3));
+                Inventory.isFull() || (!Equipment.contains("Staff of air") && Inventory.getQuantity("Air rune") < 3)));
     }
 
     @Override

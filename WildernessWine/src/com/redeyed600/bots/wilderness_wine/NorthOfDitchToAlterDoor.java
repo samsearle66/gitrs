@@ -35,7 +35,6 @@ public class NorthOfDitchToAlterDoor extends Task {
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
             path.step();
         }
-
     }
 
 

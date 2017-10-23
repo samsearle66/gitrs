@@ -26,6 +26,7 @@ public class AlterDoorToAlter extends Task {
 
     @Override
     public void execute() {
+        System.out.println("Walking to alter");
         final BresenhamPath path = BresenhamPath.buildTo(alter);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash

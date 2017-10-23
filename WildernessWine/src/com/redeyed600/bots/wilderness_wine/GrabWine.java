@@ -27,11 +27,12 @@ public class GrabWine extends Task{
 
         wine = GroundItems.newQuery().names("Wine of zamorak").results().nearest();
 
-        System.out.println("GRABWINE:::"+me != null && !Inventory.isFull() && wine != null && alter.contains(me) &&
-                Inventory.getQuantity("Law rune") >= 1 &&
-                Inventory.getQuantity("Fire rune") >= 1 &&
-                (Equipment.contains("Staff of air") || Inventory.getQuantity("Air rune") >= 3)
-                || Magic.TELEKINETIC_GRAB.activate());
+        System.out.println("GRABWINE:::me."+(me != null)+",InventNotFull."+ !Inventory.isFull() +",wine."+wine != null+",alterContainMe."+ alter.contains(me)
+                + ",Law."+(Inventory.getQuantity("Law rune") >= 1)
+                +",Fire."+(Inventory.getQuantity("Fire rune") >= 1)
+                +",AirStaff"+(Equipment.contains("Staff of air"))+",Air."+ (Inventory.getQuantity("Air rune") >= 3)
+                +",Teligrab."+ Magic.TELEKINETIC_GRAB.activate());
+
         return (me != null && !Inventory.isFull() && wine != null && alter.contains(me) &&
                 Inventory.getQuantity("Law rune") >= 1 &&
                 Inventory.getQuantity("Fire rune") >= 1 &&

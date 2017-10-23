@@ -27,6 +27,7 @@ public class NorthOfDitchToSouthOfDitch extends Task {
 
     @Override
     public void execute() {
+        System.out.println("Walking from north of ditch to south of ditch ");
         final BresenhamPath path = BresenhamPath.buildTo(SouthOfDitch);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash

@@ -34,6 +34,7 @@ public class IsDoorOpen extends Task {
 
     @Override
     public void execute() {
+        System.out.println("Opening alter door");
         if(door.interact("Open")) {
                 //After interacting with our gate, we can add a check if it's still valid
                 //This isn't required, you can check for player animation also

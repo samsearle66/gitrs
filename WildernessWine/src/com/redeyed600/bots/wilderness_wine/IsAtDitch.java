@@ -87,7 +87,6 @@ public class IsAtDitch extends Task {
 
     @Override
     public void execute() {
-        final Player me = Players.getLocal();
         System.out.println("Jump wilderness ditch");
         if(wildernessDitch.isVisible()) {
             if(wildernessDitch.interact("Cross")) {

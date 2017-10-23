@@ -44,7 +44,9 @@ public class BankInterface extends Task
            Inventory.getQuantity("Fire rune") < 1 || (!Equipment.contains("Staff of air") &&
                 Inventory.getQuantity("Air rune") < 3)) {
             System.out.println("Opening bank");
-            if (Bank.isOpen()) {               Bank.depositAllExcept("Law rune","Fire rune", "air rune");
+            if (Bank.isOpen()) {
+
+               Bank.depositAllExcept("Law rune","Fire rune", "Air rune");
 
                if(Inventory.contains("Wine of zamorak"))
                     Bank.deposit("Wine of zamorak",28); //deposit everything

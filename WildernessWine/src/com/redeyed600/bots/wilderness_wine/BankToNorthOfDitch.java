@@ -44,6 +44,7 @@ public class BankToNorthOfDitch extends Task {
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
             add(new IsAtDitch());
             path.step();
+            add(new NorthOfDitchToAlterDoor());
         }
     }
 }
