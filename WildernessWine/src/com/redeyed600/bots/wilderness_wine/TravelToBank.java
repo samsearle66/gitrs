@@ -30,6 +30,19 @@ public class TravelToBank extends Task {
         //no staff
         //MAYBE
         //ran out of food?
+
+        if(Inventory.getQuantity("Law rune") < 1)
+            System.out.println("Law."+Inventory.getQuantity("Law rune"));
+        if(Inventory.getQuantity("Fire rune") < 1)
+            System.out.println("Fire."+Inventory.getQuantity("Fire rune"));
+        if(Inventory.isFull())
+           System.out.println("Invent."+Inventory.isFull());
+
+        if(Inventory.getQuantity("Law rune") < 1 ||
+                Inventory.getQuantity("Fire rune") < 1 ||
+                Inventory.isFull())
+            System.out.println("wtf_is_this_shit");
+
         return (me != null && !edgevilleBank.contains(me)  && me.getPosition().getY() < 3519 &&
                 (Inventory.getQuantity("Law rune") < 1 ||
                 Inventory.getQuantity("Fire rune") < 1 ||

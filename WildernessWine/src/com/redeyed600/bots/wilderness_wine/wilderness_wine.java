@@ -9,7 +9,7 @@ public class wilderness_wine extends TaskBot {
         super.onStart(strings);
         setLoopDelay(0);
         add(new TravelToBank(), new BankInterface(),new BankToNorthOfDitch(),new NorthOfDitchToAlterDoor(),
-                new AlterDoorToAlter(), new AlterToNorthOfDitch(), new NorthOfDitchToSouthOfDitch());//, new PickPotato());
+                new AlterDoorToAlter(), new AlterToNorthOfDitch(), new NorthOfDitchToSouthOfDitch());
         //add(new GrabWine());
 
     }
