@@ -9,6 +9,7 @@ import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.player_sense.PlayerSense;
+import com.runemate.game.api.hybrid.queries.results.LocatableEntityQueryResults;
 import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.Players;
 import com.sun.org.apache.bcel.internal.generic.ARETURN;
@@ -36,16 +37,19 @@ public class GC {
     public static boolean outOfSuppies(){
 
         System.out.println("outOfSupplies:("+Inventory.isFull()+" || "+(Inventory.getQuantity(LAWRUNE) < 1) +"||"+(Inventory.getQuantity(FIRERUNE) < 1)+"||"+ Inventory.getItems(GC.FOODIDS).size()+  " ("+ !Equipment.contains(STAFFOFAIR) + " && " + (Inventory.getQuantity(AIRRUNE) < 3)+")");
-        return (Inventory.isFull() || Inventory.getQuantity(LAWRUNE) < 1 ||
+        return (Inventory.isFull() || Inventory.getQuantity(LAWRUNE) < 1 || !underAttack() ||
                 Inventory.getQuantity(FIRERUNE) < 1|| Inventory.getItems(GC.FOODIDS).size() < 6 ||
                 (!Equipment.contains(STAFFOFAIR) && Inventory.getQuantity(AIRRUNE) < 3));
+    }
+
+    public static boolean underAttack(){
+        LocatableEntityQueryResults target = Players.getLoaded(me);
+        return target.nearest() != null;
     }
 
     public static boolean bankingCompleted(){
 
         System.out.println("bankingCompleted::"+!Inventory.isFull()+","+ (Inventory.getQuantity(LAWRUNE) > 0) +"&&("+Equipment.contains(STAFFOFAIR)+"||"+ (Inventory.getQuantity(AIRRUNE) >= 3)+")");
-
-        Players.getLoaded(me).nearest().
 
         return  !Inventory.isFull() && Inventory.getQuantity(LAWRUNE) > 0 &&
                 Inventory.getQuantity(FIRERUNE) > 0 &&
