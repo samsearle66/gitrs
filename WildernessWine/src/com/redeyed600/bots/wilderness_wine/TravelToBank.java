@@ -18,33 +18,9 @@ public class TravelToBank extends Task {
     public boolean validate() {
         final Player me = Players.getLocal();
 
-        System.out.println("TRAVELTOBANK::::me."+me+",contains."+!edgevilleBank.contains(me)+",law."+
-                Inventory.getQuantity("Law rune")+",fire."+Inventory.getQuantity("Fire rune")+
-                ",staffair."+!Equipment.contains("Staff of air")+",air."+Inventory.getQuantity("Air rune")+",inventoryFull."+Inventory.isFull());
+        System.out.println("TTB:"+(me!=null)+","+!edgevilleBank.contains(me)+","+!GC.greaterThanDitch()+","+GC.outOfSuppies());
 
-        //VALIDATE
-        //inventory is full
-        //not at the bank yet
-        //not enough law runes
-        //not enough fire runes
-        //no staff
-        //MAYBE
-        //ran out of food?
-
-//        System.out.println("me."+me != null);
-//        System.out.println("edgevilleBank."+!edgevilleBank.contains(me));
-//        System.out.println("getY<3519."+(me.getPosition().getY() < 3519));
-//        System.out.println("Law."+(Inventory.getQuantity("Law rune") < 1));
-//        System.out.println("Fire."+(Inventory.getQuantity("Fire rune") < 1));
-//        System.out.println("InvFull."+Inventory.isFull());
-//        System.out.println("DontHaveStaff."+!Equipment.contains("Staff of air"));
-//        System.out.println("Air."+(Inventory.getQuantity("Air rune") < 3));
-//        System.out.println("DontHaveStaffbutAir"+(!Equipment.contains("Staff of air") && Inventory.getQuantity("Air rune") < 3));
-
-
-        return (me != null && !edgevilleBank.contains(me)  && me.getPosition().getY() < 3519 &&
-                (Inventory.getQuantity("Law rune") < 1 ||
-                Inventory.isFull() || (!Equipment.contains("Staff of air") && Inventory.getQuantity("Air rune") < 3)));
+        return (me != null && !edgevilleBank.contains(me)&& !GC.greaterThanDitch() && GC.outOfSuppies());
     }
 
     @Override

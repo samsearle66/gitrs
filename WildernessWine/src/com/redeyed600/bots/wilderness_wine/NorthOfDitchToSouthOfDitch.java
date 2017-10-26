@@ -1,6 +1,5 @@
 package com.redeyed600.bots.wilderness_wine;
 
-import com.redeyed600.bots.wilderness_wine.old.IsAtDitch;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
@@ -19,10 +18,9 @@ public class NorthOfDitchToSouthOfDitch extends Task {
     public boolean validate() {
         final Player me = Players.getLocal();
 
-        return (me != null && !SouthOfDitch.contains(me) && me.getPosition().getY() > 3519 &&
-                (Inventory.getQuantity("Law rune") < 1 ||
-                        (!Equipment.contains("Staff of air") && Inventory.getQuantity("Air rune") < 3)||
-                        Inventory.isFull()));
+        System.out.println("NODTSOD:"+(me != null) +" && "+ !SouthOfDitch.contains(me) +" && "+ !GC.greaterThanDitch() +" && "+ GC.outOfSuppies());
+
+        return (me != null && !SouthOfDitch.contains(me) && GC.greaterThanDitch() && GC.outOfSuppies());
     }
 
     @Override

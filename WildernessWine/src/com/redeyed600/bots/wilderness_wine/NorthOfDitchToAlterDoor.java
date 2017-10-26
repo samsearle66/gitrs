@@ -1,7 +1,6 @@
 package com.redeyed600.bots.wilderness_wine;
 
 import com.runemate.game.api.hybrid.entities.Player;
-import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
@@ -11,16 +10,16 @@ import com.runemate.game.api.script.framework.task.Task;
 
 public class NorthOfDitchToAlterDoor extends Task {
 
-    private final Area.Absolute alterDoor = new Area.Absolute(new Coordinate(2958,3820,0));
+    private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2956,3820,0), 4 );
+
 
     @Override
     public boolean validate() {
         final Player me = Players.getLocal();
 
-        return (me != null && !Inventory.contains("Wine of zamorak") && !Inventory.isFull() && !alterDoor.contains(me) &&
-                Inventory.getQuantity("Law rune") >= 1 &&
-                Inventory.getQuantity("Fire rune") >= 1 &&
-                (Equipment.contains("Staff of air") || Inventory.getQuantity("Air rune") >= 3));
+        System.out.println("NODTAD:"+(me != null) +" && "+ !Inventory.contains(GC.WINEOFZAMORAK) + " && "+ !alterDoor.contains(me) +"&&"+ GC.bankingCompleted() +"&&"+ GC.greaterThanWildernessArea());
+
+        return (me != null && !Inventory.contains(GC.WINEOFZAMORAK) && !alterDoor.contains(me) && GC.bankingCompleted() && GC.greaterThanWildernessArea());
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.redeyed600.bots.wilderness_wine.walkingtest;
 
+import com.redeyed600.bots.wilderness_wine.GC;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
@@ -13,14 +14,11 @@ public class south extends Task {
 
     @Override
     public boolean validate() {
-        final Player me = Players.getLocal();
-        return (me != null && !south.contains(me));
+        return false;
     }
 
     @Override
     public void execute() {
-        final Player me = Players.getLocal();
-
         System.out.println("Walking to south");
         final BresenhamPath path = BresenhamPath.buildTo(south);
 

@@ -1,9 +1,6 @@
 package com.redeyed600.bots.wilderness_wine;
 
-import com.redeyed600.bots.wilderness_wine.old.IsAtDitch;
 import com.runemate.game.api.hybrid.entities.Player;
-import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
-import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.location.navigation.basic.BresenhamPath;
@@ -17,10 +14,9 @@ public class AlterToNorthOfDitch extends Task {
     public boolean validate() {
         final Player me = Players.getLocal();
 
-        return (me != null && !northOfDitch.contains(me) && me.getPosition().getY() > 3519 &&
-                (Inventory.getQuantity("Law rune") < 1 ||
-                        (!Equipment.contains("Staff of air") && Inventory.getQuantity("Air rune") < 3)||
-                        Inventory.isFull()));
+        System.out.println("ATNOD:"+ (me != null) +"&&"+ !northOfDitch.contains(me) +"&&"+ !GC.greaterThanWildernessArea() +"&&"+ GC.greaterThanDitch() +"&&"+ GC.outOfSuppies());
+
+        return (me != null && !northOfDitch.contains(me) && GC.greaterThanWildernessArea() && GC.greaterThanDitch() && GC.outOfSuppies());
     }
 
     //WEB WALK THIS ONE

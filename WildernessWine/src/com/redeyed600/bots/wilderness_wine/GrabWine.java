@@ -1,13 +1,10 @@
 package com.redeyed600.bots.wilderness_wine;
 
-import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.entities.GroundItem;
 import com.runemate.game.api.hybrid.entities.Player;
-import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
-import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.GroundItems;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.osrs.local.hud.interfaces.Magic;
@@ -16,7 +13,8 @@ import com.runemate.game.api.script.framework.task.Task;
 
 public class GrabWine extends Task{
 
-    private final Area.Circular alter = new Area.Circular(new Coordinate(2933,3516,0), 6);
+   // private final Area.Circular alter = new Area.Circular(new Coordinate(2933,3516,0), 6);
+    private final Area.Circular alter = new Area.Circular(new Coordinate(2955,3820,0),2);
     private final Area.Absolute table = new Area.Absolute(new Coordinate(2930,3515,0));
     private GroundItem wine;
 
@@ -27,17 +25,10 @@ public class GrabWine extends Task{
 
         wine = GroundItems.newQuery().names("Wine of zamorak").results().nearest();
 
-        System.out.println("GRABWINE:::me."+(me != null)+",InventNotFull."+ !Inventory.isFull() +",wine."+wine != null+",alterContainMe."+ alter.contains(me)
-                + ",Law."+(Inventory.getQuantity("Law rune") >= 1)
-                +",Fire."+(Inventory.getQuantity("Fire rune") >= 1)
-                +",AirStaff"+(Equipment.contains("Staff of air"))+",Air."+ (Inventory.getQuantity("Air rune") >= 3)
-                +",Teligrab."+ Magic.TELEKINETIC_GRAB.activate());
+        //Banking completed means have runes
+        System.out.println("GW:"+(me != null) +"&&"+ (wine != null) +"&&"+ alter.contains(me) +"&&"+  GC.lessThanAlterDoor() +"&&"+ GC.bankingCompleted() +"&&"+ Magic.TELEKINETIC_GRAB.isSelected());
 
-        return (me != null && !Inventory.isFull() && wine != null && alter.contains(me) &&
-                Inventory.getQuantity("Law rune") >= 1 &&
-                Inventory.getQuantity("Fire rune") >= 1 &&
-                (Equipment.contains("Staff of air") || Inventory.getQuantity("Air rune") >= 3)
-                || Magic.TELEKINETIC_GRAB.activate());
+        return (me != null && wine != null && alter.contains(me) && GC.lessThanAlterDoor() && GC.bankingCompleted() || Magic.TELEKINETIC_GRAB.isSelected());
     }
 
     @Override

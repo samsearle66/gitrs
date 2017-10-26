@@ -22,48 +22,40 @@ public class BankInterface extends Task
 @Override
     public boolean validate() {
         final Player me = Players.getLocal();
-        //Execute if haven't started banking |OR| Inventory is full.
-        //no runes left || full inventory
 
-        System.out.println("BANKINTERFACE::::::me."+me+",contains."+edgevilleBank.contains(me)+",wine."+Inventory.contains("Jug of wine")+",law."+
-                (Inventory.getQuantity("Law rune")<4)+",fire."+(Inventory.getQuantity("Fire rune")<1)+
-                ",staffair."+!Equipment.contains("Staff of air")+",air."+(Inventory.getQuantity("Air rune")<3));
+        System.out.println("BI:"+(me != null)+","+edgevilleBank.contains(me)+",("+Bank.isOpen() +"||"+ Inventory.contains(GC.WINEOFZAMORAK) +"||"+ GC.outOfSuppies()+")");
 
-        return  (me != null && edgevilleBank.contains(me) &&
-                (Inventory.contains("Wine of zamorak")  || Bank.isOpen() ||
-                Inventory.getQuantity("Law rune") < GC.LAWRUNES ||
-                        Inventory.getQuantity("Fire rune") < 1
-                ||  (!Equipment.contains("Staff of air") && Inventory.getQuantity("Air rune") < 3)));
-        //execute if my bank is still open or inventory contains jug of wine or not enough law runes.
+        return  (me != null && edgevilleBank.contains(me) && (Bank.isOpen() || Inventory.contains(GC.WINEOFZAMORAK) || GC.outOfSuppies()));
     }
 
     @Override
     public void execute() {
-        System.out.println("Busy opening bank");
-        if (Inventory.contains("Wine of zamorak") || Inventory.getQuantity("Law rune") < GC.LAWRUNES ||
-           Inventory.getQuantity("Fire rune") < 1 || (!Equipment.contains("Staff of air") &&
-                Inventory.getQuantity("Air rune") < 3)) {
+        System.out.println("Busy opening bank:::("+Inventory.contains(GC.WINEOFZAMORAK)+"||"+(Inventory.getQuantity(GC.LAWRUNE) < GC.LAWRUNE) +"||"+
+                (Inventory.getQuantity(GC.FIRERUNE) < 1) +"("+ !Equipment.contains(GC.STAFFOFAIR) +"&&"+ (Inventory.getQuantity(GC.AIRRUNE) < 3)+"))");
+
+        if (Inventory.contains(GC.WINEOFZAMORAK) || Inventory.getQuantity(GC.LAWRUNE) < GC.LAWRUNEQUANTITY ||
+           Inventory.getQuantity(GC.FIRERUNE) < 1 ||
+                (!Equipment.contains(GC.STAFFOFAIR) && Inventory.getQuantity(GC.AIRRUNE) < 3)) {
             System.out.println("Opening bank");
             if (Bank.isOpen()) {
 
                Bank.depositAllExcept("Law rune","Fire rune", "Air rune");
 
-               if(Inventory.contains("Wine of zamorak"))
-                    Bank.deposit("Wine of zamorak",28); //deposit everything
+               if(Inventory.contains(GC.WINEOFZAMORAK))
+                    Bank.deposit(GC.WINEOFZAMORAK,28); //deposit everything
 
-               if (Inventory.getQuantity("Law rune") < GC.LAWRUNES) {
-                    Bank.withdraw("Law rune", GC.LAWRUNES - Inventory.getQuantity("Law rune"));
+               if (Inventory.getQuantity(GC.LAWRUNE) < GC.LAWRUNEQUANTITY) {
+                    Bank.withdraw(GC.LAWRUNE, GC.LAWRUNEQUANTITY - Inventory.getQuantity(GC.LAWRUNE));
                }
 
-               if (Inventory.getQuantity("Fire rune") < 1)
+               if (Inventory.getQuantity(GC.FIRERUNE) < 1)
                {
-                   Bank.withdraw("Fire rune", 1);
+                   Bank.withdraw(GC.FIRERUNE, 1);
                }
 
-               if(!Equipment.contains("Staff of air")){
-                   if(Bank.contains("Air rune"))
-                        Bank.withdraw("Air rune",81 - Inventory.getQuantity("Air rune"));
-                   else System.out.println("STOP PROGRAM!!.");
+               if(!Equipment.contains(GC.STAFFOFAIR)){
+                   if(Bank.contains(GC.AIRRUNE))
+                        Bank.withdraw(GC.AIRRUNE,GC.AIRRUNEQUANTITY - Inventory.getQuantity(GC.AIRRUNE));
                }
             } else {
                 System.out.println("Open bank");

@@ -13,13 +13,13 @@ import com.runemate.game.api.script.framework.task.Task;
 
 public class IsDoorOpen extends Task {
 
-    private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2958,3820,0),2);
+    private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2958,3820,0),20);
 
     private GameObject door;
 
     @Override
     public boolean validate() {
-        door = GameObjects.newQuery().names("Large Door").actions("Open").within(alterDoor).results().nearest();
+        door = GameObjects.newQuery().names("Large door").actions("Open").within(alterDoor).results().nearest();
 
         final Player me = Players.getLocal();
 
@@ -28,6 +28,8 @@ public class IsDoorOpen extends Task {
         //check gate object is not null
 
         //System.out.println(me + "///" + potatoGate.contains(me) + "///" + gate);
+
+        System.out.println("IsDoorOpen:"+(me != null) +","+ alterDoor.contains(me) +","+ door);
 
         return  me != null && alterDoor.contains(me) && door != null;
     }
