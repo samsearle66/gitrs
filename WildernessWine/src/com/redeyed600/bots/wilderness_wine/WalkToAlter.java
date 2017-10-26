@@ -12,7 +12,7 @@ import com.runemate.game.api.script.framework.task.Task;
 public class WalkToAlter extends Task {
 
     //private final Area.Circular alter = new Area.Circular(new Coordinate(2950,3821,0),2);
-    private final Area.Circular alter = new Area.Circular(new Coordinate(2955,3820,0),2);
+    private final Area.Circular alter = new Area.Circular(new Coordinate(2955,3820,0),1);
     //2955,2821
 
 
@@ -21,7 +21,7 @@ public class WalkToAlter extends Task {
         final Player me = Players.getLocal();
 
         System.out.println("WTA:"+(me != null)+"&&"+GC.greaterThanLevel20Wilderness()+"&&"+!Inventory.contains(GC.WINEOFZAMORAK) +"&&"+ !alter.contains(me) +"&&"+ GC.bankingCompleted() +"&&"+ GC.greaterThanAlter() );
-        return (me != null && GC.greaterThanLevel20Wilderness() && !Inventory.contains(GC.WINEOFZAMORAK) && !alter.contains(me) && GC.bankingCompleted() && GC.greaterThanAlter());
+        return (me != null && GC.greaterThanLevel20Wilderness() && Inventory.contains(GC.WINEOFZAMORAK) && !alter.contains(me) && GC.bankingCompleted() && GC.greaterThanAlter());
     }
 
     @Override
@@ -30,7 +30,11 @@ public class WalkToAlter extends Task {
         final BresenhamPath path = BresenhamPath.buildTo(alter);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-            path.step(Path.TraversalOption.MANAGE_RUN);
+            add(new IsDoorOpen());
+            if(GC.underAttack())
+                path.step(Path.TraversalOption.MANAGE_RUN);
+            else
+                path.step();
         }
     }
 }

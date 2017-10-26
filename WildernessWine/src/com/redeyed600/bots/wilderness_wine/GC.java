@@ -19,7 +19,7 @@ public class GC {
     public static String[] FOODIDS = {"Jug of wine", "Swordfish"};
     public static int MINIMUMHP = 26;
     public static int MINIMUMFOOD = 20;
-    public static int LAWRUNEQUANTITY = 20;
+    public static int LAWRUNEQUANTITY = 3;
     public static int AIRRUNEQUANTITY = 81;
     public static Boolean AIRSTAFF = true;
     public static final int wildernessArea = 3535;
@@ -36,15 +36,18 @@ public class GC {
 
     public static boolean outOfSuppies(){
 
-        System.out.println("outOfSupplies:("+Inventory.isFull()+" || "+(Inventory.getQuantity(LAWRUNE) < 1) +"||"+(Inventory.getQuantity(FIRERUNE) < 1)+"||"+ Inventory.getItems(GC.FOODIDS).size()+  " ("+ !Equipment.contains(STAFFOFAIR) + " && " + (Inventory.getQuantity(AIRRUNE) < 3)+")");
-        return (Inventory.isFull() || Inventory.getQuantity(LAWRUNE) < 1 || !underAttack() ||
-                Inventory.getQuantity(FIRERUNE) < 1|| Inventory.getItems(GC.FOODIDS).size() < 6 ||
-                (!Equipment.contains(STAFFOFAIR) && Inventory.getQuantity(AIRRUNE) < 3));
+        System.out.println("outOfSupplies:("+Inventory.isFull()+" || "+(Inventory.getQuantity(LAWRUNE) < 2) +"||"+
+                (Inventory.getQuantity(FIRERUNE) < 1)+"||"+ Inventory.getItems(GC.FOODIDS).size()+ "||"+ underAttack() +"||"+" ("+
+                !Equipment.contains(STAFFOFAIR) + " && " + (Inventory.getQuantity(AIRRUNE) < 3)+")");
+
+        return (Inventory.isFull() || Inventory.getQuantity(LAWRUNE) < 2 ||
+                Inventory.getQuantity(FIRERUNE) < 1|| Inventory.getItems(GC.FOODIDS).size() < 6 || underAttack()||
+        (!Equipment.contains(STAFFOFAIR) && Inventory.getQuantity(AIRRUNE) < 3));
     }
 
     public static boolean underAttack(){
         LocatableEntityQueryResults target = Players.getLoaded(me);
-        return target.nearest() != null;
+        return me!=null && target.nearest() != null;
     }
 
     public static boolean bankingCompleted(){
@@ -62,12 +65,12 @@ public class GC {
 
     public static boolean greaterThanWildernessArea(){
 
-        return me.getPosition().getY() > wildernessArea;
+        return me != null && me.getPosition().getY() > wildernessArea;
     }
 
     public static boolean greaterThanDitch(){
 
-        return me.getPosition().getY() > wildernessDitch;
+        return me != null && me.getPosition().getY() > wildernessDitch;
     }
 
     //private final Area.Circular alter = new Area.Circular(new Coordinate(2955,2821,0),2);
@@ -86,6 +89,6 @@ public class GC {
 
     public static boolean greaterThanAlter(){
         System.out.println(me.getPosition().getY() +" > "+ ALTERDOORY);
-        return me.getPosition().getY() > ALTERDOORY;
+        return me != null && me.getPosition().getY() > ALTERDOORY;
     }
 }

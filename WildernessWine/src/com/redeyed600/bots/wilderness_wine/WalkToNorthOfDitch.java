@@ -4,6 +4,7 @@ import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
+import com.runemate.game.api.hybrid.location.navigation.Path;
 import com.runemate.game.api.hybrid.location.navigation.basic.BresenhamPath;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
@@ -29,7 +30,7 @@ public class WalkToNorthOfDitch extends Task {
 
         System.out.println("2WTNOD:"+ (me != null) +"&&"+ !northOfDitch.contains(me) +"&&"+ !GC.greaterThanWildernessArea() +"&&"+ GC.greaterThanDitch() +"&&"+ GC.outOfSuppies());
 
-        if (me != null && !northOfDitch.contains(me) && GC.greaterThanWildernessArea() && GC.greaterThanDitch() && GC.outOfSuppies())
+        if (me != null && !northOfDitch.contains(me) && GC.greaterThanWildernessArea() && GC.greaterThanDitch() && GC.outOfSuppies() && !GC.greaterThanLevel20Wilderness() && !GC.greaterThanAlter())
         {
             return true;
         }
@@ -49,7 +50,9 @@ public class WalkToNorthOfDitch extends Task {
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
             add(new IsAtDitch());
-            path.step();
-        }
+            if(GC.underAttack())
+                path.step(Path.TraversalOption.MANAGE_RUN);
+            else
+                path.step();        }
     }
 }
