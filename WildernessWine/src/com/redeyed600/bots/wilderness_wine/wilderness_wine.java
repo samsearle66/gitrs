@@ -11,9 +11,9 @@ public class wilderness_wine extends TaskBot {
 
         //add(new Task1());
 
-        add(new TravelToBank(), new BankInterface(), new BankToNorthOfDitch(),  new NorthOfDitchToAlterDoor(), new AlterDoorToAlter(), new GrabWine(), new AlterToNorthOfDitch(), new NorthOfDitchToSouthOfDitch());
-        //add(new TravelToBank(), new BankInterface());
-       // add(new BankToNorthOfDitch());
+        add(new Heal(), new WalkToBank(), new BankInterface(), new WalkToNorthOfDitch(), new WalkToLevel20Wilderness(), new WalkToAlterDoor(), new WalkToAlter(), new GrabWine(), new WalkToAlterDoor(), new WalkToLevel20Wilderness(), new WalkToNorthOfDitch(), new WalkToSouthOfDitch());
+        //add(new WalkToBank(), new BankInterface());
+       // add(new WalkToNorthOfDitch());
         //add(new GrabWine());
 
     }

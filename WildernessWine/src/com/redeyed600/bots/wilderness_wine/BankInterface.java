@@ -4,15 +4,21 @@ import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Bank;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
+import com.runemate.game.api.hybrid.local.hud.interfaces.SpriteItem;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
+import com.runemate.game.api.hybrid.queries.results.SpriteItemQueryResults;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
+
+import java.util.List;
 
 public class BankInterface extends Task
 {
 
     private final Area.Circular edgevilleBank = new Area.Circular(new Coordinate(3096,3496,0), 3);
+
+    private SpriteItemQueryResults food;
 
     //VALIDATE
     //inventory contains wine.
@@ -22,24 +28,22 @@ public class BankInterface extends Task
 @Override
     public boolean validate() {
         final Player me = Players.getLocal();
+        food = Inventory.getItems(GC.FOODIDS);
 
-        System.out.println("BI:"+(me != null)+","+edgevilleBank.contains(me)+",("+Bank.isOpen() +"||"+ Inventory.contains(GC.WINEOFZAMORAK) +"||"+ GC.outOfSuppies()+")");
+        System.out.println("BI:"+(me != null)+"&&"+edgevilleBank.contains(me)+"&&("+Bank.isOpen() +"||"+ Inventory.contains(GC.WINEOFZAMORAK) +"||"+ GC.outOfSuppies()+")");
 
         return  (me != null && edgevilleBank.contains(me) && (Bank.isOpen() || Inventory.contains(GC.WINEOFZAMORAK) || GC.outOfSuppies()));
     }
 
     @Override
     public void execute() {
-        System.out.println("Busy opening bank:::("+Inventory.contains(GC.WINEOFZAMORAK)+"||"+(Inventory.getQuantity(GC.LAWRUNE) < GC.LAWRUNE) +"||"+
-                (Inventory.getQuantity(GC.FIRERUNE) < 1) +"("+ !Equipment.contains(GC.STAFFOFAIR) +"&&"+ (Inventory.getQuantity(GC.AIRRUNE) < 3)+"))");
+        System.out.println("Busy opening bank:"+Inventory.contains(GC.WINEOFZAMORAK)+"||"+GC.outOfSuppies());
 
-        if (Inventory.contains(GC.WINEOFZAMORAK) || Inventory.getQuantity(GC.LAWRUNE) < GC.LAWRUNEQUANTITY ||
-           Inventory.getQuantity(GC.FIRERUNE) < 1 ||
-                (!Equipment.contains(GC.STAFFOFAIR) && Inventory.getQuantity(GC.AIRRUNE) < 3)) {
+        if (Inventory.contains(GC.WINEOFZAMORAK) || GC.outOfSuppies()) {
             System.out.println("Opening bank");
             if (Bank.isOpen()) {
 
-               Bank.depositAllExcept("Law rune","Fire rune", "Air rune");
+               Bank.depositAllExcept("Law rune","Fire rune", "Air rune", "Jug of wine");
 
                if(Inventory.contains(GC.WINEOFZAMORAK))
                     Bank.deposit(GC.WINEOFZAMORAK,28); //deposit everything
@@ -57,6 +61,11 @@ public class BankInterface extends Task
                    if(Bank.contains(GC.AIRRUNE))
                         Bank.withdraw(GC.AIRRUNE,GC.AIRRUNEQUANTITY - Inventory.getQuantity(GC.AIRRUNE));
                }
+
+                if(Inventory.getItems(GC.FOODIDS).asList().size() < GC.MINIMUMFOOD){
+                    Bank.withdraw(Bank.getItems(GC.FOODIDS).first(),GC.MINIMUMFOOD - food.size());
+                }
+
             } else {
                 System.out.println("Open bank");
                 Bank.open();

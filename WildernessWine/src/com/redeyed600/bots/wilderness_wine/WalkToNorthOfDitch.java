@@ -8,7 +8,7 @@ import com.runemate.game.api.hybrid.location.navigation.basic.BresenhamPath;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
 
-public class BankToNorthOfDitch extends Task {
+public class WalkToNorthOfDitch extends Task {
 
     private final Area.Circular northOfDitch = new Area.Circular(new Coordinate(3070,3535,0),4);
 
@@ -21,14 +21,24 @@ public class BankToNorthOfDitch extends Task {
     public boolean validate() {
         final Player me = Players.getLocal();
 
-        System.out.println("BTNOD:"+(me != null)+","+(!Inventory.contains(GC.WINEOFZAMORAK))+","+(!northOfDitch.contains(me))+","+GC.bankingCompleted()+","+ !GC.greaterThanWildernessArea());
+        System.out.println("1WTNOD:"+(me != null)+","+(!Inventory.contains(GC.WINEOFZAMORAK))+","+(!northOfDitch.contains(me))+","+GC.bankingCompleted()+","+ !GC.greaterThanWildernessArea());
 
-        return (me != null && !Inventory.contains(GC.WINEOFZAMORAK) && !northOfDitch.contains(me) && GC.bankingCompleted() && !GC.greaterThanWildernessArea());
+        if(me != null && !Inventory.contains(GC.WINEOFZAMORAK) && !northOfDitch.contains(me) && GC.bankingCompleted() && !GC.greaterThanWildernessArea()){
+            return true;
+        }
+
+        System.out.println("2WTNOD:"+ (me != null) +"&&"+ !northOfDitch.contains(me) +"&&"+ !GC.greaterThanWildernessArea() +"&&"+ GC.greaterThanDitch() +"&&"+ GC.outOfSuppies());
+
+        if (me != null && !northOfDitch.contains(me) && GC.greaterThanWildernessArea() && GC.greaterThanDitch() && GC.outOfSuppies())
+        {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public void execute() {
-        System.out.println("Walk from bank to wild ditch");
+        System.out.println("Walk from bank to north wild ditch");
 
         /*Path path = Traversal.getDefaultWeb().getPathBuilder().buildTo(wildernessDitchArea.getRandomCoordinate());
         if(path != null) {

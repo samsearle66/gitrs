@@ -1,6 +1,7 @@
 package com.redeyed600.bots.wilderness_wine;
 
 import com.runemate.game.api.hybrid.entities.Player;
+import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
@@ -8,29 +9,30 @@ import com.runemate.game.api.hybrid.location.navigation.basic.BresenhamPath;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
 
-public class AlterDoorToAlter extends Task {
+//WALK FROM WILDERNESS TO EDGEVILLE
+public class WalkToSouthOfDitch extends Task {
 
-    //private final Area.Circular alter = new Area.Circular(new Coordinate(2950,3821,0),2);
-    private final Area.Circular alter = new Area.Circular(new Coordinate(2955,3820,0),2);
-    //2955,2821
-
+    private final Area.Circular SouthOfDitch = new Area.Circular(new Coordinate(3087,3516,0),3);
 
     @Override
     public boolean validate() {
         final Player me = Players.getLocal();
 
-        System.out.println("ADTA:"+(me != null)+"&&"+!Inventory.contains(GC.WINEOFZAMORAK) +"&&"+ !alter.contains(me) +"&&"+ GC.bankingCompleted() +"&&"+ GC.lessThanAlterDoor() );
-        return (me != null && !Inventory.contains(GC.WINEOFZAMORAK) && !alter.contains(me) && GC.bankingCompleted() && GC.lessThanAlterDoor());
+        System.out.println("WTSOD:"+(me != null) +" && "+ !SouthOfDitch.contains(me) +" && "+ !GC.greaterThanDitch() +" && "+ GC.outOfSuppies());
+
+        return (me != null && !SouthOfDitch.contains(me) && GC.greaterThanDitch() && GC.outOfSuppies());
     }
 
     @Override
     public void execute() {
-        System.out.println("Walking to alter");
-        final BresenhamPath path = BresenhamPath.buildTo(alter);
+        System.out.println("Walking from north of ditch to south of ditch ");
+        final BresenhamPath path = BresenhamPath.buildTo(SouthOfDitch);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-            add(new IsDoorOpen());
+            add(new IsAtDitch());
             path.step();
         }
     }
+
+
 }

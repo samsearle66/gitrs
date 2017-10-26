@@ -9,30 +9,31 @@ import com.runemate.game.api.hybrid.location.navigation.basic.BresenhamPath;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
 
-//WALK FROM WILDERNESS TO EDGEVILLE
-public class NorthOfDitchToSouthOfDitch extends Task {
+public class WalkToBank extends Task {
 
-    private final Area.Circular SouthOfDitch = new Area.Circular(new Coordinate(3087,3516,0),3);
+    private final Area.Circular edgevilleBank = new Area.Circular(new Coordinate(3096,3494,0), 2);
 
     @Override
+    //if bank no where to be found
     public boolean validate() {
         final Player me = Players.getLocal();
 
-        System.out.println("NODTSOD:"+(me != null) +" && "+ !SouthOfDitch.contains(me) +" && "+ !GC.greaterThanDitch() +" && "+ GC.outOfSuppies());
+        System.out.println("WTB:"+(me!=null)+","+!edgevilleBank.contains(me)+","+!GC.greaterThanDitch()+","+GC.outOfSuppies());
 
-        return (me != null && !SouthOfDitch.contains(me) && GC.greaterThanDitch() && GC.outOfSuppies());
+        return (me != null && !edgevilleBank.contains(me)&& !GC.greaterThanDitch() && GC.outOfSuppies());
     }
 
     @Override
     public void execute() {
-        System.out.println("Walking from north of ditch to south of ditch ");
-        final BresenhamPath path = BresenhamPath.buildTo(SouthOfDitch);
+        System.out.println("Walk to edgeville bank");
+        /*Path path = Traversal.getDefaultWeb().getPathBuilder().buildTo(edgevilleBank.getRandomCoordinate());
+        if(path != null) {
+            path.step();
+        }*/
+        final BresenhamPath path = BresenhamPath.buildTo(edgevilleBank);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-            add(new IsAtDitch());
             path.step();
         }
     }
-
-
 }
