@@ -12,6 +12,7 @@ import com.runemate.game.api.script.framework.task.Task;
 public class WalkToNorthOfDitch extends Task {
 
     private final Area.Circular northOfDitch = new Area.Circular(new Coordinate(3070,3535,0),4);
+    private Player me;
 
     //VALIDATE
     //Inventory is not full.
@@ -20,11 +21,12 @@ public class WalkToNorthOfDitch extends Task {
 
     @Override
     public boolean validate() {
-        final Player me = Players.getLocal();
+
+        me = Players.getLocal();
 
         System.out.println("1WTNOD:"+(me != null)+","+(!Inventory.contains(GC.WINEOFZAMORAK))+","+(!northOfDitch.contains(me))+","+GC.bankingCompleted()+","+ !GC.greaterThanWildernessArea());
 
-        if(me != null && !Inventory.contains(GC.WINEOFZAMORAK) && !northOfDitch.contains(me) && GC.bankingCompleted() && !GC.greaterThanWildernessArea()){
+        if(me!= null && !Inventory.contains(GC.WINEOFZAMORAK) && !northOfDitch.contains(me) && GC.bankingCompleted() && !GC.greaterThanWildernessArea()){
             return true;
         }
 

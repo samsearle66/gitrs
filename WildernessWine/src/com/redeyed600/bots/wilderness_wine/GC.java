@@ -32,6 +32,11 @@ public class GC {
     public static int FIRERUNE = 554;
     public static int LAWRUNE = 563;
     public static int LEVEL20WILDERNESS = 3660;
+    public static long underAttackTimer = 0;
+
+    public static void setUnderAttackTimer(long underAttackTimer){
+        underAttackTimer = underAttackTimer;
+    }
 
     public static boolean outOfSuppies(){
 
@@ -45,8 +50,17 @@ public class GC {
     }
 
     public static boolean underAttack(){
+
+        long currentTime = System.currentTimeMillis();
+
         LocatableEntityQueryResults target = Players.getLoaded(Players.getLocal());
-        return Players.getLocal()!=null && target.nearest() != null;
+
+        if(Players.getLocal() !=null && target.nearest() != null) {
+            setUnderAttackTimer(System.currentTimeMillis() + 100000);//1min 40sec
+        }
+
+        return underAttackTimer > currentTime;
+
     }
 
     public static boolean bankingCompleted(){

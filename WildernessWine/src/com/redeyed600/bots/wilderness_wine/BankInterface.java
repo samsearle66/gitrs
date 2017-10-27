@@ -19,6 +19,7 @@ public class BankInterface extends Task
     private final Area.Circular edgevilleBank = new Area.Circular(new Coordinate(3096,3496,0), 3);
 
     private SpriteItemQueryResults food;
+    private Player me;
 
     //VALIDATE
     //inventory contains wine.
@@ -27,7 +28,7 @@ public class BankInterface extends Task
 
 @Override
     public boolean validate() {
-        final Player me = Players.getLocal();
+        me = Players.getLocal();
         food = Inventory.getItems(GC.FOODIDS);
 
         System.out.println("BI:"+(me != null)+"&&"+edgevilleBank.contains(me)+"&&("+Bank.isOpen() +"||"+ Inventory.contains(GC.WINEOFZAMORAK) +"||"+ GC.outOfSuppies()+")");

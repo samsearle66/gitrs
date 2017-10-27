@@ -16,12 +16,12 @@ public class IsDoorOpen extends Task {
     private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2958,3820,0),20);
 
     private GameObject door;
-
+    private Player me;
     @Override
     public boolean validate() {
         door = GameObjects.newQuery().names("Large door").actions("Open").within(alterDoor).results().nearest();
 
-        final Player me = Players.getLocal();
+         me = Players.getLocal();
 
         //check player position not null
         //should check inventory is not full? seems overkill

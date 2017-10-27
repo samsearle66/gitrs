@@ -14,11 +14,11 @@ public class WalkToAlter extends Task {
     //private final Area.Circular alter = new Area.Circular(new Coordinate(2950,3821,0),2);
     private final Area.Circular alter = new Area.Circular(new Coordinate(2955,3820,0),1);
     //2955,2821
-    final Player me = Players.getLocal();
+    private Player me;
 
     @Override
     public boolean validate() {
-
+        me = Players.getLocal();
         System.out.println("WTA:"+(me != null)+"&&"+GC.greaterThanLevel20Wilderness() +"&&"+ !alter.contains(me) +"&&"+ GC.bankingCompleted() +"&&"+ GC.greaterThanAlter() );
         return (me != null && GC.greaterThanLevel20Wilderness() && !alter.contains(me) && GC.bankingCompleted() && GC.greaterThanAlter());
     }

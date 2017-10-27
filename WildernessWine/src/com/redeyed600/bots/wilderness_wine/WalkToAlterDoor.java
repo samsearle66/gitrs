@@ -12,9 +12,11 @@ import com.runemate.game.api.script.framework.task.Task;
 public class WalkToAlterDoor extends Task {
 
     private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2956,3820,0), 4 );
+    private Player me;
 
     @Override
     public boolean validate() {
+        me = Players.getLocal();
 
         System.out.println("1WTAD:"+(Players.getLocal() != null) +"&&"+ GC.greaterThanLevel20Wilderness() +" && "+ !Inventory.contains(GC.WINEOFZAMORAK) + " && "+ !alterDoor.contains(Players.getLocal()) +"&&"+!GC.greaterThanAlter()+"&&"+ GC.bankingCompleted() +"&&"+ GC.greaterThanWildernessArea() +"&&"+ GC.greaterThanDitch());
 

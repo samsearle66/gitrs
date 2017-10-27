@@ -12,11 +12,11 @@ import com.runemate.game.api.script.framework.task.Task;
 public class WalkToLevel20Wilderness extends Task {
 
     private final Area.Circular level20Wilderness = new Area.Circular(new Coordinate(2983,3660,0),6);
-
+    private Player me;
 
     @Override
     public boolean validate() {
-        final Player me = Players.getLocal();
+         me = Players.getLocal();
 
         System.out.println("1WTL20W:"+(me != null)+"&&"+(!Inventory.contains(GC.WINEOFZAMORAK))+","+(!level20Wilderness.contains(me))+","+ !GC.greaterThanLevel20Wilderness() +","+GC.bankingCompleted());
 

@@ -20,10 +20,10 @@ public class GrabWine extends Task{
     private GroundItem wine;
     private SpriteItemQueryResults food;
     private SpriteItemQueryResults jug;
-
+    private Player me;
     @Override
     public boolean validate() {
-        final Player me = Players.getLocal();
+        me = Players.getLocal();
 
         food = Inventory.getItems(GC.FOODIDS);
         jug = Inventory.getItems("Jug");

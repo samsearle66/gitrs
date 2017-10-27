@@ -14,12 +14,14 @@ import com.runemate.game.api.script.framework.task.Task;
 public class WalkToSouthOfDitch extends Task {
 
     private final Area.Circular SouthOfDitch = new Area.Circular(new Coordinate(3087,3516,0),3);
+    Player me;
 
     @Override
     public boolean validate() {
-        final Player me = Players.getLocal();
 
-        System.out.println("WTSOD:"+(me != null) +" && "+ !SouthOfDitch.contains(me) +" && "+ !GC.greaterThanDitch() +" && "+ GC.outOfSuppies());
+        me = Players.getLocal();
+
+        System.out.println("WTSOD:"+(Players.getLocal() != null) +" && "+ !SouthOfDitch.contains(me) +" && "+ !GC.greaterThanDitch() +" && "+ GC.outOfSuppies());
 
         return (me != null && !SouthOfDitch.contains(me) && GC.greaterThanDitch() && GC.outOfSuppies());
     }
