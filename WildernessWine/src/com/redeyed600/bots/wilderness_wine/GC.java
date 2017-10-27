@@ -31,7 +31,6 @@ public class GC {
     public static int WINEOFZAMORAK = 245;
     public static int FIRERUNE = 554;
     public static int LAWRUNE = 563;
-    public static Player me = Players.getLocal();
     public static int LEVEL20WILDERNESS = 3660;
 
     public static boolean outOfSuppies(){
@@ -46,8 +45,8 @@ public class GC {
     }
 
     public static boolean underAttack(){
-        LocatableEntityQueryResults target = Players.getLoaded(me);
-        return me!=null && target.nearest() != null;
+        LocatableEntityQueryResults target = Players.getLoaded(Players.getLocal());
+        return Players.getLocal()!=null && target.nearest() != null;
     }
 
     public static boolean bankingCompleted(){
@@ -60,17 +59,17 @@ public class GC {
     }
 
     public static boolean greaterThanLevel20Wilderness(){
-        return me.getPosition().getY() > LEVEL20WILDERNESS;
+        return Players.getLocal().getPosition().getY() > LEVEL20WILDERNESS;
     }
 
     public static boolean greaterThanWildernessArea(){
 
-        return me != null && me.getPosition().getY() > wildernessArea;
+        return Players.getLocal() != null && Players.getLocal().getPosition().getY() > wildernessArea;
     }
 
     public static boolean greaterThanDitch(){
 
-        return me != null && me.getPosition().getY() > wildernessDitch;
+        return Players.getLocal() != null && Players.getLocal().getPosition().getY() > wildernessDitch;
     }
 
     //private final Area.Circular alter = new Area.Circular(new Coordinate(2955,2821,0),2);
@@ -83,12 +82,11 @@ public class GC {
     }
 
     public static boolean hasEnoughHealth() {
-
         return Skill.CONSTITUTION.getCurrentLevel() > MINIMUMHP;
     }
 
     public static boolean greaterThanAlter(){
-        System.out.println(me.getPosition().getY() +" > "+ ALTERDOORY);
-        return me != null && me.getPosition().getY() > ALTERDOORY;
+        System.out.println("greaterThanAlter:"+Players.getLocal().getPosition().getY() +" > "+ ALTERDOORY);
+        return Players.getLocal() != null && Players.getLocal().getPosition().getY() > ALTERDOORY;
     }
 }

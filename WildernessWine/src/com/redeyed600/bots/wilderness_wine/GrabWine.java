@@ -21,7 +21,6 @@ public class GrabWine extends Task{
     private SpriteItemQueryResults food;
     private SpriteItemQueryResults jug;
 
-
     @Override
     public boolean validate() {
         final Player me = Players.getLocal();

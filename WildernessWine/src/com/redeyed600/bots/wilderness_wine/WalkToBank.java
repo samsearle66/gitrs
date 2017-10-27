@@ -13,11 +13,11 @@ import com.runemate.game.api.script.framework.task.Task;
 public class WalkToBank extends Task {
 
     private final Area.Circular edgevilleBank = new Area.Circular(new Coordinate(3096,3494,0), 2);
+    final Player me = Players.getLocal();
 
     @Override
     //if bank no where to be found
     public boolean validate() {
-        final Player me = Players.getLocal();
 
         System.out.println("WTB:"+(me!=null)+","+!edgevilleBank.contains(me)+","+!GC.greaterThanDitch()+","+GC.outOfSuppies());
 
@@ -37,6 +37,7 @@ public class WalkToBank extends Task {
             if(GC.underAttack())
                 path.step(Path.TraversalOption.MANAGE_RUN);
             else
-                path.step();        }
+                path.step();
+        }
     }
 }
