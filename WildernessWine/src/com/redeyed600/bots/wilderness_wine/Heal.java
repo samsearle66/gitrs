@@ -10,16 +10,19 @@ import com.runemate.game.api.script.framework.task.Task;
 
 public class Heal extends Task {
 
+    wilderness_wine ww;
+
+    public Heal(wilderness_wine ww){
+        this.ww = ww;
+    }
+
     private SpriteItemQueryResults food;
 
 
     @Override
     public boolean validate() {
-        food = Inventory.getItems(GC.FOODIDS);
-
-        System.out.println(food.size() +"&&"+ !GC.hasEnoughHealth());
-
-        return (food.size() > 0) && !GC.hasEnoughHealth();
+        food = Inventory.getItems(ww.GC.FOODIDS);
+        return (food.size() > 0) && !ww.GC.hasEnoughHealth();
     }
 
     @Override

@@ -13,6 +13,12 @@ import com.runemate.game.api.script.framework.task.Task;
 
 public class IsDoorOpen extends Task {
 
+    private wilderness_wine ww;
+
+    public IsDoorOpen(wilderness_wine ww){
+        this.ww = ww;
+    }
+
     private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2958,3820,0),20);
 
     private GameObject door;

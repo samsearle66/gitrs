@@ -13,6 +13,12 @@ import com.runemate.game.api.script.framework.task.Task;
 //WALK FROM WILDERNESS TO EDGEVILLE
 public class WalkToSouthOfDitch extends Task {
 
+    private wilderness_wine ww;
+
+    public WalkToSouthOfDitch(wilderness_wine ww){
+        this.ww = ww;
+    }
+
     private final Area.Circular SouthOfDitch = new Area.Circular(new Coordinate(3087,3516,0),3);
     Player me;
 
@@ -21,9 +27,9 @@ public class WalkToSouthOfDitch extends Task {
 
         me = Players.getLocal();
 
-        System.out.println("WTSOD:"+(Players.getLocal() != null) +" && "+ !SouthOfDitch.contains(me) +" && "+ !GC.greaterThanDitch() +" && "+ GC.outOfSuppies());
+        System.out.println("WTSOD:"+(me != null) +" && "+ !SouthOfDitch.contains(me) +" && "+ !ww.GC.greaterThanDitch() +" && "+ ww.GC.outOfSuppies());
 
-        return (me != null && !SouthOfDitch.contains(me) && GC.greaterThanDitch() && GC.outOfSuppies());
+        return (me != null && !SouthOfDitch.contains(me) && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies());
     }
 
     @Override
@@ -32,11 +38,12 @@ public class WalkToSouthOfDitch extends Task {
         final BresenhamPath path = BresenhamPath.buildTo(SouthOfDitch);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-            add(new IsAtDitch());
-            if(GC.underAttack())
-                path.step(Path.TraversalOption.MANAGE_RUN);
+            add(new IsAtDitch(ww));
+            if(ww.GC.underAttack())
+                path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
             else
-                path.step();        }
+                path.step();
+        }
     }
 
 

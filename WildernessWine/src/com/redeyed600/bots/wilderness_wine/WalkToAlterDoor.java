@@ -11,23 +11,30 @@ import com.runemate.game.api.script.framework.task.Task;
 
 public class WalkToAlterDoor extends Task {
 
-    private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2956,3820,0), 4 );
+    public wilderness_wine ww;
+
+    public WalkToAlterDoor(wilderness_wine ww){
+        this.ww = ww;
+    }
+
+    private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2956,3820,0), 2 );//was 4
     private Player me;
 
     @Override
     public boolean validate() {
         me = Players.getLocal();
 
-        System.out.println("1WTAD:"+(Players.getLocal() != null) +"&&"+ GC.greaterThanLevel20Wilderness() +" && "+ !Inventory.contains(GC.WINEOFZAMORAK) + " && "+ !alterDoor.contains(Players.getLocal()) +"&&"+!GC.greaterThanAlter()+"&&"+ GC.bankingCompleted() +"&&"+ GC.greaterThanWildernessArea() +"&&"+ GC.greaterThanDitch());
+        System.out.println("1WTAD:"+(me != null) +"&&"+ ww.GC.greaterThanLevel20Wilderness() + " && "+ !alterDoor.contains(me) +"&&"+!ww.GC.greaterThanAlter()+"&&"+ ww.GC.bankingCompleted() +"&&"+ ww.GC.greaterThanWildernessArea() +"&&"+ ww.GC.greaterThanDitch()+"&&"+!ww.GC.outOfSuppies());
 
-        if (Players.getLocal() != null && !Inventory.contains(GC.WINEOFZAMORAK) && !alterDoor.contains(Players.getLocal()) && !GC.greaterThanAlter() && GC.bankingCompleted() && GC.greaterThanWildernessArea() && GC.greaterThanDitch())
+        //WINEOFZAMORAK??&& !Inventory.contains(GC.WINEOFZAMORAK)
+        if (me != null  && !alterDoor.contains(me) && !ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && ww.GC.greaterThanWildernessArea() && ww.GC.greaterThanDitch() && !ww.GC.outOfSuppies())
         {
             return true;
         }
 
-        System.out.println("2WTAD:"+(Players.getLocal() != null) +"&&"+!GC.greaterThanLevel20Wilderness()+ " && "+ !alterDoor.contains(Players.getLocal())+"&&"+ GC.greaterThanAlter() +"&&"+ GC.greaterThanWildernessArea()+"&&"+GC.greaterThanDitch() +"&&"+ GC.outOfSuppies());
+        System.out.println("2WTAD:"+(me != null) +"&&"+ww.GC.greaterThanLevel20Wilderness()+ " && "+ !alterDoor.contains(me)+"&&"+ ww.GC.greaterThanAlter() +"&&"+ ww.GC.greaterThanWildernessArea()+"&&"+ww.GC.greaterThanDitch() +"&&"+ ww.GC.outOfSuppies());
 
-        if(Players.getLocal() != null && GC.greaterThanLevel20Wilderness() && !alterDoor.contains(Players.getLocal()) && GC.greaterThanAlter() && GC.greaterThanWildernessArea() && GC.greaterThanDitch() && GC.outOfSuppies())
+        if(me != null && ww.GC.greaterThanLevel20Wilderness() && !alterDoor.contains(me) && ww.GC.greaterThanAlter() && ww.GC.greaterThanWildernessArea() && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies())
         {
             return true;
         }
@@ -47,9 +54,12 @@ public class WalkToAlterDoor extends Task {
         final BresenhamPath path = BresenhamPath.buildTo(alterDoor);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-            add(new IsDoorOpen());
-            if(GC.underAttack())
-                path.step(Path.TraversalOption.MANAGE_RUN);
+
+            if(!alterDoor.contains(me))
+                add(new IsDoorOpen(ww));
+
+            if(ww.GC.underAttack())
+                path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
             else
                 path.step();
         }

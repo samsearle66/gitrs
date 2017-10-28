@@ -15,10 +15,16 @@ import java.util.List;
 
 public class BankInterface extends Task
 {
+    wilderness_wine ww;
+
+    public BankInterface(wilderness_wine ww){
+        this.ww = ww;
+    }
 
     private final Area.Circular edgevilleBank = new Area.Circular(new Coordinate(3096,3496,0), 3);
 
     private SpriteItemQueryResults food;
+    private SpriteItemQueryResults energyPotion;
     private Player me;
 
     //VALIDATE
@@ -29,42 +35,43 @@ public class BankInterface extends Task
 @Override
     public boolean validate() {
         me = Players.getLocal();
-        food = Inventory.getItems(GC.FOODIDS);
+        food = Inventory.getItems(ww.GC.FOODIDS);
+        energyPotion = Inventory.getItems(ww.GC.ENERGYPOTION);
 
-        System.out.println("BI:"+(me != null)+"&&"+edgevilleBank.contains(me)+"&&("+Bank.isOpen() +"||"+ Inventory.contains(GC.WINEOFZAMORAK) +"||"+ GC.outOfSuppies()+")");
+        System.out.println("BI:"+(me != null)+"&&"+edgevilleBank.contains(me)+"&&("+Bank.isOpen() +"||"+ Inventory.contains(ww.GC.WINEOFZAMORAK) +"||"+ ww.GC.outOfSuppies()+")");
 
-        return  (me != null && edgevilleBank.contains(me) && (Bank.isOpen() || Inventory.contains(GC.WINEOFZAMORAK) || GC.outOfSuppies()));
+        return (me != null && edgevilleBank.contains(me) && (Bank.isOpen() || Inventory.contains(ww.GC.WINEOFZAMORAK) || ww.GC.outOfSuppies()));
     }
 
     @Override
     public void execute() {
-        System.out.println("Busy opening bank:"+Inventory.contains(GC.WINEOFZAMORAK)+"||"+GC.outOfSuppies());
+        System.out.println("Busy opening bank:"+Inventory.contains(ww.GC.WINEOFZAMORAK)+"||"+ww.GC.outOfSuppies());
 
-        if (Inventory.contains(GC.WINEOFZAMORAK) || GC.outOfSuppies()) {
+        if (Inventory.contains(ww.GC.WINEOFZAMORAK) || ww.GC.outOfSuppies()) {
             System.out.println("Opening bank");
             if (Bank.isOpen()) {
 
-               Bank.depositAllExcept("Law rune","Fire rune", "Air rune", "Jug of wine");
+               Bank.depositAllExcept("Law rune","Fire rune", "Air rune", "Jug of wine", "Energy potion");
 
-               if(Inventory.contains(GC.WINEOFZAMORAK))
-                    Bank.deposit(GC.WINEOFZAMORAK,28); //deposit everything
-
-               if (Inventory.getQuantity(GC.LAWRUNE) < GC.LAWRUNEQUANTITY) {
-                    Bank.withdraw(GC.LAWRUNE, GC.LAWRUNEQUANTITY - Inventory.getQuantity(GC.LAWRUNE));
+               if(energyPotion.size() < ww.GC.ENERGYPOTIONQUANTITY){
+                   Bank.withdraw(Bank.getItems(ww.GC.ENERGYPOTION).first(), ww.GC.ENERGYPOTIONQUANTITY - energyPotion.size());
                }
 
-               if (Inventory.getQuantity(GC.FIRERUNE) < 1)
+               if (Inventory.getQuantity(ww.GC.LAWRUNE) < ww.GC.LAWRUNEQUANTITY) {
+                    Bank.withdraw(ww.GC.LAWRUNE, ww.GC.LAWRUNEQUANTITY - Inventory.getQuantity(ww.GC.LAWRUNE));
+               }
+
+               if (Inventory.getQuantity(ww.GC.FIRERUNE) < 1)
                {
-                   Bank.withdraw(GC.FIRERUNE, 1);
+                   Bank.withdraw(ww.GC.FIRERUNE, 1);
                }
 
-               if(!Equipment.contains(GC.STAFFOFAIR)){
-                   if(Bank.contains(GC.AIRRUNE))
-                        Bank.withdraw(GC.AIRRUNE,GC.AIRRUNEQUANTITY - Inventory.getQuantity(GC.AIRRUNE));
+               if(!Equipment.contains(ww.GC.STAFFOFAIR)){
+                    Bank.withdraw(ww.GC.AIRRUNE,ww.GC.AIRRUNEQUANTITY - Inventory.getQuantity(ww.GC.AIRRUNE));
                }
 
-                if(Inventory.getItems(GC.FOODIDS).asList().size() < GC.MINIMUMFOOD){
-                    Bank.withdraw(Bank.getItems(GC.FOODIDS).first(),GC.MINIMUMFOOD - food.size());
+                if(food.size() < ww.GC.MINIMUMFOOD){
+                    Bank.withdraw(Bank.getItems(ww.GC.FOODIDS).first(),ww.GC.MINIMUMFOOD - food.size());
                 }
 
             } else {

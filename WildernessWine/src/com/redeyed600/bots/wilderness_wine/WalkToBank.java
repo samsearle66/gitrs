@@ -11,6 +11,11 @@ import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
 
 public class WalkToBank extends Task {
+    private wilderness_wine ww;
+
+    public WalkToBank(wilderness_wine ww){
+        this.ww = ww;
+    }
 
     private final Area.Circular edgevilleBank = new Area.Circular(new Coordinate(3096,3494,0), 2);
     private Player me;
@@ -19,9 +24,9 @@ public class WalkToBank extends Task {
     //if bank no where to be found
     public boolean validate() {
         me = Players.getLocal();
-        System.out.println("WTB:"+(me!=null)+","+!edgevilleBank.contains(me)+","+!GC.greaterThanDitch()+","+GC.outOfSuppies());
+        System.out.println("WTB:"+(me!=null)+","+!edgevilleBank.contains(me)+","+!ww.GC.greaterThanDitch()+","+ww.GC.outOfSuppies());
 
-        return (me != null && !edgevilleBank.contains(me)&& !GC.greaterThanDitch() && GC.outOfSuppies());
+        return (me != null && !edgevilleBank.contains(me)&& !ww.GC.greaterThanDitch() && ww.GC.outOfSuppies());
     }
 
     @Override
@@ -34,7 +39,7 @@ public class WalkToBank extends Task {
         final BresenhamPath path = BresenhamPath.buildTo(edgevilleBank);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-            if(GC.underAttack())
+            if(ww.GC.underAttack())
                 path.step(Path.TraversalOption.MANAGE_RUN);
             else
                 path.step();

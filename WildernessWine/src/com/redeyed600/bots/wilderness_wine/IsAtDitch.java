@@ -14,6 +14,12 @@ import com.runemate.game.api.script.framework.task.Task;
 
 public class IsAtDitch extends Task {
 
+    wilderness_wine ww;
+
+    public IsAtDitch(wilderness_wine ww){
+        this.ww = ww;
+    }
+
 
     GameObject wildernessDitch;
     private static Area.Rectangular wildernessDitchArea;
@@ -25,14 +31,14 @@ public class IsAtDitch extends Task {
         wildernessDitchArea = new Area.Rectangular(new Coordinate(3069,3520,0), new Coordinate(3122,3523,0));
         me = Players.getLocal();
 
-        System.out.println("IAD:"+wildernessDitchArea.contains(me)+"&&("+GC.greaterThanDitch()+"&&"+GC.outOfSuppies()
-                +")||("+!GC.greaterThanDitch()+"&&"+GC.bankingCompleted()+")");
+        System.out.println("IAD:"+wildernessDitchArea.contains(me)+"&&("+ww.GC.greaterThanDitch()+"&&"+ww.GC.outOfSuppies()
+                +")||("+!ww.GC.greaterThanDitch()+"&&"+ww.GC.bankingCompleted()+")");
         //(me && wildernessDitch && wildernessDitchAreaContain(me) && (me.PosY >>> wildDitch.PosY && (InvFull || InvLawQ < 1 || (!Equip.Staff && InvAirQ < 3))))
         return wildernessDitchArea.contains(me) &&
-                (GC.greaterThanDitch() && GC.outOfSuppies())
+                (ww.GC.greaterThanDitch() && ww.GC.outOfSuppies())
                 ||
                 //(me && wildernessDitch && wildernessDitchAreaContain(me) && (me.PosY <<< wildDitch.PosY && (!InvFull || InvLawQ < 1 || (!Equip.Staff && InvAirQ < 3))))
-                (!GC.greaterThanDitch() && GC.bankingCompleted());
+                (!ww.GC.greaterThanDitch() && ww.GC.bankingCompleted());
     }
 
     @Override

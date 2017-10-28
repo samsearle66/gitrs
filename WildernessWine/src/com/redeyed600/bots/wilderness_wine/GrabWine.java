@@ -14,6 +14,12 @@ import com.runemate.game.api.script.framework.task.Task;
 
 public class GrabWine extends Task{
 
+    private wilderness_wine ww;
+
+    public GrabWine(wilderness_wine ww){
+        this.ww = ww;
+    }
+
    // private final Area.Circular alter = new Area.Circular(new Coordinate(2933,3516,0), 6);
     private final Area.Circular alter = new Area.Circular(new Coordinate(2955,3820,0),1);
     private final Area.Absolute table = new Area.Absolute(new Coordinate(2930,3515,0));
@@ -21,19 +27,20 @@ public class GrabWine extends Task{
     private SpriteItemQueryResults food;
     private SpriteItemQueryResults jug;
     private Player me;
+
     @Override
     public boolean validate() {
         me = Players.getLocal();
 
-        food = Inventory.getItems(GC.FOODIDS);
+        food = Inventory.getItems("Jug of wine");
         jug = Inventory.getItems("Jug");
 
         wine = GroundItems.newQuery().names("Wine of zamorak").results().nearest();
 
         //Banking completed means have runes
-        System.out.println("GW:"+(me != null) +"&&"+ (wine != null) +"&&"+ alter.contains(me) +"&&"+  GC.greaterThanAlter() +"&&"+ GC.bankingCompleted() +"||"+ Magic.TELEKINETIC_GRAB.isSelected());
+        System.out.println("GW:"+(me != null) +"&&"+ (wine != null) +"&&"+ alter.contains(me) +"&&"+  ww.GC.greaterThanAlter() +"&&"+ ww.GC.bankingCompleted() +"||"+ Magic.TELEKINETIC_GRAB.isSelected());
 
-        return (me != null && wine != null && alter.contains(me) && GC.greaterThanAlter() && GC.bankingCompleted() || Magic.TELEKINETIC_GRAB.isSelected());
+        return (me != null && wine != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() || Magic.TELEKINETIC_GRAB.isSelected());
     }
 
     @Override
@@ -46,26 +53,25 @@ public class GrabWine extends Task{
                 System.out.println("Telegrab is selected...waiting");
                 if((wine!=null)&&(wine.isVisible()))
                 {
-                    System.out.println("Wine has been spotted");
                     if(wine.interact("Cast")) {
                         //After interacting with our flax, we can add a check if it's still valid
                         //This isn't required, you can check for player animation also
                         //If you'd use player animation, you'd check if it went back to idle after picking the flax
                         Execution.delayWhile(() -> wine.isValid(), 3000, 4000);
+                    } else {
+                        System.out.println("Cant cast?");
                     }
-
-                    if(jug != null && jug.first() != null)
-                        jug.first().interact("Drop");
-
-                    food.first().interact("Drop");
-
-
                 } else {
                     System.out.println("no wine here mate!");
                 }
                 //maybe do antiban?
             }else{
-                System.out.println("activate telekientic grab");
+               if(jug != null && jug.first() != null && jug.first().interact("Drop"))
+                    jug.first().interact("Drop");
+
+               if(food.first() != null && food.first().interact("Drop"))
+                    food.first().interact("Drop");
+
                 Magic.TELEKINETIC_GRAB.activate();
             }
         } else {

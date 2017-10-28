@@ -11,6 +11,12 @@ import com.runemate.game.api.script.framework.task.Task;
 
 public class WalkToNorthOfDitch extends Task {
 
+    private wilderness_wine ww;
+
+    public WalkToNorthOfDitch(wilderness_wine ww){
+        this.ww = ww;
+    }
+
     private final Area.Circular northOfDitch = new Area.Circular(new Coordinate(3070,3535,0),4);
     private Player me;
 
@@ -21,18 +27,18 @@ public class WalkToNorthOfDitch extends Task {
 
     @Override
     public boolean validate() {
-
         me = Players.getLocal();
 
-        System.out.println("1WTNOD:"+(me != null)+","+(!Inventory.contains(GC.WINEOFZAMORAK))+","+(!northOfDitch.contains(me))+","+GC.bankingCompleted()+","+ !GC.greaterThanWildernessArea());
+        //WINEOFZAMORAK??&& !Inventory.contains(GC.WINEOFZAMORAK)
+        System.out.println("1WTNOD:"+(me != null)+","+!northOfDitch.contains(me)+","+ww.GC.bankingCompleted()+","+ !ww.GC.greaterThanWildernessArea()+","+!ww.GC.outOfSuppies());
 
-        if(me!= null && !Inventory.contains(GC.WINEOFZAMORAK) && !northOfDitch.contains(me) && GC.bankingCompleted() && !GC.greaterThanWildernessArea()){
+        if(me!= null && !northOfDitch.contains(me) && ww.GC.bankingCompleted() && !ww.GC.greaterThanWildernessArea() && !ww.GC.outOfSuppies()){
             return true;
         }
 
-        System.out.println("2WTNOD:"+ (me != null) +"&&"+ !northOfDitch.contains(me) +"&&"+ !GC.greaterThanWildernessArea() +"&&"+ GC.greaterThanDitch() +"&&"+ GC.outOfSuppies());
+        System.out.println("2WTNOD:"+ (me != null) +"&&"+ !northOfDitch.contains(me) +"&&"+ ww.GC.greaterThanWildernessArea() +"&&"+ ww.GC.greaterThanDitch() +"&&"+ ww.GC.outOfSuppies() + "&&"+ !ww.GC.greaterThanLevel20Wilderness() +"&&"+ !ww.GC.greaterThanAlter());
 
-        if (me != null && !northOfDitch.contains(me) && GC.greaterThanWildernessArea() && GC.greaterThanDitch() && GC.outOfSuppies() && !GC.greaterThanLevel20Wilderness() && !GC.greaterThanAlter())
+        if (me != null && !northOfDitch.contains(me) && ww.GC.greaterThanWildernessArea() && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies() && !ww.GC.greaterThanLevel20Wilderness() && !ww.GC.greaterThanAlter())
         {
             return true;
         }
@@ -41,7 +47,7 @@ public class WalkToNorthOfDitch extends Task {
 
     @Override
     public void execute() {
-        System.out.println("Walk from bank to north wild ditch");
+        System.out.println("Walk to north wild ditch");
 
         /*Path path = Traversal.getDefaultWeb().getPathBuilder().buildTo(wildernessDitchArea.getRandomCoordinate());
         if(path != null) {
@@ -51,10 +57,11 @@ public class WalkToNorthOfDitch extends Task {
         final BresenhamPath path = BresenhamPath.buildTo(northOfDitch);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-            add(new IsAtDitch());
-            if(GC.underAttack())
-                path.step(Path.TraversalOption.MANAGE_RUN);
+            add(new IsAtDitch(ww));
+            if(ww.GC.underAttack())
+                path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
             else
-                path.step();        }
+                path.step();
+        }
     }
 }

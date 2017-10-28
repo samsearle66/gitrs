@@ -3,15 +3,15 @@ import com.runemate.game.api.script.framework.task.TaskBot;
 
 public class wilderness_wine extends TaskBot {
 
+    public GC GC = new GC(this);
+
     @Override
     public void onStart(String... strings){
         super.onStart(strings);
         setLoopDelay(700,1200);
 
-
-
-        //add(new Task1());
-        add(new Heal(), new WalkToBank(), new BankInterface(), new WalkToNorthOfDitch(), new WalkToLevel20Wilderness(), new WalkToAlterDoor(), new WalkToAlter(), new GrabWine(), new WalkToAlterDoor(), new WalkToLevel20Wilderness(), new WalkToNorthOfDitch(), new WalkToSouthOfDitch());
+        //add(new Task1(this));
+        add(new Heal(this), new WalkToBank(this), new BankInterface(this), new WalkToNorthOfDitch(this), new WalkToLevel20Wilderness(this), new WalkToAlterDoor(this), new WalkToAlter(this), new GrabWine(this), new WalkToAlterDoor(this), new WalkToLevel20Wilderness(this), new WalkToNorthOfDitch(this), new WalkToSouthOfDitch(this));
         //add(new WalkToBank(), new BankInterface());
         //add(new GrabWine());
         //add(new Task1());

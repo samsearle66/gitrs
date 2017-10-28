@@ -11,16 +11,25 @@ import com.runemate.game.api.script.framework.task.Task;
 
 public class WalkToAlter extends Task {
 
+    wilderness_wine ww;
+
+    public WalkToAlter(wilderness_wine ww){
+        this.ww = ww;
+    }
+
     //private final Area.Circular alter = new Area.Circular(new Coordinate(2950,3821,0),2);
-    private final Area.Circular alter = new Area.Circular(new Coordinate(2955,3820,0),1);
+    private final Area.Circular alter = new Area.Circular(new Coordinate(2951,3818,0),2);
     //2955,2821
     private Player me;
 
     @Override
     public boolean validate() {
         me = Players.getLocal();
-        System.out.println("WTA:"+(me != null)+"&&"+GC.greaterThanLevel20Wilderness() +"&&"+ !alter.contains(me) +"&&"+ GC.bankingCompleted() +"&&"+ GC.greaterThanAlter() );
-        return (me != null && GC.greaterThanLevel20Wilderness() && !alter.contains(me) && GC.bankingCompleted() && GC.greaterThanAlter());
+
+        System.out.println(me.getPosition());
+
+        System.out.println("WTA:"+(me != null)+"&&"+ww.GC.greaterThanLevel20Wilderness() +"&&"+ !alter.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ ww.GC.greaterThanAlter() );
+        return (me != null && ww.GC.greaterThanLevel20Wilderness() && !alter.contains(me) && ww.GC.bankingCompleted() && ww.GC.greaterThanAlter() && !ww.GC.outOfSuppies());
     }
 
     @Override
@@ -29,9 +38,13 @@ public class WalkToAlter extends Task {
         final BresenhamPath path = BresenhamPath.buildTo(alter);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-            add(new IsDoorOpen());
-            if(GC.underAttack())
-                path.step(Path.TraversalOption.MANAGE_RUN);
+
+            if(!alter.contains(me))
+                add(new IsDoorOpen(ww));
+
+            if(ww.GC.underAttack()) {
+                path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
+            }
             else
                 path.step();
         }
