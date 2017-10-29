@@ -20,7 +20,7 @@ public class Teleport extends Task {
         //(!greaterThanVarrockCenter || wildernessDepth < 20 && underAttack) && hasrunes
         System.out.println("Teleport:"+!ww.GC.greaterThanVarrockCenter() +"&&"+ ww.GC.hasVarrockTeleportRunes());
 
-        return !Bank.isOpen() && !ww.GC.greaterThanVarrockCenter() && ww.GC.hasVarrockTeleportRunes();
+        return !ww.GC.greaterThanVarrockCenter() && ww.GC.hasVarrockTeleportRunes();
 
     }
 

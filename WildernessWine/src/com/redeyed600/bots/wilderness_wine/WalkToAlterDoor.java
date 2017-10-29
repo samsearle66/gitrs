@@ -24,17 +24,17 @@ public class WalkToAlterDoor extends Task {
     public boolean validate() {
         me = Players.getLocal();
 
-        System.out.println("1WTAD:"+(me != null) +"&&"+ ww.GC.greaterThanLevel20Wilderness() + " && "+ !alterDoor.contains(me) +"&&"+!ww.GC.greaterThanAlter()+"&&"+ ww.GC.bankingCompleted() +"&&"+ ww.GC.greaterThanWildernessArea() +"&&"+ ww.GC.greaterThanDitch()+"&&"+!ww.GC.outOfSuppies());
+        System.out.println("1WTAD:"+(me != null) +"&&"+ ww.GC.greaterThanLevel20Wilderness() + " && "+ !alterDoor.contains(me) +"&&"+!ww.GC.greaterThanAlter()+"&&"+ ww.GC.bankingCompleted() +"&&"+ ww.GC.greaterThanWildernessArea() +"&&"+ ww.GC.greaterThanDitch()+"&&"+!ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter());
 
         //WINEOFZAMORAK??&& !Inventory.contains(GC.WINEOFZAMORAK)
-        if (me != null  && !alterDoor.contains(me) && !ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && ww.GC.greaterThanWildernessArea() && ww.GC.greaterThanDitch() && !ww.GC.outOfSuppies())
+        if (me != null  && !alterDoor.contains(me) && !ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && ww.GC.greaterThanWildernessArea() && ww.GC.greaterThanDitch() && !ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter())
         {
             return true;
         }
 
-        System.out.println("2WTAD:"+(me != null) +"&&"+ww.GC.greaterThanLevel20Wilderness()+ " && "+ !alterDoor.contains(me)+"&&"+ ww.GC.greaterThanAlter() +"&&"+ ww.GC.greaterThanWildernessArea()+"&&"+ww.GC.greaterThanDitch() +"&&"+ ww.GC.outOfSuppies());
+        System.out.println("2WTAD:"+(me != null) +"&&"+ww.GC.greaterThanLevel20Wilderness()+ " && "+ !alterDoor.contains(me)+"&&"+ ww.GC.greaterThanAlter() +"&&"+ ww.GC.greaterThanWildernessArea()+"&&"+ww.GC.greaterThanDitch() +"&&"+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter());
 
-        if(me != null && ww.GC.greaterThanLevel20Wilderness() && !alterDoor.contains(me) && ww.GC.greaterThanAlter() && ww.GC.greaterThanWildernessArea() && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies())
+        if(me != null && ww.GC.greaterThanLevel20Wilderness() && !alterDoor.contains(me) && ww.GC.greaterThanAlter() && ww.GC.greaterThanWildernessArea() && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter())
         {
             return true;
         }

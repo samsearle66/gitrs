@@ -25,16 +25,16 @@ public class WalkToLevel20Wilderness extends Task {
          me = Players.getLocal();
 
         //WINEOFZAMORAK??&& !Inventory.contains(GC.WINEOFZAMORAK)
-        System.out.println("1WTL20W:"+(me != null)+","+ !ww.GC.greaterThanLevel20Wilderness() +","+ww.GC.bankingCompleted() + ","+ !ww.GC.outOfSuppies());
+        System.out.println("1WTL20W:"+(me != null)+","+ !ww.GC.greaterThanLevel20Wilderness() +","+ww.GC.bankingCompleted() + ","+ !ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter());
 
-        if(me != null && !level20Wilderness.contains(me) && !ww.GC.greaterThanLevel20Wilderness() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies())
+        if(me != null && !level20Wilderness.contains(me) && !ww.GC.greaterThanLevel20Wilderness() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter())
         {
             return true;
         }
 
-        System.out.println("2WTL20W:"+ (me != null) +"&&"+ !level20Wilderness.contains(me) +"&&"+ ww.GC.greaterThanLevel20Wilderness() +"&&"+ !ww.GC.greaterThanWildernessArea() +"&&"+ ww.GC.greaterThanDitch() +"&&"+ ww.GC.outOfSuppies());
+        System.out.println("2WTL20W:"+ (me != null) +"&&"+ !level20Wilderness.contains(me) +"&&"+ ww.GC.greaterThanLevel20Wilderness() +"&&"+ !ww.GC.greaterThanWildernessArea() +"&&"+ ww.GC.greaterThanDitch() +"&&"+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter());
 
-        if (me != null && !level20Wilderness.contains(me) && ww.GC.greaterThanLevel20Wilderness() && ww.GC.greaterThanWildernessArea() && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies()){
+        if (me != null && !level20Wilderness.contains(me) && ww.GC.greaterThanLevel20Wilderness() && ww.GC.greaterThanWildernessArea() && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies() && ww.GC.greaterThanVarrockCenter()){
             return true;
         }
         return false;

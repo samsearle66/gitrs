@@ -21,7 +21,7 @@ public class GrabWine extends Task{
     }
 
    // private final Area.Circular alter = new Area.Circular(new Coordinate(2933,3516,0), 6);
-    private final Area.Circular alter = new Area.Circular(new Coordinate(2955,3820,0),1);
+    private final Area.Circular alter = new Area.Circular(new Coordinate(2951,3818,0),2);
     private final Area.Absolute table = new Area.Absolute(new Coordinate(2930,3515,0));
     private GroundItem wine;
     private SpriteItemQueryResults food;
@@ -38,9 +38,9 @@ public class GrabWine extends Task{
         wine = GroundItems.newQuery().names("Wine of zamorak").results().nearest();
 
         //Banking completed means have runes
-        System.out.println("GW:"+(me != null) +"&&"+ (wine != null) +"&&"+ alter.contains(me) +"&&"+  ww.GC.greaterThanAlter() +"&&"+ ww.GC.bankingCompleted() +"||"+ Magic.TELEKINETIC_GRAB.isSelected());
+        System.out.println("GW:"+(me != null) +"&&"+ (wine != null) +"&&"+ alter.contains(me) +"&&"+ ww.GC.greaterThanAlter() +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter() +"||"+ Magic.TELEKINETIC_GRAB.isSelected());
 
-        return (me != null && wine != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() || Magic.TELEKINETIC_GRAB.isSelected());
+        return (me != null && wine != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanVarrockCenter() || Magic.TELEKINETIC_GRAB.isSelected());
     }
 
     @Override
