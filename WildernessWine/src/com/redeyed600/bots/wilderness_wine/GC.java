@@ -23,8 +23,8 @@ public class GC {
     public int MINIMUMHP = 25;
     public int MINIMUMFOOD = 20;
     public int LAWRUNEQUANTITY = 20;
-    public int AIRRUNEQUANTITY = 81;
-    public Boolean AIRSTAFF = true;
+    public int AIRRUNEQUANTITY = 84;
+    public int AIRSTAFF = 1381;
     public final int wildernessArea = 3535;
     public int wildernessDitch = 3522;
     public int ALTERDOORX = 2959;
@@ -51,11 +51,11 @@ public class GC {
 
         System.out.println("outOfSupplies:("+Inventory.isFull()+" || "+(Inventory.getQuantity(LAWRUNE) < 2) +"||"+
                 (Inventory.getQuantity(FIRERUNE) < 1)+"||"+ Inventory.getItems(FOODIDS).size()+ "||"+ underAttack() +"||"+(Inventory.getItems(ENERGYPOTION).size() < 1)+"||"+" ("+
-                !Equipment.contains(STAFFOFAIR) + " && " + (Inventory.getQuantity(AIRRUNE) < 3)+")");
+                !Equipment.contains(STAFFOFAIR) + "&&"+ !Inventory.contains(STAFFOFAIR) +"&& " + (Inventory.getQuantity(AIRRUNE) < 3)+"))");
 
         return (Inventory.isFull() || Inventory.getQuantity(LAWRUNE) < 2 ||
                 Inventory.getQuantity(FIRERUNE) < 1|| Inventory.getItems(FOODIDS).size() < 6 || underAttack()|| Inventory.getItems(ENERGYPOTION).size() < 1 ||
-        (!Equipment.contains(STAFFOFAIR) && Inventory.getQuantity(AIRRUNE) < 3));
+        (!Equipment.contains(STAFFOFAIR) && !Inventory.contains(STAFFOFAIR) && Inventory.getQuantity(AIRRUNE) < 3));
     }
 
     public boolean underAttack(){
@@ -91,6 +91,36 @@ public class GC {
                 Inventory.getQuantity(FIRERUNE) > 0 &&
                 (Equipment.contains(STAFFOFAIR) || Inventory.getQuantity(AIRRUNE) >= 3);
     }
+
+
+    public final int LUMBRIDGECASTLELEVEL1 = 3204;
+    public boolean greaterThanLumbridgeCastleLevel1(){
+        Player me = Players.getLocal();
+        return me.getPosition().getX() > LUMBRIDGECASTLELEVEL1;
+    }
+
+    public final int LUMBRIDGECASTLELEVEL3 = 3211;
+    public boolean greaterThanLumbridgeCastleLevel3(){
+        Player me = Players.getLocal();
+        return me.getPosition().getX() > LUMBRIDGECASTLELEVEL3;
+    }
+
+    public final int[] LUMBRIDGECASTLESTAIRS = {16671,16672};
+    public final int[] ARMOUR = {1199,1073,1123};
+
+    public final int VARROCKCENTER = 3421;
+
+    public boolean greaterThanVarrockCenter(){
+        Player me = Players.getLocal();
+        return me.getPosition().getY() > VARROCKCENTER;
+    }
+
+    public boolean hasVarrockTeleportRunes(){
+        System.out.println("hasVarrockTeleportRunes:("+(Inventory.getQuantity(AIRRUNE)>=3)+"||"+Equipment.contains(AIRSTAFF)+")&&"+(Inventory.getQuantity(FIRERUNE)>=1)+"&&"+(Inventory.getQuantity(LAWRUNE)>=1));
+
+        return((Inventory.getQuantity(AIRRUNE)>=3||Equipment.contains(AIRSTAFF))&&Inventory.getQuantity(FIRERUNE)>=1&&Inventory.getQuantity(LAWRUNE)>=1);
+    }
+
 
     public boolean greaterThanLevel20Wilderness(){
         Player me = Players.getLocal();

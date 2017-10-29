@@ -26,8 +26,6 @@ public class WalkToAlter extends Task {
     public boolean validate() {
         me = Players.getLocal();
 
-        System.out.println(me.getPosition());
-
         System.out.println("WTA:"+(me != null)+"&&"+ww.GC.greaterThanLevel20Wilderness() +"&&"+ !alter.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ ww.GC.greaterThanAlter() );
         return (me != null && ww.GC.greaterThanLevel20Wilderness() && !alter.contains(me) && ww.GC.bankingCompleted() && ww.GC.greaterThanAlter() && !ww.GC.outOfSuppies());
     }
@@ -39,8 +37,9 @@ public class WalkToAlter extends Task {
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
 
-            if(!alter.contains(me))
+            if(!alter.contains(me)) {
                 add(new IsDoorOpen(ww));
+            }
 
             if(ww.GC.underAttack()) {
                 path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
