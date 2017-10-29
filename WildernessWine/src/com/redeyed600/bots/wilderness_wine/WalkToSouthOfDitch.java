@@ -27,9 +27,9 @@ public class WalkToSouthOfDitch extends Task {
 
         me = Players.getLocal();
 
-        System.out.println("WTSOD:"+(me != null) +" && "+ !SouthOfDitch.contains(me) +" && "+ !ww.GC.greaterThanDitch() +" && "+ ww.GC.outOfSuppies());
+        System.out.println("WTSOD:"+(me != null) +" && "+ !SouthOfDitch.contains(me) +" && "+ !ww.GC.greaterThanDitch() +" && "+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter());
 
-        return (me != null && !SouthOfDitch.contains(me) && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies());
+        return (me != null && !SouthOfDitch.contains(me) && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter());
     }
 
     @Override

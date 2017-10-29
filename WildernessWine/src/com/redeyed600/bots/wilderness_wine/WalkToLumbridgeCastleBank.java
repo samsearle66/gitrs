@@ -23,9 +23,9 @@ public class WalkToLumbridgeCastleBank extends Task {
     @Override
     public boolean validate() {
         me = Players.getLocal();
-        System.out.println("WTLCB:"+(me != null) +"&&"+ (me.getPosition().getPlane() == 2) +"&&"+ !lumbridgeCastleBank.contains(me) +"&&"+ !ww.GC.greaterThanDitch() +"&&"+ ww.GC.greaterThanLumbridgeCastleLevel1() +"&&"+ !ww.GC.greaterThanLumbridgeCastleLevel3());
+        System.out.println("WTLCB:"+(me != null) +"&&"+ (me.getPosition().getPlane() == 2) +"&&"+ !lumbridgeCastleBank.contains(me) +"&&"+ !ww.GC.greaterThanDitch() +"&&"+ ww.GC.greaterThanLumbridgeCastleLevel1() +"&&"+ !ww.GC.greaterThanLumbridgeCastleLevel3() +"&&"+ !ww.GC.greaterThanVarrockCenter());
 
-        return (me != null && (me.getPosition().getPlane() == 2) && !lumbridgeCastleBank.contains(me) && !ww.GC.greaterThanDitch() && ww.GC.greaterThanLumbridgeCastleLevel1() && !ww.GC.greaterThanLumbridgeCastleLevel3());
+        return (me != null && (me.getPosition().getPlane() == 2) && !lumbridgeCastleBank.contains(me) && !ww.GC.greaterThanDitch() && ww.GC.greaterThanLumbridgeCastleLevel1() && !ww.GC.greaterThanLumbridgeCastleLevel3() && !ww.GC.greaterThanVarrockCenter());
     }
 
     @Override

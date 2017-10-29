@@ -22,9 +22,9 @@ public class WalkToLumbridgeCastleStairs extends Task {
     public boolean validate() {
         me = Players.getLocal();
 
-        System.out.println("WTLCS:"+(me != null) +"&&"+ (me.getPosition().getPlane()==0) +"&&"+ !lumbridgeStairs.contains(me) +"&&"+ !ww.GC.greaterThanDitch() +"&&"+ ww.GC.greaterThanLumbridgeCastleLevel1());
+        System.out.println("WTLCS:"+(me != null) +"&&"+ (me.getPosition().getPlane()==0) +"&&"+ !lumbridgeStairs.contains(me) +"&&"+ !ww.GC.greaterThanDitch() +"&&"+ ww.GC.greaterThanLumbridgeCastleLevel1() +"&&"+ !ww.GC.greaterThanVarrockCenter());
 
-        return (me != null && me.getPosition().getPlane()==0 && !lumbridgeStairs.contains(me) && !ww.GC.greaterThanDitch() && ww.GC.greaterThanLumbridgeCastleLevel1());
+        return (me != null && me.getPosition().getPlane()==0 && !lumbridgeStairs.contains(me) && !ww.GC.greaterThanDitch() && ww.GC.greaterThanLumbridgeCastleLevel1()&& !ww.GC.greaterThanVarrockCenter());
     }
 
     @Override

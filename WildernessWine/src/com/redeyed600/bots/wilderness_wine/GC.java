@@ -24,6 +24,7 @@ public class GC {
     public int MINIMUMFOOD = 20;
     public int LAWRUNEQUANTITY = 20;
     public int AIRRUNEQUANTITY = 84;
+    public int FIRERUNEQUANTITY = 2;
     public int AIRSTAFF = 1381;
     public final int wildernessArea = 3535;
     public int wildernessDitch = 3522;

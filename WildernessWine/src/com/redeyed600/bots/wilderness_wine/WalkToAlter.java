@@ -26,8 +26,8 @@ public class WalkToAlter extends Task {
     public boolean validate() {
         me = Players.getLocal();
 
-        System.out.println("WTA:"+(me != null)+"&&"+ww.GC.greaterThanLevel20Wilderness() +"&&"+ !alter.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ ww.GC.greaterThanAlter() );
-        return (me != null && ww.GC.greaterThanLevel20Wilderness() && !alter.contains(me) && ww.GC.bankingCompleted() && ww.GC.greaterThanAlter() && !ww.GC.outOfSuppies());
+        System.out.println("WTA:"+(me != null)+"&&"+ww.GC.greaterThanLevel20Wilderness() +"&&"+ !alter.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ ww.GC.greaterThanAlter() +"&&"+ ww.GC.greaterThanVarrockCenter());
+        return (me != null && ww.GC.greaterThanLevel20Wilderness() && !alter.contains(me) && ww.GC.bankingCompleted() && ww.GC.greaterThanAlter() && !ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter());
     }
 
     @Override

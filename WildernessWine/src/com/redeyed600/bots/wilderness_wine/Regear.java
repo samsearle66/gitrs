@@ -1,10 +1,12 @@
 package com.redeyed600.bots.wilderness_wine;
 
 import com.runemate.game.api.hybrid.entities.GameObject;
+import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Bank;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.queries.results.SpriteItemQueryResults;
 import com.runemate.game.api.hybrid.region.GameObjects;
+import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
 
 public class Regear extends Task {
@@ -23,10 +25,10 @@ public class Regear extends Task {
         armour = Inventory.getItems(ww.GC.ARMOUR);
         airStaff = Inventory.getItems(ww.GC.AIRSTAFF);
 
-        System.out.println("R:"+!Bank.open() +"&&(("+ (armour.first()!=null)+ "&&"+ (armour.size() > 0) +")||"+ (airStaff.first()!=null)+")");
+        System.out.println("R:"+Players.getLocal().isMoving() +"&&(("+ (armour.first()!=null)+ "&&"+ (armour.size() > 0) +")||"+ (airStaff.first()!=null)+")");
 
         //may check if has armour on already or has air staff equiped already
-        return !Bank.open() && ((armour.first()!=null && armour.size() > 0) || airStaff.first()!=null);
+        return Players.getLocal().isVisible() && ((armour.first()!=null && armour.size() > 0) || airStaff.first()!=null);
     }
 
     @Override

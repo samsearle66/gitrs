@@ -35,10 +35,10 @@ public class IsAtDitch extends Task {
                 +")||("+!ww.GC.greaterThanDitch()+"&&"+ww.GC.bankingCompleted()+")");
         //(me && wildernessDitch && wildernessDitchAreaContain(me) && (me.PosY >>> wildDitch.PosY && (InvFull || InvLawQ < 1 || (!Equip.Staff && InvAirQ < 3))))
         return wildernessDitchArea.contains(me) &&
-                (ww.GC.greaterThanDitch() && ww.GC.outOfSuppies())
+                ((ww.GC.greaterThanDitch() && ww.GC.outOfSuppies())
                 ||
                 //(me && wildernessDitch && wildernessDitchAreaContain(me) && (me.PosY <<< wildDitch.PosY && (!InvFull || InvLawQ < 1 || (!Equip.Staff && InvAirQ < 3))))
-                (!ww.GC.greaterThanDitch() && ww.GC.bankingCompleted());
+                (!ww.GC.greaterThanDitch() && ww.GC.bankingCompleted()));
     }
 
     @Override
