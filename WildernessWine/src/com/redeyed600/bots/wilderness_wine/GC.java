@@ -15,6 +15,8 @@ import com.runemate.game.api.hybrid.region.Players;
 import com.sun.org.apache.bcel.internal.generic.ARETURN;
 import com.sun.scenario.effect.InvertMask;
 
+import java.io.*;
+
 public class GC {
 
     public int[] FOODIDS = {1993};//Jug of wine,needs swordfish!!
@@ -162,5 +164,23 @@ public class GC {
             return me.getAnimationId() != -1;
         }
         return true;
+    }
+
+    public byte[] getByteArray(String filesName){
+        byte[] getBytes = {};
+
+        try {
+            File file = new File(filesName);
+            getBytes = new byte[(int) file.length()];
+            InputStream is = new FileInputStream(file);
+            is.read(getBytes);
+            is.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return getBytes;
     }
 }
