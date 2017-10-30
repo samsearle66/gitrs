@@ -15,13 +15,15 @@ import com.runemate.game.api.hybrid.region.Players;
 import com.sun.org.apache.bcel.internal.generic.ARETURN;
 import com.sun.scenario.effect.InvertMask;
 
+import java.io.*;
+
 public class GC {
 
     public int[] FOODIDS = {1993};//Jug of wine,needs swordfish!!
     public int[] ENERGYPOTION = {3008,3010,3012,3014};//ENERGYPOTION,1,2,3,4
     public int ENERGYPOTIONQUANTITY = 1;
     public int MINIMUMHP = 25;
-    public int MINIMUMFOOD = 20;
+    public int MINIMUMFOOD = 12;
     public int LAWRUNEQUANTITY = 20;
     public int AIRRUNEQUANTITY = 84;
     public int FIRERUNEQUANTITY = 2;
@@ -37,6 +39,7 @@ public class GC {
     public int LAWRUNE = 563;
     public int LEVEL20WILDERNESS = 3660;
     public long underAttackTimer = 0;
+    public int SOUTHOFDITCH = 3513;
 
     public wilderness_wine ww;
 
@@ -46,6 +49,12 @@ public class GC {
 
     public void setUnderAttackTimer(long underAttackTimer){
         this.underAttackTimer = underAttackTimer;
+    }
+
+    public boolean greaterThanSouthOfDitch(){
+        Player me = Players.getLocal();
+
+        return me.getPosition().getY() > SOUTHOFDITCH;
     }
 
     public boolean outOfSuppies(){
@@ -162,5 +171,23 @@ public class GC {
             return me.getAnimationId() != -1;
         }
         return true;
+    }
+
+    public byte[] getByteArray(String filesName){
+        byte[] getBytes = {};
+
+        try {
+            File file = new File(filesName);
+            getBytes = new byte[(int) file.length()];
+            InputStream is = new FileInputStream(file);
+            is.read(getBytes);
+            is.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return getBytes;
     }
 }

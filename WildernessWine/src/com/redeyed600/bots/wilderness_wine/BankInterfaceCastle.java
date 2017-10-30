@@ -36,9 +36,9 @@ public class BankInterfaceCastle extends Task {
 
         System.out.println("BIC:"+(me != null) +"&&"+ (me.getPosition().getPlane() == 2) +"&&"+ lumbridgeCastleBank.contains(me) +"&&"+ !ww.GC.greaterThanDitch() +"&&"+ !ww.GC.greaterThanLumbridgeCastleLevel3() +"&&("+ww.GC.outOfSuppies()+"||"+ Bank.isOpen()+")" +"&&"+ !ww.GC.greaterThanVarrockCenter());
 
-        return (me != null && (me.getPosition().getPlane() == 2) && lumbridgeCastleBank.contains(me) && !ww.GC.greaterThanDitch() && !ww.GC.greaterThanLumbridgeCastleLevel3() && (ww.GC.outOfSuppies()|| Bank.isOpen()) && !ww.GC.greaterThanVarrockCenter());
-                //||
-               // (me != null && edgevilleBank.contains(me) && (Bank.isOpen() || Inventory.contains(ww.GC.WINEOFZAMORAK) || ww.GC.outOfSuppies()));
+        return (me != null && (me.getPosition().getPlane() == 2) && lumbridgeCastleBank.contains(me) && !ww.GC.greaterThanDitch() && !ww.GC.greaterThanLumbridgeCastleLevel3() && (ww.GC.outOfSuppies()|| Bank.isOpen()) && !ww.GC.greaterThanVarrockCenter())
+                ||
+                (me != null && edgevilleBank.contains(me) && (Bank.isOpen() || Inventory.contains(ww.GC.WINEOFZAMORAK) || ww.GC.outOfSuppies()));
 
     }
 
@@ -51,7 +51,7 @@ public class BankInterfaceCastle extends Task {
             System.out.println("Opening bank");
             if (Bank.isOpen()) {
 
-                Bank.depositAllExcept(ww.GC.LAWRUNE,ww.GC.FIRERUNE, ww.GC.AIRRUNE,ww.GC.AIRSTAFF,ww.GC.ENERGYPOTION[0],ww.GC.ENERGYPOTION[1],ww.GC.ENERGYPOTION[2],ww.GC.ENERGYPOTION[3],ww.GC.FOODIDS[0], ww.GC.ARMOUR[0],ww.GC.ARMOUR[1],ww.GC.ARMOUR[2]);
+                Bank.depositAllExcept(ww.GC.LAWRUNE,ww.GC.FIRERUNE, ww.GC.AIRRUNE,ww.GC.AIRSTAFF,ww.GC.ENERGYPOTION[0],ww.GC.FOODIDS[0], ww.GC.ARMOUR[0],ww.GC.ARMOUR[1],ww.GC.ARMOUR[2]);
 
                 if(energyPotion.size() < ww.GC.ENERGYPOTIONQUANTITY){
                     Bank.withdraw(Bank.getItems(ww.GC.ENERGYPOTION).first(), ww.GC.ENERGYPOTIONQUANTITY - energyPotion.size());

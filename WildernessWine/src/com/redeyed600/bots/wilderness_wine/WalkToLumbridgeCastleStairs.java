@@ -3,6 +3,8 @@ package com.redeyed600.bots.wilderness_wine;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
+import com.runemate.game.api.hybrid.location.navigation.Path;
+import com.runemate.game.api.hybrid.location.navigation.Traversal;
 import com.runemate.game.api.hybrid.location.navigation.basic.BresenhamPath;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
@@ -32,9 +34,12 @@ public class WalkToLumbridgeCastleStairs extends Task {
         System.out.println("Walking to lumbridge stairs");
         final BresenhamPath path = BresenhamPath.buildTo(lumbridgeStairs);
 
-        if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-            path.step();
+        if(ww.GC.underAttack()) {
+            Traversal.toggleRun();
+            path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
         }
+
+        path.step();
     }
 
 }

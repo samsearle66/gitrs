@@ -19,13 +19,13 @@ public class IsDoorOpen extends Task {
         this.ww = ww;
     }
 
-    private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2958,3820,0),20);
+    private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2958,3820,0),10);
 
     private GameObject door;
     private Player me;
     @Override
     public boolean validate() {
-        door = GameObjects.newQuery().names("Large door").actions("Open").within(alterDoor).results().nearest();
+        door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
 
          me = Players.getLocal();
 

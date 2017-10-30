@@ -66,7 +66,7 @@ public class GrabWine extends Task{
                 }
                 //maybe do antiban?
             }else{
-               if(jug != null && jug.first() != null && jug.first().interact("Drop"))
+               if(jug != null && jug.first() != null && jug.first().interact("Drop") && Inventory.getUsedSlots()>26)
                     jug.first().interact("Drop");
 
                if(food.first() != null && food.first().interact("Drop"))

@@ -1,11 +1,17 @@
 package com.redeyed600.bots.wilderness_wine;
 
+import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.location.navigation.Path;
+import com.runemate.game.api.hybrid.location.navigation.Traversal;
 import com.runemate.game.api.hybrid.location.navigation.basic.BresenhamPath;
+import com.runemate.game.api.hybrid.location.navigation.web.Web;
+import com.runemate.game.api.hybrid.location.navigation.web.WebPath;
+import com.runemate.game.api.hybrid.location.navigation.web.WebPathBuilder;
+import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
 
@@ -19,10 +25,14 @@ public class WalkToAlterDoor extends Task {
 
     private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2956,3820,0), 2 );//was 4
     private Player me;
+    private GameObject door;
 
     @Override
     public boolean validate() {
         me = Players.getLocal();
+
+        door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
+
 
         System.out.println("1WTAD:"+(me != null) +"&&"+ ww.GC.greaterThanLevel20Wilderness() + " && "+ !alterDoor.contains(me) +"&&"+!ww.GC.greaterThanAlter()+"&&"+ ww.GC.bankingCompleted() +"&&"+ ww.GC.greaterThanWildernessArea() +"&&"+ ww.GC.greaterThanDitch()+"&&"+!ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter());
 
@@ -32,9 +42,9 @@ public class WalkToAlterDoor extends Task {
             return true;
         }
 
-        System.out.println("2WTAD:"+(me != null) +"&&"+ww.GC.greaterThanLevel20Wilderness()+ " && "+ !alterDoor.contains(me)+"&&"+ ww.GC.greaterThanAlter() +"&&"+ ww.GC.greaterThanWildernessArea()+"&&"+ww.GC.greaterThanDitch() +"&&"+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter());
+        System.out.println("2WTAD:"+(me != null) +"&&"+ww.GC.greaterThanLevel20Wilderness()+ " && "+ !alterDoor.contains(me)+"&&"+ ww.GC.greaterThanAlter() +"&&"+ ww.GC.greaterThanWildernessArea()+"&&"+ww.GC.greaterThanDitch() +"&&"+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter() +"&&"+ (door!=null));
 
-        if(me != null && ww.GC.greaterThanLevel20Wilderness() && !alterDoor.contains(me) && ww.GC.greaterThanAlter() && ww.GC.greaterThanWildernessArea() && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter())
+        if(me != null && ww.GC.greaterThanLevel20Wilderness() && !alterDoor.contains(me) && ww.GC.greaterThanAlter() && ww.GC.greaterThanWildernessArea() && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies() && ww.GC.greaterThanVarrockCenter() && door!=null)
         {
             return true;
         }
@@ -58,10 +68,13 @@ public class WalkToAlterDoor extends Task {
             if(!alterDoor.contains(me))
                 add(new IsDoorOpen(ww));
 
-            if(ww.GC.underAttack())
+
+            if(ww.GC.underAttack()) {
+                Traversal.toggleRun();
                 path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
-            else
-                path.step();
+            }
+
+            path.step();
         }
     }
 
