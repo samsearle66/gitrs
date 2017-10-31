@@ -14,6 +14,8 @@ import com.runemate.game.api.hybrid.location.navigation.web.WebPath;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
 
+import java.net.URL;
+
 public class WalkToBank extends Task {
     private wilderness_wine ww;
     Boolean southOfDitch = false;
@@ -24,7 +26,7 @@ public class WalkToBank extends Task {
     public WalkToBank(wilderness_wine ww){
         this.ww = ww;
         try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray("C:\\Users\\Skippy\\gitrs\\WildernessWine\\src\\com\\redeyed600\\bots\\Resources\\varrockToEdgeville.nav"));
+            web = SerializableWeb.deserialize(ww.GC.getByteArray(""));
         } catch (Exception e) {
             e.printStackTrace();
             web = null;
