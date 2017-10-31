@@ -1,7 +1,9 @@
 package com.redeyed600.bots.wilderness_wine;
 
+import com.runemate.game.api.hybrid.entities.Actor;
 import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.entities.Player;
+import com.runemate.game.api.hybrid.entities.details.Locatable;
 import com.runemate.game.api.hybrid.local.Skill;
 import com.runemate.game.api.hybrid.local.Skills;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
@@ -10,6 +12,7 @@ import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.location.navigation.Traversal;
 import com.runemate.game.api.hybrid.player_sense.PlayerSense;
+import com.runemate.game.api.hybrid.queries.PlayerQueryBuilder;
 import com.runemate.game.api.hybrid.queries.results.LocatableEntityQueryResults;
 import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.Players;
@@ -17,6 +20,7 @@ import com.sun.org.apache.bcel.internal.generic.ARETURN;
 import com.sun.scenario.effect.InvertMask;
 
 import java.io.*;
+import java.util.List;
 
 public class GC {
 
@@ -67,6 +71,27 @@ public class GC {
         return (Inventory.isFull() || Inventory.getQuantity(LAWRUNE) < 2 ||
                 Inventory.getQuantity(FIRERUNE) < 1|| Inventory.getItems(FOODIDS).size() < 6 || underAttack()|| Inventory.getItems(ENERGYPOTION).size() < 1 ||
         (!Equipment.contains(STAFFOFAIR) && !Inventory.contains(STAFFOFAIR) && Inventory.getQuantity(AIRRUNE) < 3));
+    }
+
+    private final int WILDERNESSALTERDEPTH = 35;
+
+    public boolean pkersSpotted(){
+
+        List<Player> pker = Players.getLoaded().asList();
+
+        Player me = Players.getLocal();
+
+        if(me!=null && pker!=null && pker.size() > 1) {
+
+            for(Player p: pker)
+            {
+                if(!p.equals(me) && (p.getCombatLevel() > 30) && p.getCombatLevel() < me.getCombatLevel() + WILDERNESSALTERDEPTH){
+                    System.out.println("pker- Name" + p.getName() + ", Combat"+ p.getCombatLevel());
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public boolean underAttack(){

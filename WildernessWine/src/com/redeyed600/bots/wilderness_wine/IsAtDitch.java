@@ -28,17 +28,19 @@ public class IsAtDitch extends Task {
     @Override
     public boolean validate() {
         wildernessDitch = GameObjects.newQuery().names("Wilderness Ditch").actions("Cross").results().nearest();
-        wildernessDitchArea = new Area.Rectangular(new Coordinate(3069,3515,0), new Coordinate(3122,3528,0));
+        wildernessDitchArea = new Area.Rectangular(new Coordinate(3069,3515,0), new Coordinate(3122,3528,0)); //BROKEN NEED FIXING
+        //wildernessDitchArea = new Area.Rectangular(new Coordinate(3069,3520,0), new Coordinate(3122,3523,0));
+
         me = Players.getLocal();
 
-        System.out.println("IAD:"+wildernessDitchArea.contains(me)+"&&("+ww.GC.greaterThanDitch()+"&&"+ww.GC.outOfSuppies()
-                +")||("+!ww.GC.greaterThanDitch()+"&&"+ww.GC.bankingCompleted()+")");
+        System.out.println("IAD:"+wildernessDitchArea.contains(me)+"&&(("+ww.GC.greaterThanDitch()+"&&"+ww.GC.outOfSuppies()
+                +")||("+!ww.GC.greaterThanDitch()+"&&"+ww.GC.bankingCompleted()+"))");
         //(me && wildernessDitch && wildernessDitchAreaContain(me) && (me.PosY >>> wildDitch.PosY && (InvFull || InvLawQ < 1 || (!Equip.Staff && InvAirQ < 3))))
-        return wildernessDitchArea.contains(me) &&
+        return wildernessDitch!=null && wildernessDitchArea.contains(me) &&
                 ((ww.GC.greaterThanDitch() && ww.GC.outOfSuppies())
                 ||
                 //(me && wildernessDitch && wildernessDitchAreaContain(me) && (me.PosY <<< wildDitch.PosY && (!InvFull || InvLawQ < 1 || (!Equip.Staff && InvAirQ < 3))))
-                (!ww.GC.greaterThanDitch() && ww.GC.bankingCompleted()));
+                (!ww.GC.greaterThanDitch() && !ww.GC.outOfSuppies()));
     }
 
     @Override
@@ -49,7 +51,7 @@ public class IsAtDitch extends Task {
                 //After interacting with our gate, we can add a check if it's still valid
                 //This isn't required, you can check for player animation also
                 //If you'd use player animation, you'd check if it went back to idle after opening the gate
-                Execution.delayWhile(() -> wildernessDitch.isValid(), 5000, 8000);
+                Execution.delayWhile(() -> wildernessDitch.isValid(), 3000, 4000);
             }
         } else {
 
