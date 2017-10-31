@@ -26,7 +26,7 @@ public class WalkToSouthOfDitch extends Task {
     public WalkToSouthOfDitch(wilderness_wine ww){
         this.ww = ww;
         try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray("C:\\Users\\trend.ly\\gitrs\\WildernessWine\\src\\com\\redeyed600\\bots\\Resources\\varrockToEdgeville.nav"));
+            web = SerializableWeb.deserialize(ww.GC.getByteArray("C:\\Users\\Skippy\\gitrs\\WildernessWine\\src\\com\\redeyed600\\bots\\Resources\\varrockToEdgeville.nav"));
         } catch (Exception e) {
             e.printStackTrace();
             web = null;
@@ -73,12 +73,12 @@ public class WalkToSouthOfDitch extends Task {
 
             if (path != null) { // IMPORTANT: if the path should be null, the pathbuilder could not manage to build a path with the given web, so always nullcheck!
                 add(new IsAtDitch(ww));
-                if(ww.GC.underAttack()) {
+//                if(ww.GC.underAttack()) {
+                if(!Traversal.isRunEnabled() && Traversal.getRunEnergy() > 10)
                     Traversal.toggleRun();
-                    path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
-                }
-
-                path.step();
+                path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
+//                }
+//                path.step();
             }else{
                 System.out.println("dis path is null");
             }
@@ -91,11 +91,6 @@ public class WalkToSouthOfDitch extends Task {
 
             if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
                 add(new IsAtDitch(ww));
-                if(ww.GC.underAttack()) {
-                    Traversal.toggleRun();
-                    path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
-                }
-
                 path.step();
             }
         }

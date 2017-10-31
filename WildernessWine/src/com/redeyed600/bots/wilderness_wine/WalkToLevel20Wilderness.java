@@ -57,15 +57,7 @@ public class WalkToLevel20Wilderness extends Task {
         final BresenhamPath path = BresenhamPath.buildTo(level20Wilderness);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-
-            if(ww.GC.underAttack()) {
-                Traversal.toggleRun();
-                path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
-            }
-
             path.step();
-
-
         }
     }
 }

@@ -69,11 +69,6 @@ public class WalkToAlterDoor extends Task {
                 add(new IsDoorOpen(ww));
 
 
-            if(ww.GC.underAttack()) {
-                Traversal.toggleRun();
-                path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
-            }
-
             path.step();
         }
     }

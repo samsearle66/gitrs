@@ -18,8 +18,8 @@ public class IsAtStairs extends Task {
         this.ww = ww;
     }
 
-    private final Area.Circular lumbridgeStairs = new Area.Circular(new Coordinate(3206,3209,0),1);
-    private final Area.Circular lumbridgeStairs2 = new Area.Circular(new Coordinate(3206,3209,1),1);
+    private final Area.Circular lumbridgeStairs = new Area.Circular(new Coordinate(3206,3209,0),3);
+    private final Area.Circular lumbridgeStairs2 = new Area.Circular(new Coordinate(3206,3209,1),3);
 
     private GameObject stairs;
     Player me;

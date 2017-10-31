@@ -46,21 +46,21 @@ public class Task1 extends Task {
 
     @Override
     public boolean validate() {
-        if(web != null)
-        {
-            System.out.println(web.getVertices().size());
-        }else System.out.println("shes fucked");
-
-        WebPath path = null;
-
-
-        if (web != null) { // Make sure the web got loaded properly
-            path = web.getPathBuilder().buildTo(edgevilleBank);
-        }else{System.out.println("dis web is null");}
-
-        if (path != null) { // IMPORTANT: if the path should be null, the pathbuilder could not manage to build a path with the given web, so always nullcheck!
-                path.step();
-        }else {System.out.println("dis path is null");}
+//        if(web != null)
+//        {
+//            System.out.println(web.getVertices().size());
+//        }else System.out.println("shes fucked");
+//
+//        WebPath path = null;
+//
+//
+//        if (web != null) { // Make sure the web got loaded properly
+//            path = web.getPathBuilder().buildTo(edgevilleBank);
+//        }else{System.out.println("dis web is null");}
+//
+//        if (path != null) { // IMPORTANT: if the path should be null, the pathbuilder could not manage to build a path with the given web, so always nullcheck!
+//                path.step();
+//        }else {System.out.println("dis path is null");}
 
 
 //        Player player = Players.getLocal();
@@ -97,6 +97,9 @@ public class Task1 extends Task {
 //        System.out.println("CONSTITUTION_currentlevel"+Skill.CONSTITUTION.getCurrentLevel());
 //        System.out.println("CONSTITUTION_baselevel"+Skill.CONSTITUTION.getBaseLevel());
 
+        System.out.println((food.first() != null) +"&&"+ food.first().interact("Drop") +"&&"+ (Inventory.getUsedSlots()>26));
+
+        //System.out.println(ww.GC.hasEnoughEnergy());
 
         return false;
     }

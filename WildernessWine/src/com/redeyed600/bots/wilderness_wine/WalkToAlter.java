@@ -41,12 +41,6 @@ public class WalkToAlter extends Task {
             if(!alter.contains(me)) {
                 add(new IsDoorOpen(ww));
             }
-
-            if(ww.GC.underAttack()) {
-                Traversal.toggleRun();
-                path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
-            }
-
             path.step();
         }
     }

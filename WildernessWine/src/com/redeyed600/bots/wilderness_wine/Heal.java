@@ -28,6 +28,8 @@ public class Heal extends Task {
     @Override
     public void execute() {
 
+        System.out.println("healing");
+
         if(food.first() != null)
         {
             if(food.first().interact("Drink")||food.first().interact("Eat"))

@@ -40,7 +40,7 @@ public class GrabWine extends Task{
         //Banking completed means have runes
         System.out.println("GW:"+(me != null) +"&&"+ (wine != null) +"&&"+ alter.contains(me) +"&&"+ ww.GC.greaterThanAlter() +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter() +"||"+ Magic.TELEKINETIC_GRAB.isSelected());
 
-        return (me != null && wine != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanVarrockCenter() || Magic.TELEKINETIC_GRAB.isSelected());
+        return (me != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanVarrockCenter() || Magic.TELEKINETIC_GRAB.isSelected());
     }
 
     @Override
@@ -66,10 +66,10 @@ public class GrabWine extends Task{
                 }
                 //maybe do antiban?
             }else{
-               if(jug != null && jug.first() != null && jug.first().interact("Drop") && Inventory.getUsedSlots()>26)
+               if(jug != null && jug.first() != null)
                     jug.first().interact("Drop");
 
-               if(food.first() != null && food.first().interact("Drop"))
+               if(food.first() != null && Inventory.getUsedSlots()>27)
                     food.first().interact("Drop");
 
                 Magic.TELEKINETIC_GRAB.activate();

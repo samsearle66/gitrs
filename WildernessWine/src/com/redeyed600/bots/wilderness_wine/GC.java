@@ -8,6 +8,7 @@ import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
+import com.runemate.game.api.hybrid.location.navigation.Traversal;
 import com.runemate.game.api.hybrid.player_sense.PlayerSense;
 import com.runemate.game.api.hybrid.queries.results.LocatableEntityQueryResults;
 import com.runemate.game.api.hybrid.region.GameObjects;
@@ -23,7 +24,7 @@ public class GC {
     public int[] ENERGYPOTION = {3008,3010,3012,3014};//ENERGYPOTION,1,2,3,4
     public int ENERGYPOTIONQUANTITY = 1;
     public int MINIMUMHP = 25;
-    public int MINIMUMFOOD = 12;
+    public int MINIMUMFOOD = 10;
     public int LAWRUNEQUANTITY = 20;
     public int AIRRUNEQUANTITY = 84;
     public int FIRERUNEQUANTITY = 2;
@@ -76,7 +77,9 @@ public class GC {
 
         LocatableEntityQueryResults target = Players.getLoaded(me);
 
-        if(me !=null && target.nearest() != null && (underAttackTimer < currentTime)) {
+        System.out.println("underAttack:"+(me !=null) +"&&"+ (me.getHealthGauge()!=null) +"&&"+  (target.nearest() != null) +"&&"+ (underAttackTimer < currentTime));
+
+        if(me !=null && me.getHealthGauge()!=null &&  target.nearest() != null && (underAttackTimer < currentTime)) {
             System.out.println("Is under attack");
             setUnderAttackTimer(currentTime + 40000);//10sec 1min 40sec
         }
@@ -89,7 +92,7 @@ public class GC {
 
     //If player is under attack and has low energy
     public boolean hasEnoughEnergy(){
-        return Skill.AGILITY.getCurrentLevel() > Skill.AGILITY.getMaxLevel() * 0.10f;
+        return Traversal.getRunEnergy() >= 10;
     }
 
 
@@ -118,11 +121,11 @@ public class GC {
     public final int[] LUMBRIDGECASTLESTAIRS = {16671,16672};
     public final int[] ARMOUR = {1199,1073,1123};
 
-    public final int VARROCKCENTER = 3421;
+    public final int VARROCKCENTER = 3410;
 
     public boolean greaterThanVarrockCenter(){
         Player me = Players.getLocal();
-        return me.getPosition().getY() > VARROCKCENTER;
+        return me!=null && me.getPosition().getY() > VARROCKCENTER;
     }
 
     public boolean hasVarrockTeleportRunes(){
@@ -134,7 +137,7 @@ public class GC {
 
     public boolean greaterThanLevel20Wilderness(){
         Player me = Players.getLocal();
-        return me.getPosition().getY() > LEVEL20WILDERNESS;
+        return me!=null && me.getPosition().getY() > LEVEL20WILDERNESS;
     }
 
     public boolean greaterThanWildernessArea(){

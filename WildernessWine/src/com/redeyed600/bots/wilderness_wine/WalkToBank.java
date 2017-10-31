@@ -24,7 +24,7 @@ public class WalkToBank extends Task {
     public WalkToBank(wilderness_wine ww){
         this.ww = ww;
         try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray("C:\\Users\\trend.ly\\gitrs\\WildernessWine\\src\\com\\redeyed600\\bots\\Resources\\varrockToEdgeville.nav"));
+            web = SerializableWeb.deserialize(ww.GC.getByteArray("C:\\Users\\Skippy\\gitrs\\WildernessWine\\src\\com\\redeyed600\\bots\\Resources\\varrockToEdgeville.nav"));
         } catch (Exception e) {
             e.printStackTrace();
             web = null;
@@ -59,11 +59,6 @@ public class WalkToBank extends Task {
 
         if (path != null) { // IMPORTANT: if the path should be null, the pathbuilder could not manage to build a path with the given web, so always nullcheck!
             add(new IsAtDitch(ww));
-            if(ww.GC.underAttack()) {
-                Traversal.toggleRun();
-                path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
-            }
-
             path.step();
         }else{
             System.out.println("dis path is null");

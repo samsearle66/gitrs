@@ -56,15 +56,12 @@ public class WalkToNorthOfDitch extends Task {
 
     @Override
     public void execute() {
+        System.out.println("walking to north of ditch");
+
         final BresenhamPath path = BresenhamPath.buildTo(northOfDitch);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
             add(new IsAtDitch(ww));
-            if(ww.GC.underAttack()) {
-                Traversal.toggleRun();
-                path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
-            }
-
             path.step();
         }
     }

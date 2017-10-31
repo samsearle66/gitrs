@@ -34,12 +34,9 @@ public class WalkToLumbridgeCastleStairs extends Task {
         System.out.println("Walking to lumbridge stairs");
         final BresenhamPath path = BresenhamPath.buildTo(lumbridgeStairs);
 
-        if(ww.GC.underAttack()) {
-            Traversal.toggleRun();
-            path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
+        if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
+            path.step();
         }
-
-        path.step();
     }
 
 }

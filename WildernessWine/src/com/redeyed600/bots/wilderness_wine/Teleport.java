@@ -26,7 +26,7 @@ public class Teleport extends Task {
         System.out.println("Teleport:"+me.isVisible() +"&&"+!ww.GC.greaterThanVarrockCenter() +"&&"+ ww.GC.hasVarrockTeleportRunes());
 
 
-        return (me.isVisible() && !ww.GC.greaterThanVarrockCenter() && ww.GC.hasVarrockTeleportRunes()) || (ww.GC.underAttack() && ww.GC.hasVarrockTeleportRunes() && Players.getLocal().getWildernessDepth() <= 20);
+        return (me.isVisible() && !ww.GC.greaterThanVarrockCenter() && ww.GC.hasVarrockTeleportRunes()) || (ww.GC.underAttack() && ww.GC.hasVarrockTeleportRunes() && !ww.GC.greaterThanLevel20Wilderness());
 
     }
 
