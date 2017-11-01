@@ -4,6 +4,7 @@ import com.runemate.game.api.script.framework.task.TaskBot;
 public class wilderness_wine extends TaskBot {
 
     public GC GC = new GC(this);
+    //public  ConsoleWrite CW = new ConsoleWrite(this);
 
     @Override
     public void onStart(String... strings){
@@ -18,7 +19,7 @@ public class wilderness_wine extends TaskBot {
         //add(new Regear(this), new Teleport(this), new WalkToLumbridgeCastleStairs(this) ,new IsAtStairs(this),new WalkToLumbridgeCastleBank(this), new BankInterfaceCastle(this), new Regear(this), new Teleport(this), new WalkToSouthOfDitch(this));
 
 
-        add(new SwitchWorld(this), new Heal(this), new EnergyPotion(this),new RunEnergy(this), new WalkToBank(this), new BankInterfaceCastle(this), new WalkToNorthOfDitch(this), new WalkToLevel20Wilderness(this), new WalkToAlterDoor(this), new WalkToAlter(this), new GrabWine(this), new WalkToAlterDoor(this), new WalkToLevel20Wilderness(this), new WalkToNorthOfDitch(this), new WalkToSouthOfDitch(this), new WalkToLumbridgeCastleStairs(this) ,new IsAtStairs(this),new WalkToLumbridgeCastleBank(this), new BankInterfaceCastle(this),new Regear(this), new Teleport(this), new WalkToSouthOfDitch(this));
+        add(new SwitchWorld(this), new Heal(this), new Teleport(this), new EnergyPotion(this),new RunEnergy(this), new WalkToBank(this), new BankInterfaceCastle(this), new WalkToNorthOfDitch(this), new WalkToLevel20Wilderness(this), new WalkToAlterDoor(this), new WalkToAlter(this), new GrabWine(this), new WalkToAlterDoor(this), new WalkToLevel20Wilderness(this), new WalkToNorthOfDitch(this), new WalkToSouthOfDitch(this), new WalkToLumbridgeCastleStairs(this) ,new IsAtStairs(this),new WalkToLumbridgeCastleBank(this), new BankInterfaceCastle(this),new Regear(this), new WalkToSouthOfDitch(this));
 
         //add(new SwitchWorld(this));
 

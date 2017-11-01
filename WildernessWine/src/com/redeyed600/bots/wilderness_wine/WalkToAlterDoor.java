@@ -57,10 +57,8 @@ public class WalkToAlterDoor extends Task {
     @Override
     public void execute() {
         System.out.println("Walk to alter door");
-        /*Path path = Traversal.getDefaultWeb().getPathBuilder().buildTo(edgevilleBank.getRandomCoordinate());
-        if(path != null) {
-            path.step();
-        }*/
+
+
         final BresenhamPath path = BresenhamPath.buildTo(alterDoor);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash

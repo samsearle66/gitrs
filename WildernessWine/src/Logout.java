@@ -18,7 +18,7 @@ public class Logout extends Task {
 
         energyPotion = Inventory.getItems(ww.GC.ENERGYPOTION);
 
-        return !ww.GC.underAttack() && !ww.GC.hasEnoughEnergy();
+        return !ww.GC.underAttackPker() && !ww.GC.hasEnoughEnergy();
     }
 
     @Override

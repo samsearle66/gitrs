@@ -2,8 +2,6 @@ package com.redeyed600.bots.wilderness_wine;
 
 
 import com.runemate.game.api.hybrid.entities.Player;
-import com.runemate.game.api.hybrid.local.SpellBook;
-import com.runemate.game.api.hybrid.local.hud.interfaces.Bank;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.osrs.local.hud.interfaces.Magic;
 import com.runemate.game.api.script.framework.task.Task;
@@ -22,11 +20,11 @@ public class Teleport extends Task {
         Player me = Players.getLocal();
 
 
-        //(!greaterThanVarrockCenter || wildernessDepth < 20 && underAttack) && hasrunes
-        System.out.println("Teleport:"+me.isVisible() +"&&"+!ww.GC.greaterThanVarrockCenter() +"&&"+ ww.GC.hasVarrockTeleportRunes());
+        //(!greaterThanVarrockCenter || wildernessDepth < 20 && underAttackPker) && hasrunes
+        System.out.println("Teleport:"+ww.GC.greaterThanDitch() +"&&"+ ww.GC.outOfSuppies() +"&&"+ ww.GC.hasVarrockTeleportRunes() +"&&"+ !ww.GC.greaterThanLevel20Wilderness());
 
 
-        return (me.isVisible() && !ww.GC.greaterThanVarrockCenter() && ww.GC.hasVarrockTeleportRunes()) || (ww.GC.underAttack() && ww.GC.hasVarrockTeleportRunes() && !ww.GC.greaterThanLevel20Wilderness());
+        return (me.isVisible() && !ww.GC.greaterThanVarrockCenter() && ww.GC.hasVarrockTeleportRunes()) || (ww.GC.greaterThanDitch() && ww.GC.outOfSuppies() && ww.GC.hasVarrockTeleportRunes() && !ww.GC.greaterThanLevel20Wilderness());
 
     }
 

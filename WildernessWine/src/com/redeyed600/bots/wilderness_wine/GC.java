@@ -1,23 +1,13 @@
 package com.redeyed600.bots.wilderness_wine;
 
-import com.runemate.game.api.hybrid.entities.Actor;
-import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.entities.Player;
-import com.runemate.game.api.hybrid.entities.details.Locatable;
 import com.runemate.game.api.hybrid.local.Skill;
-import com.runemate.game.api.hybrid.local.Skills;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
-import com.runemate.game.api.hybrid.location.Area;
-import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.location.navigation.Traversal;
-import com.runemate.game.api.hybrid.player_sense.PlayerSense;
-import com.runemate.game.api.hybrid.queries.PlayerQueryBuilder;
 import com.runemate.game.api.hybrid.queries.results.LocatableEntityQueryResults;
-import com.runemate.game.api.hybrid.region.GameObjects;
+import com.runemate.game.api.hybrid.region.Npcs;
 import com.runemate.game.api.hybrid.region.Players;
-import com.sun.org.apache.bcel.internal.generic.ARETURN;
-import com.sun.scenario.effect.InvertMask;
 
 import java.io.*;
 import java.util.List;
@@ -28,8 +18,8 @@ public class GC {
     public int[] ENERGYPOTION = {3008,3010,3012,3014};//ENERGYPOTION,1,2,3,4
     public int ENERGYPOTIONQUANTITY = 1;
     public int MINIMUMHP = 25;
-    public int MINIMUMFOOD = 10;
-    public int LAWRUNEQUANTITY = 20;
+    public int MINIMUMFOOD = 12;
+    public int LAWRUNEQUANTITY = 16;
     public int AIRRUNEQUANTITY = 84;
     public int FIRERUNEQUANTITY = 2;
     public int AIRSTAFF = 1381;
@@ -42,7 +32,7 @@ public class GC {
     public int WINEOFZAMORAK = 245;
     public int FIRERUNE = 554;
     public int LAWRUNE = 563;
-    public int LEVEL20WILDERNESS = 3660;
+    public int LEVEL20WILDERNESS = 3525;
     public long underAttackTimer = 0;
     public int SOUTHOFDITCH = 3513;
 
@@ -65,11 +55,11 @@ public class GC {
     public boolean outOfSuppies(){
 
         System.out.println("outOfSupplies:("+Inventory.isFull()+" || "+(Inventory.getQuantity(LAWRUNE) < 2) +"||"+
-                (Inventory.getQuantity(FIRERUNE) < 1)+"||"+ Inventory.getItems(FOODIDS).size()+ "||"+ underAttack() +"||"+(Inventory.getItems(ENERGYPOTION).size() < 1)+"||"+" ("+
+                (Inventory.getQuantity(FIRERUNE) < 1)+"||"+ Inventory.getItems(FOODIDS).size()+ "||"+ underAttackPker() +"||"+(Inventory.getItems(ENERGYPOTION).size() < 1)+"||"+" ("+
                 !Equipment.contains(STAFFOFAIR) + "&&"+ !Inventory.contains(STAFFOFAIR) +"&& " + (Inventory.getQuantity(AIRRUNE) < 3)+"))");
 
         return (Inventory.isFull() || Inventory.getQuantity(LAWRUNE) < 2 ||
-                Inventory.getQuantity(FIRERUNE) < 1|| Inventory.getItems(FOODIDS).size() < 6 || underAttack()|| Inventory.getItems(ENERGYPOTION).size() < 1 ||
+                Inventory.getQuantity(FIRERUNE) < 1|| Inventory.getItems(FOODIDS).size() < 6 || underAttackPker()|| Inventory.getItems(ENERGYPOTION).size() < 1 ||
         (!Equipment.contains(STAFFOFAIR) && !Inventory.contains(STAFFOFAIR) && Inventory.getQuantity(AIRRUNE) < 3));
     }
 
@@ -86,15 +76,21 @@ public class GC {
             for(Player p: pker)
             {
                 if(!p.equals(me) && (p.getCombatLevel() > 30) && p.getCombatLevel() < me.getCombatLevel() + WILDERNESSALTERDEPTH){
-                    System.out.println("pker- Name" + p.getName() + ", Combat"+ p.getCombatLevel());
+
+
+                    //if(ww.GC.greaterThanAlter())
+                    //    ww.CW.writeToConsole(" > Alter pker- Name" + p.getName() + ", Combat"+ p.getCombatLevel(),this.getClass());
+                    //if(!ww.GC.greaterThanAlter() && ww.GC.greaterThanLevel20Wilderness())
+                    //    ww.CW.writeToConsole(" > 20 wild pker- Name; " + p.getName() + ", Combat; "+ p.getCombatLevel(),this.getClass());
                     return true;
                 }
             }
+
         }
         return false;
     }
 
-    public boolean underAttack(){
+    public boolean underAttackPker(){
 
         Player me = Players.getLocal();
 
@@ -102,17 +98,26 @@ public class GC {
 
         LocatableEntityQueryResults target = Players.getLoaded(me);
 
-        System.out.println("underAttack:"+(me !=null) +"&&"+ (me.getHealthGauge()!=null) +"&&"+  (target.nearest() != null) +"&&"+ (underAttackTimer < currentTime));
+        //System.out.println("underAttackPker:"+(me !=null) +"&&"+ (me.getHealthGauge()!=null) +"&&"+  (target.nearest() != null) +"&&"+ (underAttackTimer < currentTime));
 
         if(me !=null && me.getHealthGauge()!=null &&  target.nearest() != null && (underAttackTimer < currentTime)) {
             System.out.println("Is under attack");
-            setUnderAttackTimer(currentTime + 40000);//10sec 1min 40sec
+            setUnderAttackTimer(currentTime + 60000);//10sec 1min 40sec
         }
 
-        System.out.println("underAttack:"+underAttackTimer+">"+currentTime);
+        System.out.println("underAttackPker:"+underAttackTimer+">"+currentTime);
 
         return underAttackTimer > currentTime;
 
+    }
+
+    public boolean underAttackNpc(){
+        Player me = Players.getLocal();
+        LocatableEntityQueryResults target = Npcs.getLoaded(me);
+        if(me!=null){
+            return me.getHealthGauge()!=null &&  target.nearest() != null;
+        }
+        return false;
     }
 
     //If player is under attack and has low energy

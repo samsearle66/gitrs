@@ -26,7 +26,7 @@ public class WalkToSouthOfDitch extends Task {
     public WalkToSouthOfDitch(wilderness_wine ww){
         this.ww = ww;
         try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray(""));
+            web = SerializableWeb.deserialize(ww.GC.getByteArray("C:\\Users\\Skippy\\gitrs\\WildernessWine\\src\\Resources\\varrockToEdgeville.nav"));
         } catch (Exception e) {
             e.printStackTrace();
             web = null;
@@ -44,8 +44,8 @@ public class WalkToSouthOfDitch extends Task {
             return true;
         }
 
-        System.out.println("2WTSOD:"+(me != null) +" && "+ !SouthOfDitch.contains(me) +" && "+ !ww.GC.greaterThanDitch() +" && "+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter());
-        if(me != null && !SouthOfDitch.contains(me) && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter()){
+        System.out.println("2WTSOD:"+(me != null) +" && "+ !SouthOfDitch.contains(me) +" && "+ !ww.GC.greaterThanDitch() +" && "+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter() +"&&"+ !ww.GC.greaterThanLevel20Wilderness() +"&&"+ !ww.GC.greaterThanAlter());
+        if(me != null && !SouthOfDitch.contains(me) && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter() && !ww.GC.greaterThanLevel20Wilderness() && !ww.GC.greaterThanAlter()){
             southOfDitch = false;
             return true;
         }
@@ -73,7 +73,7 @@ public class WalkToSouthOfDitch extends Task {
 
             if (path != null) { // IMPORTANT: if the path should be null, the pathbuilder could not manage to build a path with the given web, so always nullcheck!
                 add(new IsAtDitch(ww));
-//                if(ww.GC.underAttack()) {
+//                if(ww.GC.underAttackPker()) {
                 if(!Traversal.isRunEnabled() && Traversal.getRunEnergy() > 10)
                     Traversal.toggleRun();
                 path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);

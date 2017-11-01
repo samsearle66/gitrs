@@ -27,13 +27,17 @@ public class WalkToAlter extends Task {
     public boolean validate() {
         me = Players.getLocal();
 
+
         System.out.println("WTA:"+(me != null)+"&&"+ww.GC.greaterThanLevel20Wilderness() +"&&"+ !alter.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ ww.GC.greaterThanAlter() +"&&"+ ww.GC.greaterThanVarrockCenter());
+
         return (me != null && ww.GC.greaterThanLevel20Wilderness() && !alter.contains(me) && ww.GC.bankingCompleted() && ww.GC.greaterThanAlter() && !ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter());
     }
 
     @Override
     public void execute() {
         System.out.println("Walking to alter");
+
+
         final BresenhamPath path = BresenhamPath.buildTo(alter);
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash

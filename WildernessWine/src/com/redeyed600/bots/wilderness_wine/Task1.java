@@ -12,6 +12,7 @@ import com.runemate.game.api.hybrid.location.navigation.web.Web;
 import com.runemate.game.api.hybrid.location.navigation.web.WebPath;
 import com.runemate.game.api.hybrid.queries.results.LocatableEntityQueryResults;
 import com.runemate.game.api.hybrid.queries.results.SpriteItemQueryResults;
+import com.runemate.game.api.hybrid.region.Npcs;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.hybrid.util.Resources;
 import com.runemate.game.api.osrs.local.hud.interfaces.Magic;
@@ -35,13 +36,13 @@ public class Task1 extends Task {
 
     public Task1(wilderness_wine ww){
         this.ww = ww;
-
-        try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray("C:\\Users\\Skippy\\gitrs\\WildernessWine\\src\\com\\redeyed600\\bots\\Resources\\varrockToEdgeville.nav"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            web = null;
-        }
+//
+//        try {
+//            web = SerializableWeb.deserialize(ww.GC.getByteArray("C:\\Users\\Skippy\\gitrs\\WildernessWine\\src\\com\\redeyed600\\bots\\Resources\\varrockToEdgeville.nav"));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            web = null;
+//        }
     }
 
     @Override
@@ -63,7 +64,7 @@ public class Task1 extends Task {
 //        }else {System.out.println("dis path is null");}
 
 
-//        Player player = Players.getLocal();
+       Player me = Players.getLocal();
 //
 //        LocatableEntityQueryResults target = Players.getLoaded(player);
 //
@@ -97,7 +98,10 @@ public class Task1 extends Task {
 //        System.out.println("CONSTITUTION_currentlevel"+Skill.CONSTITUTION.getCurrentLevel());
 //        System.out.println("CONSTITUTION_baselevel"+Skill.CONSTITUTION.getBaseLevel());
 
-        System.out.println((food.first() != null) +"&&"+ food.first().interact("Drop") +"&&"+ (Inventory.getUsedSlots()>26));
+        //System.out.println((food.first() != null) +"&&"+ food.first().interact("Drop") +"&&"+ (Inventory.getUsedSlots()>26));
+
+        if(me!=null)
+            System.out.println("underAttackNpc:"+ ww.GC.underAttackNpc());
 
         //System.out.println(ww.GC.hasEnoughEnergy());
 

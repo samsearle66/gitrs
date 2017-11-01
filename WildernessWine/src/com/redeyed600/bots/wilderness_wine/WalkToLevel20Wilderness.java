@@ -15,12 +15,14 @@ import com.runemate.game.api.script.framework.task.Task;
 public class WalkToLevel20Wilderness extends Task {
 
     private wilderness_wine ww;
+    //private Area.Circular level20Wilderness = new Area.Circular(new Coordinate(2983,3660,0),6);
+    private Area.Circular level20Wilderness = new Area.Circular(new Coordinate(2954,3618,0),6);
 
     public WalkToLevel20Wilderness(wilderness_wine ww){
         this.ww = ww;
     }
 
-    private final Area.Circular level20Wilderness = new Area.Circular(new Coordinate(2983,3660,0),6);
+
     private Player me;
     private GameObject door;
 

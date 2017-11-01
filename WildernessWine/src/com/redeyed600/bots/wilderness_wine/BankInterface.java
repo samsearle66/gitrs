@@ -54,7 +54,7 @@ public class BankInterface extends Task
                Bank.depositAllExcept("Law rune","Fire rune", "Air rune", "Jug of wine", "Energy potion");
 
                if(energyPotion.size() < ww.GC.ENERGYPOTIONQUANTITY){
-                   Bank.withdraw(Bank.getItems(ww.GC.ENERGYPOTION).first(), ww.GC.ENERGYPOTIONQUANTITY - energyPotion.size());
+                   Bank.withdraw(Bank.getItems(ww.GC.ENERGYPOTION[0]).first(), ww.GC.ENERGYPOTIONQUANTITY - energyPotion.size());
                }
 
                if (Inventory.getQuantity(ww.GC.LAWRUNE) < ww.GC.LAWRUNEQUANTITY) {

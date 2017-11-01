@@ -26,7 +26,7 @@ public class WalkToBank extends Task {
     public WalkToBank(wilderness_wine ww){
         this.ww = ww;
         try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray(""));
+            web = SerializableWeb.deserialize(ww.GC.getByteArray("C:\\Users\\Skippy\\gitrs\\WildernessWine\\src\\Resources\\varrockToEdgeville.nav"));
         } catch (Exception e) {
             e.printStackTrace();
             web = null;
@@ -68,7 +68,7 @@ public class WalkToBank extends Task {
 //        final BresenhamPath path = BresenhamPath.buildTo(edgevilleBank);
 //
 //        if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-//            if(ww.GC.underAttack())
+//            if(ww.GC.underAttackPker())
 //                path.step(Path.TraversalOption.MANAGE_RUN);
 //            else
 //                path.step();

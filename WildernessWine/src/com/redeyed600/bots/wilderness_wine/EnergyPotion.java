@@ -1,11 +1,9 @@
 package com.redeyed600.bots.wilderness_wine;
 
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
-import com.runemate.game.api.hybrid.location.navigation.Traversal;
 import com.runemate.game.api.hybrid.queries.results.SpriteItemQueryResults;
 import com.runemate.game.api.script.Execution;
 import com.runemate.game.api.script.framework.task.Task;
-import com.runemate.game.api.script.framework.task.TaskBot;
 
 public class EnergyPotion extends Task {
     wilderness_wine ww;
@@ -21,7 +19,7 @@ public class EnergyPotion extends Task {
 
         energyPotion = Inventory.getItems(ww.GC.ENERGYPOTION);
 
-        return ww.GC.underAttack() && !ww.GC.hasEnoughEnergy();
+        return ww.GC.underAttackPker() && !ww.GC.hasEnoughEnergy();
     }
 
     @Override
