@@ -1,9 +1,14 @@
 package com.redeyed600.bots.wilderness_wine;
 
+import com.runemate.game.api.hybrid.GameEvents;
 import com.runemate.game.api.hybrid.entities.Player;
+import com.runemate.game.api.hybrid.input.Mouse;
 import com.runemate.game.api.hybrid.local.Skill;
 import com.runemate.game.api.hybrid.local.Skills;
+import com.runemate.game.api.hybrid.local.Worlds;
+import com.runemate.game.api.hybrid.local.hud.InteractableRectangle;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
+import com.runemate.game.api.hybrid.local.hud.interfaces.WorldSelect;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.location.navigation.Path;
@@ -17,11 +22,13 @@ import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.hybrid.util.Resources;
 import com.runemate.game.api.osrs.local.hud.interfaces.Magic;
 import com.runemate.game.api.script.framework.task.Task;
+import sun.security.krb5.internal.LoginOptions;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Properties;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Random;
+
 
 public class Task1 extends Task {
 
@@ -36,13 +43,19 @@ public class Task1 extends Task {
 
     public Task1(wilderness_wine ww){
         this.ww = ww;
-//
+        Worlds.setPreferred(randomWorld = worlds[rand.nextInt(worlds.length)]);
+        //GameEvents.Universal.LOGIN_HANDLER.disable();
 //        try {
 //            web = SerializableWeb.deserialize(ww.GC.getByteArray("C:\\Users\\Skippy\\gitrs\\WildernessWine\\src\\com\\redeyed600\\bots\\Resources\\varrockToEdgeville.nav"));
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //            web = null;
 //        }
+
+            Worlds.setPreferred(394);
+            GameEvents.Universal.LOBBY_HANDLER.enable();
+            GameEvents.Universal.LOGIN_HANDLER.enable();
+
     }
 
     @Override
@@ -99,18 +112,99 @@ public class Task1 extends Task {
 //        System.out.println("CONSTITUTION_baselevel"+Skill.CONSTITUTION.getBaseLevel());
 
         //System.out.println((food.first() != null) +"&&"+ food.first().interact("Drop") +"&&"+ (Inventory.getUsedSlots()>26));
-
-        if(me!=null)
-            System.out.println("underAttackNpc:"+ ww.GC.underAttackNpc());
-
+        //if(me!=null)
+        //    System.out.println("underAttackNpc:"+ ww.GC.underAttackNpc());
         //System.out.println(ww.GC.hasEnoughEnergy());
 
-        return false;
+//
+//        if(WorldSelect.open()) {
+//            WorldSelect.select(393);
+//
+//        }
+//        else
+//            WorldSelect.open();
+
+
+
+        return true;
     }
+
+    private int NUMBEROFTRIES = 0;
+    private final InteractableRectangle point = new InteractableRectangle(248, 220, 82, 12);
+    private int[] worlds = {301,
+            308,
+            316,
+            326,
+            335,
+            382,
+            383,
+            384,
+            393,
+            394};
+    private Random rand = new Random();
+    private int randomWorld;
 
     @Override
     public void execute() {
 
+//        if(NUMBEROFTRIES > 10) {
+//            randomWorld = worlds[rand.nextInt(worlds.length)];
+//            NUMBEROFTRIES = 0;
+//        }
+//
+//
+//        if(!WorldSelect.isOpen() && Worlds.getCurrent() != randomWorld)
+//        {
+//            WorldSelect.open();
+//            GameEvents.Universal.LOGIN_HANDLER.disable();
+//            GameEvents.Universal.LOBBY_HANDLER.disable();
+//            System.out.println("nothing at all :./");
+//        }
+//        if(WorldSelect.isOpen() && Worlds.getCurrent() != randomWorld){
+//            Worlds.setPreferred(randomWorld);
+//            GameEvents.Universal.LOGIN_HANDLER.enable();
+//            GameEvents.Universal.LOBBY_HANDLER.enable();
+//            System.out.println("Attempt "+NUMBEROFTRIES);
+//            NUMBEROFTRIES++;
+//        }
+//        if(Worlds.getCurrent() == randomWorld)
+//            System.out.println("yay");
+
+//        if(WorldSelect.isSelected(326) && !WorldSelect.isOpen()) {
+//            GameEvents.Universal.LOBBY_HANDLER.disable();
+//            GameEvents.Universal.LOGIN_HANDLER.enable();
+//        }
+//            if(!WorldSelect.isSelected(326)) {
+//                point.click();
+//                System.out.println("Attempt "+ NUMBEROFTRIES++);
+//            }else{
+//                System.out.println("yay");
+//                NUMBEROFTRIES=0;
+//            }
+
+
+
+            //
+//            for(int attempts = 0; attempts < NUMBEROFTRIES; attempts++) {
+//                if(!point.click()){
+//                    System.out.println("Attempt "+ attempts);
+//                }else{break;}
+//            }
+
+
+            //WorldSelect.select(346);
+
+            //301
+            //250/64
+            //334/79
+
+            //px - 93 //25 - py .. 93 - px// px - 25
+            //InteractableRectangle point = new InteractableRectangle(63, 13, 148, 29);
+            //InteractableRectangle point = new InteractableRectangle(155, 16, 241, 31);
+            //InteractableRectangle point = new InteractableRectangle(341, 400, 426, 415);
+
+
+            //point.click();
 
     }
 }

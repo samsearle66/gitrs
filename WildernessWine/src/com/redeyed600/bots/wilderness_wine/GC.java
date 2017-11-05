@@ -75,7 +75,7 @@ public class GC {
 
             for(Player p: pker)
             {
-                if(!p.equals(me) && (p.getCombatLevel() > 30) && p.getCombatLevel() < me.getCombatLevel() + WILDERNESSALTERDEPTH){
+                if(!p.equals(me) && (p.getCombatLevel() >= 30) && (p.getCombatLevel() <= me.getCombatLevel() + WILDERNESSALTERDEPTH)){
 
 
                     //if(ww.GC.greaterThanAlter())
@@ -104,8 +104,6 @@ public class GC {
             System.out.println("Is under attack");
             setUnderAttackTimer(currentTime + 60000);//10sec 1min 40sec
         }
-
-        System.out.println("underAttackPker:"+underAttackTimer+">"+currentTime);
 
         return underAttackTimer > currentTime;
 
@@ -222,5 +220,23 @@ public class GC {
         }
 
         return getBytes;
+    }
+
+    public int previousworldWorld = 0;
+
+    public int getPreviousWorld(){ return this.previousworldWorld; }
+
+    public void setPreviousWorld(int world){
+        this.previousworldWorld = world;
+    }
+
+
+    public int newWorld = 0;
+
+    public int getNewWorld(){
+        return this.newWorld;
+    }
+    public void setNewWorld(int world){
+        this.newWorld = world;
     }
 }
