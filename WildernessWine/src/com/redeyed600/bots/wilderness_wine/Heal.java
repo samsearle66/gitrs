@@ -1,6 +1,7 @@
 package com.redeyed600.bots.wilderness_wine;
 
 import com.runemate.game.api.hybrid.entities.GroundItem;
+import com.runemate.game.api.hybrid.local.hud.interfaces.InterfaceWindows;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.local.hud.interfaces.SpriteItem;
 import com.runemate.game.api.hybrid.queries.results.SpriteItemQueryResults;
@@ -28,14 +29,15 @@ public class Heal extends Task {
 
     @Override
     public void execute() {
-
         System.out.println("healing");
-
         if(food.first() != null)
         {
-            if(food.first().interact("Drink")||food.first().interact("Eat"))
-            {
-                Execution.delayWhile(() -> food.first().isValid(), 3000, 4000);
+            if(InterfaceWindows.getInventory().isOpen()) {
+                if (food.first().interact("Drink") || food.first().interact("Eat")) {
+                    Execution.delayWhile(() -> food.first().isValid(), 3000, 4000);
+                }
+            }else{
+                InterfaceWindows.getInventory().open();
             }
         }
     }

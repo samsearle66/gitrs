@@ -34,10 +34,10 @@ public class WalkToAlterDoor extends Task {
         door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
 
 
-        System.out.println("1WTAD:"+(me != null) +"&&"+ ww.GC.greaterThanLevel20Wilderness() + " && "+ !alterDoor.contains(me) +"&&"+!ww.GC.greaterThanAlter()+"&&"+ ww.GC.bankingCompleted() +"&&"+ ww.GC.greaterThanWildernessArea() +"&&"+ ww.GC.greaterThanDitch()+"&&"+!ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter());
+        System.out.println("1WTAD:"+(me != null) +"&&"+ ww.GC.greaterThanLevel20Wilderness() + " && "+ !alterDoor.contains(me) +"&&"+!ww.GC.greaterThanAlter()+"&&"+ ww.GC.bankingCompleted() +"&&"+ ww.GC.greaterThanWildernessArea() +"&&"+ ww.GC.greaterThanDitch()+"&&"+!ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter() +"&&"+ !ww.GC.greaterThanLevel20Wilderness());
 
         //WINEOFZAMORAK??&& !Inventory.contains(GC.WINEOFZAMORAK)
-        if (me != null  && !alterDoor.contains(me) && !ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && ww.GC.greaterThanWildernessArea() && ww.GC.greaterThanDitch() && !ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter())
+        if (me != null  && !alterDoor.contains(me) && !ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && ww.GC.greaterThanWildernessArea() && ww.GC.greaterThanDitch() && !ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter() && !ww.GC.greaterThanLevel20Wilderness())
         {
             return true;
         }

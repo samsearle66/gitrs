@@ -3,8 +3,11 @@ package com.redeyed600.bots.wilderness_wine;
 import com.runemate.game.api.hybrid.entities.GroundItem;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.local.Camera;
+import com.runemate.game.api.hybrid.local.Worlds;
+import com.runemate.game.api.hybrid.local.hud.interfaces.InterfaceWindows;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.local.hud.interfaces.WorldHop;
+import com.runemate.game.api.hybrid.local.hud.interfaces.WorldSelect;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.queries.results.SpriteItemQueryResults;
@@ -52,9 +55,6 @@ public class GrabWine extends Task{
         if(!Inventory.isFull())
         {
                 if (Magic.TELEKINETIC_GRAB.isSelected()) {
-                    System.out.println("Telegrab is selected...waiting");
-
-
                     if ((wine != null)) {
                         if(wine.isVisible()) {
                             if (wine.interact("Cast")) {
@@ -74,15 +74,28 @@ public class GrabWine extends Task{
 
 
                     //maybe do antiban?
-                } else if(wine!=null && wine.isVisible()) {
-                    if (jug != null && jug.first() != null)
-                        jug.first().interact("Drop");
+                } else if(wine!=null) {
+                    if(InterfaceWindows.getMagic().isOpen())
+                        if(Magic.TELEKINETIC_GRAB.activate())
+                            System.out.println("Telegrab selected");
+                    else
+                        InterfaceWindows.getMagic().open();
 
-                    if (food.first() != null && Inventory.getUsedSlots() > 27)
-                        food.first().interact("Drop");
+                } else{
+                    if(InterfaceWindows.getInventory().isOpen()) {
+                        if (jug != null && jug.first() != null)
+                            jug.first().interact("Drop");
 
-                    Magic.TELEKINETIC_GRAB.activate();
+                        if (food.first() != null && Inventory.getUsedSlots() > 26) {
+                            food.first().interact("Drop");
+                        }
+                        if (!WorldHop.isOpen())
+                            WorldHop.open();
+                    }else{
+                        InterfaceWindows.getInventory().open();
+                    }
                 }
+
             } else {
             Magic.TELEKINETIC_GRAB.deactivate();
             //Click somewhere randomly on the screen.

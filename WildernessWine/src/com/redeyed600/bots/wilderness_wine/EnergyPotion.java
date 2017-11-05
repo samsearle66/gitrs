@@ -1,5 +1,6 @@
 package com.redeyed600.bots.wilderness_wine;
 
+import com.runemate.game.api.hybrid.local.hud.interfaces.InterfaceWindows;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.queries.results.SpriteItemQueryResults;
 import com.runemate.game.api.script.Execution;
@@ -27,9 +28,13 @@ public class EnergyPotion extends Task {
         System.out.println("Not enough energy");
         if(energyPotion.first() != null)
         {
-            if(energyPotion.first().interact("Drink"))
-            {
-                Execution.delayWhile(() -> energyPotion.first().isValid(), 3000, 4000);
+            if(InterfaceWindows.getInventory().isOpen()){
+                if(energyPotion.first().interact("Drink"))
+                {
+                    Execution.delayWhile(() -> energyPotion.first().isValid(), 3000, 4000);
+                }
+            }else{
+                InterfaceWindows.getInventory().open();
             }
         }
     }
