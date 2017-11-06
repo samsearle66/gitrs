@@ -17,15 +17,13 @@ public class ConsoleWrite {
 
         try {
             writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream("C:\\output.txt",true), "utf-8"));
+                    new FileOutputStream("C:\\output.txt"), "utf-8"));
             writer.append(c.getSimpleName() +":"+output +"\n");
 
         } catch (IOException ex) {
             // report
         } finally {
-            try {writer.close();} catch (Exception ex) {/*ignore*/}
+            try {writer.flush(); writer.close();} catch (Exception ex) {/*ignore*/}
         }
     }
-
-
 }

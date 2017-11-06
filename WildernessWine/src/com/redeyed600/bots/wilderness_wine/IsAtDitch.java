@@ -29,17 +29,12 @@ public class IsAtDitch extends Task {
     public boolean validate() {
         wildernessDitch = GameObjects.newQuery().names("Wilderness Ditch").actions("Cross").results().nearest();
         wildernessDitchArea = new Area.Rectangular(new Coordinate(3069,3515,0), new Coordinate(3122,3528,0)); //BROKEN NEED FIXING
-        //wildernessDitchArea = new Area.Rectangular(new Coordinate(3069,3520,0), new Coordinate(3122,3523,0));
 
         me = Players.getLocal();
 
-        System.out.println("IAD:"+wildernessDitchArea.contains(me)+"&&(("+ww.GC.greaterThanDitch()+"&&"+ww.GC.outOfSuppies()
-                +")||("+!ww.GC.greaterThanDitch()+"&&"+ww.GC.bankingCompleted()+"))");
-        //(me && wildernessDitch && wildernessDitchAreaContain(me) && (me.PosY >>> wildDitch.PosY && (InvFull || InvLawQ < 1 || (!Equip.Staff && InvAirQ < 3))))
         return wildernessDitch!=null && wildernessDitchArea.contains(me) &&
                 ((ww.GC.greaterThanDitch() && ww.GC.outOfSuppies())
                 ||
-                //(me && wildernessDitch && wildernessDitchAreaContain(me) && (me.PosY <<< wildDitch.PosY && (!InvFull || InvLawQ < 1 || (!Equip.Staff && InvAirQ < 3))))
                 (!ww.GC.greaterThanDitch() && !ww.GC.outOfSuppies()));
     }
 

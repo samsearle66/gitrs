@@ -12,9 +12,11 @@ import com.runemate.game.api.script.framework.task.Task;
 
 public class WalkToLumbridgeCastleStairs extends Task {
     private wilderness_wine ww;
+    private int NUMBEROFDEATHS;
 
     public WalkToLumbridgeCastleStairs(wilderness_wine ww){
         this.ww = ww;
+        NUMBEROFDEATHS = 0;
     }
 
     private final Area.Circular lumbridgeStairs = new Area.Circular(new Coordinate(3206,3209,0),2);
@@ -23,10 +25,7 @@ public class WalkToLumbridgeCastleStairs extends Task {
     @Override
     public boolean validate() {
         me = Players.getLocal();
-
-        System.out.println("WTLCS:"+(me != null) +"&&"+ (me.getPosition().getPlane()==0) +"&&"+ !lumbridgeStairs.contains(me) +"&&"+ !ww.GC.greaterThanDitch() +"&&"+ ww.GC.greaterThanLumbridgeCastleLevel1() +"&&"+ !ww.GC.greaterThanVarrockCenter());
-
-        return (me != null && me.getPosition().getPlane()==0 && !lumbridgeStairs.contains(me) && !ww.GC.greaterThanDitch() && ww.GC.greaterThanLumbridgeCastleLevel1()&& !ww.GC.greaterThanVarrockCenter());
+        return (me != null && me.getPosition().getPlane()==0 && !lumbridgeStairs.contains(me) && !ww.GC.greaterThanDitch() && !ww.GC.greaterThanVarrockCenter());
     }
 
     @Override

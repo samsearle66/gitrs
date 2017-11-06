@@ -29,10 +29,7 @@ public class IsAtStairs extends Task {
         me = Players.getLocal();
         stairs = GameObjects.getLoaded(ww.GC.LUMBRIDGECASTLESTAIRS).nearest();
 
-        //System.out.println("IsAtStairs:"+(me != null) +"&&"+ !lumbridgeStairs3.contains(me) +"&&("+lumbridgeStairs.contains(me) +"||"+ lumbridgeStairs2.contains(me)+")+&&"+ lumbridgeStairs.contains(me) +"&&"+ (stairs!=null)+"&&"+!ww.GC.greaterThanDitch()+"&&"+!ww.GC.greaterThanLumbridgeCastleLevel1());
-        System.out.println("IsAtStairs:"+(me != null) +"&& ("+lumbridgeStairs.contains(me)+"||"+lumbridgeStairs2.contains(me)+")&&"+ (me.getPosition().getPlane()!=2) +"&&"+ (stairs!=null)+"&&"+!ww.GC.greaterThanDitch()+"&&"+!ww.GC.greaterThanLumbridgeCastleLevel1() +"&&"+ !ww.GC.greaterThanVarrockCenter());
-
-        return  me != null &&(lumbridgeStairs.contains(me)||lumbridgeStairs2.contains(me))&& me.getPosition().getPlane()!=2 && stairs != null && !ww.GC.greaterThanDitch() && ww.GC.greaterThanLumbridgeCastleLevel1() && !ww.GC.greaterThanVarrockCenter();
+        return  me != null &&(lumbridgeStairs.contains(me)||lumbridgeStairs2.contains(me))&& me.getPosition().getPlane()!=2 && stairs != null && !ww.GC.greaterThanVarrockCenter();
     }
 
     @Override

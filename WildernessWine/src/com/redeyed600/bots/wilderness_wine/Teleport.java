@@ -21,12 +21,7 @@ public class Teleport extends Task {
 
         Player me = Players.getLocal();
 
-
-        //(!greaterThanVarrockCenter || wildernessDepth < 20 && underAttackPker) && hasrunes
-        System.out.println("Teleport:"+ww.GC.greaterThanDitch() +"&&"+ ww.GC.outOfSuppies() +"&&"+ ww.GC.hasVarrockTeleportRunes() +"&&"+ !ww.GC.greaterThanLevel20Wilderness());
-
-
-        return (!Bank.isOpen() && me.isVisible() && !ww.GC.greaterThanVarrockCenter() && ww.GC.hasVarrockTeleportRunes()) || (!Bank.isOpen() && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies() && ww.GC.hasVarrockTeleportRunes() && !ww.GC.greaterThanLevel20Wilderness());
+        return (me!=null && !Bank.isOpen() && me.isVisible() && !ww.GC.greaterThanVarrockCenter() && ww.GC.hasVarrockTeleportRunes()) || (me!=null && !Bank.isOpen() && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies() && ww.GC.hasVarrockTeleportRunes() && !ww.GC.greaterThanLevel20Wilderness());
 
     }
 

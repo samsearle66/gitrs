@@ -1,8 +1,6 @@
 package com.redeyed600.bots.wilderness_wine;
 
 import com.runemate.game.api.hybrid.entities.Player;
-import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
-import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.location.navigation.Path;
@@ -37,15 +35,12 @@ public class WalkToSouthOfDitch extends Task {
 
         me = Players.getLocal();
 
-        //WINEOFZAMORAK??&& !Inventory.contains(GC.WINEOFZAMORAK)
-        System.out.println("1WTSOD:"+(me != null)+","+!SouthOfDitch.contains(me)+","+ww.GC.bankingCompleted()+","+ !ww.GC.greaterThanWildernessArea()+","+!ww.GC.outOfSuppies()+"&&"+ ww.GC.greaterThanVarrockCenter());
-        if(me!= null && !SouthOfDitch.contains(me) && ww.GC.bankingCompleted() && !ww.GC.greaterThanWildernessArea() && !ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter()){
+        if(me!= null && !SouthOfDitch.contains(me) && ww.GC.bankingCompleted() && !ww.GC.greaterThanSouthOfDitch() && ww.GC.greaterThanVarrockCenter() && !ww.GC.outOfSuppies()){//good
             southOfDitch = true;
             return true;
         }
 
-        System.out.println("2WTSOD:"+(me != null) +" && "+ !SouthOfDitch.contains(me) +" && "+ !ww.GC.greaterThanDitch() +" && "+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter() +"&&"+ !ww.GC.greaterThanLevel20Wilderness() +"&&"+ !ww.GC.greaterThanAlter());
-        if(me != null && !SouthOfDitch.contains(me) && ww.GC.greaterThanDitch() && ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter() && !ww.GC.greaterThanLevel20Wilderness() && !ww.GC.greaterThanAlter()){
+        if(me != null && !SouthOfDitch.contains(me) && ww.GC.outOfSuppies() && ww.GC.greaterThanDitch() && !ww.GC.greaterThanLevel20Wilderness()){//good
             southOfDitch = false;
             return true;
         }

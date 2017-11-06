@@ -1,6 +1,7 @@
 package com.redeyed600.bots.wilderness_wine;
 
 import com.runemate.game.api.hybrid.entities.Player;
+import com.runemate.game.api.hybrid.input.Mouse;
 import com.runemate.game.api.hybrid.local.Skill;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
@@ -18,12 +19,12 @@ public class GC {
     public int[] ENERGYPOTION = {3008,3010,3012,3014};//ENERGYPOTION,1,2,3,4
     public int ENERGYPOTIONQUANTITY = 1;
     public int MINIMUMHP = 25;
-    public int MINIMUMFOOD = 12;
+    public int MINIMUMFOOD = 16;
     public int LAWRUNEQUANTITY = 16;
     public int AIRRUNEQUANTITY = 84;
     public int FIRERUNEQUANTITY = 2;
     public int AIRSTAFF = 1381;
-    public final int wildernessArea = 3535;
+    public final int NOTHOFDITCH = 3544;
     public int wildernessDitch = 3522;
     public int ALTERDOORX = 2959;
     public int ALTERDOORY = 3816;
@@ -32,10 +33,9 @@ public class GC {
     public int WINEOFZAMORAK = 245;
     public int FIRERUNE = 554;
     public int LAWRUNE = 563;
-    public int LEVEL20WILDERNESS = 3525;
+    public int LEVEL20WILDERNESS = 3668;
     public long underAttackTimer = 0;
-    public int SOUTHOFDITCH = 3513;
-
+    public int SOUTHOFDITCH = 3510;
     public wilderness_wine ww;
 
     public GC(wilderness_wine ww){
@@ -48,15 +48,10 @@ public class GC {
 
     public boolean greaterThanSouthOfDitch(){
         Player me = Players.getLocal();
-
         return me.getPosition().getY() > SOUTHOFDITCH;
     }
 
     public boolean outOfSuppies(){
-
-        System.out.println("outOfSupplies:("+Inventory.isFull()+" || "+(Inventory.getQuantity(LAWRUNE) < 2) +"||"+
-                (Inventory.getQuantity(FIRERUNE) < 1)+"||"+ Inventory.getItems(FOODIDS).size()+ "||"+ underAttackPker() +"||"+(Inventory.getItems(ENERGYPOTION).size() < 1)+"||"+" ("+
-                !Equipment.contains(STAFFOFAIR) + "&&"+ !Inventory.contains(STAFFOFAIR) +"&& " + (Inventory.getQuantity(AIRRUNE) < 3)+"))");
 
         return (Inventory.isFull() || Inventory.getQuantity(LAWRUNE) < 2 ||
                 Inventory.getQuantity(FIRERUNE) < 1|| Inventory.getItems(FOODIDS).size() < 6 || underAttackPker()|| Inventory.getItems(ENERGYPOTION).size() < 1 ||
@@ -77,12 +72,18 @@ public class GC {
             {
                 if(!p.equals(me) && (p.getCombatLevel() >= 30) && (p.getCombatLevel() <= me.getCombatLevel() + WILDERNESSALTERDEPTH)){
 
+                    if(Mouse.getSpeedMultiplier()==1.0)
+                        Mouse.setSpeedMultiplier(2.5);
 
-                    //if(ww.GC.greaterThanAlter())
-                    //    ww.CW.writeToConsole(" > Alter pker- Name" + p.getName() + ", Combat"+ p.getCombatLevel(),this.getClass());
-                    //if(!ww.GC.greaterThanAlter() && ww.GC.greaterThanLevel20Wilderness())
-                    //    ww.CW.writeToConsole(" > 20 wild pker- Name; " + p.getName() + ", Combat; "+ p.getCombatLevel(),this.getClass());
+//                    if(ww.GC.greaterThanAlter())
+//                        ww.CW.writeToConsole("Alter World: " + Worlds.getCurrent() + ", Player Name:" + p.getName() + ", Combat:"+ p.getCombatLevel(),this.getClass());
+//                    if(!ww.GC.greaterThanAlter() && ww.GC.greaterThanLevel20Wilderness())
+//                        ww.CW.writeToConsole("Wilderness  World: " + Worlds.getCurrent() + ", Player Name: " + p.getName() + ", Combat: "+ p.getCombatLevel(),this.getClass());
+
                     return true;
+                }else{
+                    if(Mouse.getSpeedMultiplier()>1.0)
+                        Mouse.setSpeedMultiplier(1.0);
                 }
             }
 
@@ -101,7 +102,7 @@ public class GC {
         //System.out.println("underAttackPker:"+(me !=null) +"&&"+ (me.getHealthGauge()!=null) +"&&"+  (target.nearest() != null) +"&&"+ (underAttackTimer < currentTime));
 
         if(me !=null && me.getHealthGauge()!=null &&  target.nearest() != null && (underAttackTimer < currentTime)) {
-            System.out.println("Is under attack");
+            System.out.println("Under attack");
             setUnderAttackTimer(currentTime + 60000);//10sec 1min 40sec
         }
 
@@ -125,8 +126,6 @@ public class GC {
 
 
     public boolean bankingCompleted(){
-
-        System.out.println("bankingCompleted::"+!Inventory.isFull()+","+ (Inventory.getQuantity(LAWRUNE) > 0) +"&&("+Equipment.contains(STAFFOFAIR)+"||"+ (Inventory.getQuantity(AIRRUNE) >= 3)+")");
 
         return  !Inventory.isFull() && Inventory.getQuantity(LAWRUNE) > 0 &&
                 Inventory.getQuantity(FIRERUNE) > 0 &&
@@ -157,8 +156,6 @@ public class GC {
     }
 
     public boolean hasVarrockTeleportRunes(){
-        System.out.println("hasVarrockTeleportRunes:("+(Inventory.getQuantity(AIRRUNE)>=3)+"||"+Equipment.contains(AIRSTAFF)+")&&"+(Inventory.getQuantity(FIRERUNE)>=1)+"&&"+(Inventory.getQuantity(LAWRUNE)>=1));
-
         return((Inventory.getQuantity(AIRRUNE)>=3||Equipment.contains(AIRSTAFF))&&Inventory.getQuantity(FIRERUNE)>=1&&Inventory.getQuantity(LAWRUNE)>=1);
     }
 
@@ -168,10 +165,10 @@ public class GC {
         return me!=null && me.getPosition().getY() > LEVEL20WILDERNESS;
     }
 
-    public boolean greaterThanWildernessArea(){
+    public boolean greaterThanNorthOfDitch(){
         Player me = Players.getLocal();
 
-        return me != null && me.getPosition().getY() > wildernessArea;
+        return me != null && me.getPosition().getY() > NOTHOFDITCH;
     }
 
     public boolean greaterThanDitch(){
@@ -180,10 +177,6 @@ public class GC {
         return me != null && me.getPosition().getY() > wildernessDitch;
     }
 
-    //private final Area.Circular alter = new Area.Circular(new Coordinate(2955,2821,0),2);
-    //2821 alter inside
-    //2950,3821
-    //2958
 
     public boolean hasEnoughHealth() {
         return Skill.CONSTITUTION.getCurrentLevel() > MINIMUMHP;
@@ -191,8 +184,6 @@ public class GC {
 
     public boolean greaterThanAlter(){
         Player me = Players.getLocal();
-
-        System.out.println("greaterThanAlter:"+me.getPosition().getY() +" > "+ ALTERDOORY);
         return me != null && me.getPosition().getY() > ALTERDOORY;
     }
 
@@ -239,4 +230,8 @@ public class GC {
     public void setNewWorld(int world){
         this.newWorld = world;
     }
+
+//    public boolean IsBroken(){
+//        if
+//    }
 }

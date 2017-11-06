@@ -24,16 +24,16 @@ public class Heal extends Task {
     @Override
     public boolean validate() {
         food = Inventory.getItems(ww.GC.FOODIDS);
-        return (food.size() > 0) && !ww.GC.hasEnoughHealth();
+        return (food!=null && food.size() > 0) && !ww.GC.hasEnoughHealth();
     }
 
     @Override
     public void execute() {
-        System.out.println("healing");
         if(food.first() != null)
         {
             if(InterfaceWindows.getInventory().isOpen()) {
                 if (food.first().interact("Drink") || food.first().interact("Eat")) {
+                    System.out.println("Healing");
                     Execution.delayWhile(() -> food.first().isValid(), 3000, 4000);
                 }
             }else{

@@ -33,15 +33,11 @@ public class WalkToBank extends Task {
         }
     }
 
-
-
     @Override
     //if bank no where to be found
     public boolean validate() {
         me = Players.getLocal();
-        System.out.println("WTB:"+(me!=null)+","+!edgevilleBank.contains(me)+","+!ww.GC.greaterThanDitch()+","+ww.GC.outOfSuppies()+"&&"+ ww.GC.greaterThanVarrockCenter());
-
-        return (me != null && !edgevilleBank.contains(me)&& !ww.GC.greaterThanDitch() && ww.GC.outOfSuppies()&& ww.GC.greaterThanVarrockCenter());
+        return (me != null && !edgevilleBank.contains(me) && ww.GC.outOfSuppies() && !ww.GC.greaterThanDitch() && ww.GC.greaterThanVarrockCenter());
     }
 
     @Override

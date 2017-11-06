@@ -35,8 +35,6 @@ public class IsDoorOpen extends Task {
 
         //System.out.println(me + "///" + potatoGate.contains(me) + "///" + gate);
 
-        System.out.println("IsDoorOpen:"+(me != null) +","+ alterDoor.contains(me) +","+ door);
-
         return  me != null && alterDoor.contains(me) && door != null;
     }
 

@@ -43,8 +43,6 @@ public class SwitchWorld extends Task {
     public boolean validate() {
         me = Players.getLocal();
 
-        System.out.println("SwitchWorld: if-"+ww.GC.greaterThanLevel20Wilderness() +"..."+ ww.GC.pkersSpotted() +"&&"+ !ww.GC.underAttackPker() +"&&"+ !ww.GC.underAttackNpc() +"||"+ WorldSelect.isOpen() +"||"+ !RuneScape.isLoggedIn() );
-
         if(ww.GC.greaterThanLevel20Wilderness())
             return ww.GC.pkersSpotted() && !ww.GC.underAttackPker() && !ww.GC.underAttackNpc() || !RuneScape.isLoggedIn();
         return false;

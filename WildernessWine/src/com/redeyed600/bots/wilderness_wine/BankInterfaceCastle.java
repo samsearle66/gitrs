@@ -34,9 +34,7 @@ public class BankInterfaceCastle extends Task {
         food = Inventory.getItems(ww.GC.FOODIDS);
         energyPotion = Inventory.getItems(ww.GC.ENERGYPOTION);
 
-        System.out.println("BIC:"+(me != null) +"&&"+ (me.getPosition().getPlane() == 2) +"&&"+ lumbridgeCastleBank.contains(me) +"&&"+ !ww.GC.greaterThanDitch() +"&&"+ !ww.GC.greaterThanLumbridgeCastleLevel3() +"&&("+ww.GC.outOfSuppies()+"||"+ Bank.isOpen()+")" +"&&"+ !ww.GC.greaterThanVarrockCenter());
-
-        return (me != null && (me.getPosition().getPlane() == 2) && lumbridgeCastleBank.contains(me) && !ww.GC.greaterThanDitch() && !ww.GC.greaterThanLumbridgeCastleLevel3() && (ww.GC.outOfSuppies()|| Bank.isOpen()) && !ww.GC.greaterThanVarrockCenter())
+        return (me != null && (me.getPosition().getPlane() == 2) && lumbridgeCastleBank.contains(me) && !ww.GC.greaterThanVarrockCenter() && (ww.GC.outOfSuppies() || Bank.isOpen()))
                 ||
                 (me != null && edgevilleBank.contains(me) && (Bank.isOpen() || Inventory.contains(ww.GC.WINEOFZAMORAK) || ww.GC.outOfSuppies()));
 
@@ -45,7 +43,7 @@ public class BankInterfaceCastle extends Task {
 
     @Override
     public void execute() {
-        System.out.println("Busy opening castle bank:"+ Inventory.contains(ww.GC.WINEOFZAMORAK)+"||"+ww.GC.outOfSuppies());
+        System.out.println("Busy opening bank:"+ Inventory.contains(ww.GC.WINEOFZAMORAK)+"||"+ww.GC.outOfSuppies());
 
         if (ww.GC.outOfSuppies() || Inventory.contains(ww.GC.WINEOFZAMORAK)) {
             System.out.println("Opening bank");

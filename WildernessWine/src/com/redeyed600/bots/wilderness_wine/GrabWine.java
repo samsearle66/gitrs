@@ -33,20 +33,21 @@ public class GrabWine extends Task{
     private SpriteItemQueryResults food;
     private SpriteItemQueryResults jug;
     private Player me;
+    private SpriteItemQueryResults wineOfZamarak;
 
     @Override
     public boolean validate() {
         me = Players.getLocal();
 
-        food = Inventory.getItems("Jug of wine");
+        food = Inventory.getItems(ww.GC.FOODIDS);
         jug = Inventory.getItems("Jug");
+        wineOfZamarak = Inventory.getItems(ww.GC.WINEOFZAMORAK);
 
         wine = GroundItems.newQuery().names("Wine of zamorak").results().nearest();
 
         //Banking completed means have runes
-        System.out.println("GW:"+(me != null) +"&&"+ (wine != null) +"&&"+ alter.contains(me) +"&&"+ ww.GC.greaterThanAlter() +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanVarrockCenter() +"||"+ Magic.TELEKINETIC_GRAB.isSelected());
-
-        return (me != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanVarrockCenter() || Magic.TELEKINETIC_GRAB.isSelected());
+        return ((me != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies()) ||
+                (me != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && Magic.TELEKINETIC_GRAB.isSelected()));
     }
 
     @Override
@@ -54,10 +55,11 @@ public class GrabWine extends Task{
     {
         if(!Inventory.isFull())
         {
-                if (Magic.TELEKINETIC_GRAB.isSelected()) {
+            if (Magic.TELEKINETIC_GRAB.isSelected()) {
                     if ((wine != null)) {
                         if(wine.isVisible()) {
                             if (wine.interact("Cast")) {
+                                System.out.println("Grabbing wine");
                                 //After interacting with our flax, we can add a check if it's still valid
                                 //This isn't required, you can check for player animation also
                                 //If you'd use player animation, you'd check if it went back to idle after picking the flax
@@ -65,6 +67,8 @@ public class GrabWine extends Task{
                             } else {
                                 System.out.println("Cant cast?");
                             }
+                            if(wineOfZamarak.size() > ww.NUMBEROFWINETELEGRABED)
+                                ww.NUMBEROFWINETELEGRABED++;
                         }else{
                             Camera.turnTo(wine);
                         }
@@ -75,25 +79,32 @@ public class GrabWine extends Task{
 
                     //maybe do antiban?
                 } else if(wine!=null) {
-                    if(InterfaceWindows.getMagic().isOpen())
-                        if(Magic.TELEKINETIC_GRAB.activate())
-                            System.out.println("Telegrab selected");
+                    if(InterfaceWindows.getMagic().isOpen()) {
+                        Magic.TELEKINETIC_GRAB.activate();
+                        System.out.println("Telegrab selected");
+                    }
                     else
                         InterfaceWindows.getMagic().open();
 
-                } else{
-                    if(InterfaceWindows.getInventory().isOpen()) {
-                        if (jug != null && jug.first() != null)
-                            jug.first().interact("Drop");
+                }
 
+                if(wine==null || me.getAnimationId() != -1){
+
+                    if((food.first() != null && Inventory.getUsedSlots() > 26) || (jug != null && jug.first() != null)) {
+                        if (jug != null && jug.first() != null) {
+                            jug.first().interact("Drop");
+                            System.out.println("Dropping a Jug");
+                        }
                         if (food.first() != null && Inventory.getUsedSlots() > 26) {
                             food.first().interact("Drop");
+                            System.out.println("Dropping food");
                         }
+                    }else{
                         if (!WorldHop.isOpen())
                             WorldHop.open();
-                    }else{
-                        InterfaceWindows.getInventory().open();
                     }
+
+
                 }
 
             } else {
