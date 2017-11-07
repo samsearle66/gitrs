@@ -6,6 +6,7 @@ import com.runemate.game.api.hybrid.local.hud.interfaces.Bank;
 import com.runemate.game.api.hybrid.local.hud.interfaces.InterfaceWindows;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.osrs.local.hud.interfaces.Magic;
+import com.runemate.game.api.script.Execution;
 import com.runemate.game.api.script.framework.task.Task;
 
 public class Teleport extends Task {
@@ -30,6 +31,7 @@ public class Teleport extends Task {
         //spell selected
         if(InterfaceWindows.getInventory().isOpen()) {
             if (Magic.VARROCK_TELEPORT.activate()) {
+                Execution.delayWhile(() -> Magic.VARROCK_TELEPORT.getSpriteIdWhenAvailable()!=-1, 3000, 4000);
                 System.out.println("Teleport to varrock");
             } else {
                 System.out.println("Cant teleport?.. teleblocked?...wildernessdepth");

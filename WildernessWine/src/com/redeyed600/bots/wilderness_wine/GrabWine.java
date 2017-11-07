@@ -46,8 +46,7 @@ public class GrabWine extends Task{
         wine = GroundItems.newQuery().names("Wine of zamorak").results().nearest();
 
         //Banking completed means have runes
-        return ((me != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies()) ||
-                (me != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && Magic.TELEKINETIC_GRAB.isSelected()));
+        return (!ww.GC.underAttackPker() && me != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies());
     }
 
     @Override

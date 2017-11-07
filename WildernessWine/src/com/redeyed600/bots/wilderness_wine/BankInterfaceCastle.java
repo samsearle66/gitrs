@@ -52,7 +52,7 @@ public class BankInterfaceCastle extends Task {
                 Bank.depositAllExcept(ww.GC.LAWRUNE,ww.GC.FIRERUNE, ww.GC.AIRRUNE,ww.GC.AIRSTAFF,ww.GC.ENERGYPOTION[0],ww.GC.FOODIDS[0], ww.GC.ARMOUR[0],ww.GC.ARMOUR[1],ww.GC.ARMOUR[2]);
 
                 if(energyPotion.size() < ww.GC.ENERGYPOTIONQUANTITY){
-                    Bank.withdraw(Bank.getItems(ww.GC.ENERGYPOTION).first(), ww.GC.ENERGYPOTIONQUANTITY - energyPotion.size());
+                    Bank.withdraw(Bank.getItems(ww.GC.ENERGYPOTION[0]).first(), ww.GC.ENERGYPOTIONQUANTITY - energyPotion.size());
                 }
 
                 if (Inventory.getQuantity(ww.GC.LAWRUNE) < ww.GC.LAWRUNEQUANTITY) {

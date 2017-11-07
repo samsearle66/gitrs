@@ -13,7 +13,6 @@ import com.runemate.game.api.script.framework.task.Task;
 public class WalkToAlter extends Task {
 
     wilderness_wine ww;
-    private final Area.Circular alter = new Area.Circular(new Coordinate(2951,3818,0),2);
 
 
     public WalkToAlter(wilderness_wine ww){
@@ -27,15 +26,15 @@ public class WalkToAlter extends Task {
     @Override
     public boolean validate() {
         me = Players.getLocal();
-        return (me != null && !alter.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanAlter());//good
+        return (me != null && !ww.alter.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanAlter());//good
     }
 
     @Override
     public void execute() {
         System.out.println("Walking to alter");
-        final BresenhamPath path = BresenhamPath.buildTo(alter);
+        final BresenhamPath path = BresenhamPath.buildTo(ww.alter);
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-            if(!alter.contains(me)) {
+            if(!ww.alter.contains(me)) {
                 add(new IsDoorOpen(ww));
             }
             path.step();

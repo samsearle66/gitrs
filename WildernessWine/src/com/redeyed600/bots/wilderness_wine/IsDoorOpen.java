@@ -50,7 +50,7 @@ public class IsDoorOpen extends Task {
 
             System.out.println("Looking for door");
 
-            Camera.turnTo(door);
+            //Camera.turnTo(door);
         }
     }
 }

@@ -12,11 +12,15 @@ import java.util.Map;
 public class wilderness_wine extends TaskBot {
 
     public GC GC = new GC(this);
-    //public  ConsoleWrite CW = new ConsoleWrite(this);
+   // public  ConsoleWrite CW = new ConsoleWrite(this);
 
     public Map<String, String> listOfPkers;
 
     public int NUMBEROFWINETELEGRABED;
+    //public final Area.Circular alterDoorArea = new Area.Circular(new Coordinate(2956,3820,0), 4);//was 4
+
+    public final Area.Rectangular alterDoorArea = new Area.Rectangular(new Coordinate(2957,3819,0),new Coordinate(2958,3822,0));
+    public final Area.Circular alter = new Area.Circular(new Coordinate(2951,3818,0),2);
 
 
     public wilderness_wine(){

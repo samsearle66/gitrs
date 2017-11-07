@@ -40,8 +40,9 @@ public class Regear extends Task {
 
         //need to deactivate spell...
 
-        if(Magic.getSelected().isSelected())
+        if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
             Magic.getSelected().deactivate();
+
         if(InterfaceWindows.getInventory().isOpen()) {
             if (armour.size() > 0) {
                 System.out.println("Equip armour");

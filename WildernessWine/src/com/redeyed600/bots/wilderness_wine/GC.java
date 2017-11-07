@@ -3,6 +3,7 @@ package com.redeyed600.bots.wilderness_wine;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.input.Mouse;
 import com.runemate.game.api.hybrid.local.Skill;
+import com.runemate.game.api.hybrid.local.Worlds;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.navigation.Traversal;
@@ -75,10 +76,14 @@ public class GC {
                     if(Mouse.getSpeedMultiplier()==1.0)
                         Mouse.setSpeedMultiplier(2.5);
 
-//                    if(ww.GC.greaterThanAlter())
-//                        ww.CW.writeToConsole("Alter World: " + Worlds.getCurrent() + ", Player Name:" + p.getName() + ", Combat:"+ p.getCombatLevel(),this.getClass());
-//                    if(!ww.GC.greaterThanAlter() && ww.GC.greaterThanLevel20Wilderness())
-//                        ww.CW.writeToConsole("Wilderness  World: " + Worlds.getCurrent() + ", Player Name: " + p.getName() + ", Combat: "+ p.getCombatLevel(),this.getClass());
+//                    if(ww.GC.greaterThanAlter()) {
+//                       // ww.listOfPkers.put(p.getName(), "Alter World: " + Worlds.getCurrent() + ", Player Name:" + p.getName() + ", Combat:" + p.getCombatLevel() +"/n");
+//                    }
+//                    if(!ww.GC.greaterThanAlter() && ww.GC.greaterThanLevel20Wilderness()) {
+//                      //  ww.listOfPkers.put(p.getName(), "Wilderness  World: " + Worlds.getCurrent() + ", Player Name: " + p.getName() + ", Combat: " + p.getCombatLevel() +"/n");
+//                    }
+
+                    //ww.CW.writeToConsole();
 
                     return true;
                 }else{

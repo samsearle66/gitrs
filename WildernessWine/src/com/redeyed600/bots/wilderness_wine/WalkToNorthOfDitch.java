@@ -32,10 +32,11 @@ public class WalkToNorthOfDitch extends Task {
     public boolean validate() {
         me = Players.getLocal();
 
-        if(me!= null && !northOfDitch.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && !ww.GC.greaterThanNorthOfDitch() && ww.GC.greaterThanSouthOfDitch()){//good
+        if(me!= null && !northOfDitch.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && !ww.GC.greaterThanDitch() && ww.GC.greaterThanSouthOfDitch()){//good
             return true;
         }
 
+        System.out.println("WTNOD:"+(me != null) +"&&"+ !northOfDitch.contains(me) +"&&"+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanNorthOfDitch() +"&&"+ !ww.GC.greaterThanLevel20Wilderness());
         if (me != null && !northOfDitch.contains(me) && ww.GC.outOfSuppies() && ww.GC.greaterThanNorthOfDitch() && !ww.GC.greaterThanLevel20Wilderness())//good
         {
             return true;

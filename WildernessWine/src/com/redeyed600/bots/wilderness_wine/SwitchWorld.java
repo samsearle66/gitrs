@@ -9,6 +9,7 @@ import com.runemate.game.api.hybrid.local.Rune;
 import com.runemate.game.api.hybrid.local.Worlds;
 import com.runemate.game.api.hybrid.local.hud.InteractablePoint;
 import com.runemate.game.api.hybrid.local.hud.InteractableRectangle;
+import com.runemate.game.api.hybrid.local.hud.interfaces.InterfaceWindows;
 import com.runemate.game.api.hybrid.local.hud.interfaces.WorldHop;
 import com.runemate.game.api.hybrid.local.hud.interfaces.WorldSelect;
 import com.runemate.game.api.hybrid.region.Players;
@@ -57,7 +58,8 @@ public class SwitchWorld extends Task {
         {
             if(WorldHop.isOpen()) {
                 System.out.println("Switch to world " + randomWorld);
-                WorldHop.hopTo(randomWorld);
+                if(!ww.GC.underAttackPker() && !ww.GC.underAttackNpc())
+                    WorldHop.hopTo(randomWorld);
             }else{
                 WorldHop.open();
             }

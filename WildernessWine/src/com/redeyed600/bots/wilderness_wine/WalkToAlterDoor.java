@@ -17,8 +17,11 @@ public class WalkToAlterDoor extends Task {
         this.ww = ww;
     }
 
-    private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2959,3820,0), 2 );//was 4
-    public final Area.Circular alterDoorArea = new Area.Circular(new Coordinate(2956,3820,0), 4);//was 4
+    //private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2959,3820,0), 1 );//was 4
+
+    private final Area.Rectangular alterDoor = new Area.Rectangular(new Coordinate(2959,3818,0), new Coordinate(2960,3822,0));
+
+    //3816
 
     private Player me;
     private GameObject door;
@@ -29,14 +32,13 @@ public class WalkToAlterDoor extends Task {
 
         door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
 
-       System.out.println((me != null) +"&&"+ !alterDoor.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies() +"&&"+  !ww.GC.greaterThanLevel20Wilderness() +"&&"+ !ww.GC.greaterThanAlter());//good
-            if (me != null && !alterDoor.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() &&  ww.GC.greaterThanLevel20Wilderness() && !ww.GC.greaterThanAlter())//good
+        if (me != null && !alterDoor.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && !ww.alter.contains(me) && ww.GC.greaterThanDitch() && ww.GC.greaterThanNorthOfDitch() && !ww.GC.greaterThanAlter())//good
         {
             return true;
         }
 
-        System.out.println("WTAD:"+(me != null)  +"&&"+ !alterDoor.contains(me) +"&&"+  (door!=null)+"&&"+ ww.GC.greaterThanAlter() + ", alterDoorArea="+ alterDoorArea.contains(me));//good
-        if(me != null  && !alterDoor.contains(me) &&  door!=null && ww.GC.outOfSuppies() && ww.GC.greaterThanAlter())//good
+        System.out.println("WTAD:"+(me != null)  +"&&"+ !alterDoor.contains(me) +"&&"+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanAlter());//good
+        if(me != null  && !alterDoor.contains(me) && ww.GC.outOfSuppies() && ww.GC.greaterThanAlter())//good
         {
             return true;
         }
@@ -51,8 +53,10 @@ public class WalkToAlterDoor extends Task {
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
 
-            if(alterDoorArea.contains(me))
+            if(ww.alterDoorArea.contains(me))
                 add(new IsDoorOpen(ww));
+
+
             path.step();
         }
     }

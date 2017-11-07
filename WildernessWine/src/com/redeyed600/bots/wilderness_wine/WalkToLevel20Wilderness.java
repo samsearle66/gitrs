@@ -25,16 +25,16 @@ public class WalkToLevel20Wilderness extends Task {
     @Override
     public boolean validate() {
         me = Players.getLocal();
-
         door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
-
 
         if(me!=null && !level20Wilderness.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanDitch() && !ww.GC.greaterThanLevel20Wilderness())//good
         {
             return true;
         }
 
-        if (me != null && !level20Wilderness.contains(me) && ww.GC.greaterThanLevel20Wilderness() && ww.GC.outOfSuppies() && door==null){
+        System.out.println ("WTL20W:"+(me != null) +"&&"+ !level20Wilderness.contains(me) +"&&"+ ww.GC.greaterThanDitch() +"&&"+ ww.GC.greaterThanLevel20Wilderness() +"&&"+ ww.GC.outOfSuppies() +"&&"+ !(door!=null && door.isVisible()));
+
+        if (me != null && !level20Wilderness.contains(me) && ww.GC.greaterThanDitch() && ww.GC.greaterThanLevel20Wilderness() && ww.GC.outOfSuppies() && !(door!=null && door.isVisible())){
             return true;
         }
         return false;

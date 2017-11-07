@@ -4,6 +4,7 @@ import com.runemate.game.api.hybrid.local.hud.interfaces.InterfaceWindows;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.queries.results.SpriteItemQueryResults;
 import com.runemate.game.api.hybrid.region.Players;
+import com.runemate.game.api.osrs.local.hud.interfaces.Magic;
 import com.runemate.game.api.script.Execution;
 import com.runemate.game.api.script.framework.task.Task;
 
@@ -26,19 +27,21 @@ public class EnergyPotion extends Task {
 
     @Override
     public void execute() {
-        if(energyPotion.first() != null)
-        {
-            if(InterfaceWindows.getInventory().isOpen()){
-                if(energyPotion.first().interact("Drink"))
-                {
-                    System.out.println("Drinking energy potion");
-                    Execution.delayWhile(() -> energyPotion.first().isValid(), 3000, 4000);
-                }
-            }else{
-                InterfaceWindows.getInventory().open();
-            }
-        }
-    }
 
+        if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
+            Magic.getSelected().deactivate();
+
+            if(energyPotion.first() != null)
+            {
+                if(InterfaceWindows.getInventory().isOpen()) {
+                    if (energyPotion.first().interact("Drink")) {
+                        System.out.println("Drinking energy potion");
+                        Execution.delayWhile(() -> energyPotion.first().isValid(), 3000, 4000);
+                    }
+                }else{
+                    InterfaceWindows.getInventory().open();
+                }
+            }
+    }
 
 }
