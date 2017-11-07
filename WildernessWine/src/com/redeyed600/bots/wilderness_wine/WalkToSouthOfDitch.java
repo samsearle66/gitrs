@@ -17,9 +17,10 @@ public class WalkToSouthOfDitch extends Task {
 
     private wilderness_wine ww;
     Web web;
-    private final Area.Circular SouthOfDitch = new Area.Circular(new Coordinate(3087,3516,0),3);
+    private final Area.Circular SouthOfDitch = new Area.Circular(new Coordinate(3087,3516,0),6);
     Player me;
     Boolean southOfDitch = false;
+
 
     public WalkToSouthOfDitch(wilderness_wine ww){
         this.ww = ww;

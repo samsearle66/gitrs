@@ -34,6 +34,7 @@ public class GrabWine extends Task{
     private SpriteItemQueryResults jug;
     private Player me;
     private SpriteItemQueryResults wineOfZamarak;
+    private final Area.Rectangular wineWithin = new Area.Rectangular(new Coordinate(2949,3817,0), new Coordinate(2952,3824,0));
 
     @Override
     public boolean validate() {
@@ -43,7 +44,7 @@ public class GrabWine extends Task{
         jug = Inventory.getItems("Jug");
         wineOfZamarak = Inventory.getItems(ww.GC.WINEOFZAMORAK);
 
-        wine = GroundItems.newQuery().names("Wine of zamorak").results().nearest();
+        wine = GroundItems.newQuery().within(wineWithin).names("Wine of zamorak").results().nearest();
 
         //Banking completed means have runes
         return (!ww.GC.underAttackPker() && me != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies());
@@ -55,7 +56,7 @@ public class GrabWine extends Task{
         if(!Inventory.isFull())
         {
             if (Magic.TELEKINETIC_GRAB.isSelected()) {
-                    if ((wine != null)) {
+                    if (wine != null) {
                         if(wine.isVisible()) {
                             if (wine.interact("Cast")) {
                                 System.out.println("Grabbing wine");

@@ -56,7 +56,6 @@ public class WalkToAlterDoor extends Task {
             if(ww.alterDoorArea.contains(me))
                 add(new IsDoorOpen(ww));
 
-
             path.step();
         }
     }
