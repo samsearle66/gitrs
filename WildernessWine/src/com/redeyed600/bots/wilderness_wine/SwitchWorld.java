@@ -45,7 +45,7 @@ public class SwitchWorld extends Task {
         me = Players.getLocal();
 
         if(ww.GC.greaterThanLevel20Wilderness())
-            return ww.GC.pkersSpotted() && !ww.GC.underAttackPker() && !ww.GC.underAttackNpc() || !RuneScape.isLoggedIn();
+            return ww.WINELOSTATTEMP<0 &&ww.GC.pkersSpotted() && !ww.GC.underAttackPker() && !ww.GC.underAttackNpc() || !RuneScape.isLoggedIn();
         return false;
     }
 
@@ -59,6 +59,7 @@ public class SwitchWorld extends Task {
             if(WorldHop.isOpen()) {
                 System.out.println("Switch to world " + randomWorld);
                 if(!ww.GC.underAttackPker() && !ww.GC.underAttackNpc())
+                    ww.WINELOSTATTEMP=0;
                     WorldHop.hopTo(randomWorld);
             }else{
                 WorldHop.open();

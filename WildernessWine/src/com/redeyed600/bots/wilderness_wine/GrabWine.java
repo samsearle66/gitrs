@@ -35,6 +35,7 @@ public class GrabWine extends Task{
     private Player me;
     private SpriteItemQueryResults wineOfZamarak;
     private final Area.Rectangular wineWithin = new Area.Rectangular(new Coordinate(2949,3817,0), new Coordinate(2952,3824,0));
+    private int wineOfZamorakInvPrev = 0;
 
     @Override
     public boolean validate() {
@@ -57,6 +58,7 @@ public class GrabWine extends Task{
         {
             if (Magic.TELEKINETIC_GRAB.isSelected()) {
                     if (wine != null) {
+                        wineOfZamorakInvPrev = wineOfZamarak.size();
                         if(wine.isVisible()) {
                             if (wine.interact("Cast")) {
                                 System.out.println("Grabbing wine");
@@ -67,8 +69,12 @@ public class GrabWine extends Task{
                             } else {
                                 System.out.println("Cant cast?");
                             }
-                            if(wineOfZamarak.size() > ww.NUMBEROFWINETELEGRABED)
+                            if(wineOfZamorakInvPrev > wineOfZamarak.size())
                                 ww.NUMBEROFWINETELEGRABED++;
+                            else {
+                                ww.NUMBEROFWINELOST++;
+                                ww.WINELOSTATTEMP--;
+                            }
                         }else{
                             Camera.turnTo(wine);
                         }

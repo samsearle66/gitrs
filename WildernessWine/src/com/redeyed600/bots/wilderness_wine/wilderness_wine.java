@@ -19,6 +19,8 @@ public class wilderness_wine extends TaskBot {
     public Map<String, String> listOfPkers;
 
     public int NUMBEROFWINETELEGRABED;
+    public int NUMBEROFWINELOST;
+    public int WINELOSTATTEMP;
     //public final Area.Circular alterDoorArea = new Area.Circular(new Coordinate(2956,3820,0), 4);//was 4
 
     public final Area.Rectangular alterDoorArea = new Area.Rectangular(new Coordinate(2957,3819,0),new Coordinate(2958,3822,0));
@@ -28,6 +30,8 @@ public class wilderness_wine extends TaskBot {
     public wilderness_wine(){
         listOfPkers = new HashMap<>();
         NUMBEROFWINETELEGRABED = 0;
+        WINELOSTATTEMP = 5;
+        NUMBEROFWINELOST = 0;
     }
 
     @Override
