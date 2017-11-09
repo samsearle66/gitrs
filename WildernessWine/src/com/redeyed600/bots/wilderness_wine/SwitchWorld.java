@@ -45,7 +45,7 @@ public class SwitchWorld extends Task {
         me = Players.getLocal();
 
         if(ww.GC.greaterThanLevel20Wilderness())
-            return ww.WINELOSTATTEMP<0 &&ww.GC.pkersSpotted() && !ww.GC.underAttackPker() && !ww.GC.underAttackNpc() || !RuneScape.isLoggedIn();
+            return (ww.WINELOSTATTEMP<0 || ww.GC.pkersSpotted()) && !ww.GC.underAttackPker() && !ww.GC.underAttackNpc();
         return false;
     }
 
