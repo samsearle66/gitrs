@@ -26,7 +26,7 @@ public class Heal extends Task {
     @Override
     public boolean validate() {
         food = Inventory.getItems(ww.GC.FOODIDS);
-        return (!Bank.isOpen() && food!=null && food.size() > 0) && !ww.GC.hasEnoughHealth();
+        return !ww.GC.isAnimating() && (!Bank.isOpen() && food!=null && food.size() > 0) && !ww.GC.hasEnoughHealth();
     }
 
     @Override

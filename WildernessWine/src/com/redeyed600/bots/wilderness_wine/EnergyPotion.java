@@ -22,7 +22,7 @@ public class EnergyPotion extends Task {
 
         energyPotion = Inventory.getItems(ww.GC.ENERGYPOTION);
 
-        return ww.GC.underAttackPker() && !ww.GC.hasEnoughEnergy();
+        return !ww.GC.isAnimating() && ww.GC.underAttackPker() && !ww.GC.hasEnoughEnergy();
     }
 
     @Override
