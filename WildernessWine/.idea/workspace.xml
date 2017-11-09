@@ -19,13 +19,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wilderness_wine.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wilderness_wine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/wilderness_wine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="33" column="29" lean-forward="false" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
+            <state relative-caret-position="408">
+              <caret line="39" column="24" lean-forward="false" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
               <folding>
-                <marker date="1510212644893" expanded="true" signature="2914:2935" ph="//..." />
+                <marker date="1510213670125" expanded="true" signature="2910:2931" ph="//..." />
               </folding>
             </state>
           </provider>
@@ -34,8 +34,8 @@
       <file leaf-file-name="WalkToLevel20Wilderness.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToLevel20Wilderness.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="62" column="28" lean-forward="false" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="28" />
+            <state relative-caret-position="736">
+              <caret line="78" column="26" lean-forward="true" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -54,8 +54,18 @@
       <file leaf-file-name="WalkToAlterDoor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToAlterDoor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
+            <state relative-caret-position="260">
               <caret line="41" column="9" lean-forward="false" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IsDoorOpen.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/IsDoorOpen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="394">
+              <caret line="42" column="49" lean-forward="true" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -76,16 +86,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="263">
               <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BankInterfaceCastle.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/BankInterfaceCastle.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="77" column="38" lean-forward="false" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -205,7 +205,6 @@
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/IsAtStairs.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToLumbridgeCastleBank.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToNorthOfDitch.java" />
-        <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/IsDoorOpen.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/IsAtDitch.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToLumbridgeCastleStairs.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToSouthOfDitch.java" />
@@ -223,6 +222,7 @@
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToAlter.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToAlterDoor.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/wilderness_wine.java" />
+        <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/IsDoorOpen.java" />
       </list>
     </option>
   </component>
@@ -422,6 +422,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="13" y="1" width="1769" height="1047" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -436,7 +437,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19965772" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19965772" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -551,13 +552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/IsDoorOpen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="45" column="78" lean-forward="false" selection-start-line="45" selection-start-column="78" selection-end-line="45" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToLumbridgeCastleBank.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -646,14 +640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToLevel20Wilderness.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="62" column="28" lean-forward="false" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToBank.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-187">
@@ -702,21 +688,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/wilderness_wine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="39" column="24" lean-forward="false" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
+          <folding>
+            <marker date="1510213670125" expanded="true" signature="2910:2931" ph="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToLevel20Wilderness.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="78" column="26" lean-forward="true" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToAlterDoor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
+        <state relative-caret-position="260">
           <caret line="41" column="9" lean-forward="false" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/wilderness_wine.java">
+    <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/IsDoorOpen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="33" column="29" lean-forward="false" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
-          <folding>
-            <marker date="1510212644893" expanded="true" signature="2914:2935" ph="//..." />
-          </folding>
+        <state relative-caret-position="394">
+          <caret line="42" column="49" lean-forward="true" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>

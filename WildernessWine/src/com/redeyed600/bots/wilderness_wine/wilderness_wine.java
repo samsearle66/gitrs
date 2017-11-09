@@ -37,7 +37,7 @@ public class wilderness_wine extends TaskBot {
     @Override
     public void onStart(String... strings){
         super.onStart(strings);
-        setLoopDelay(333,666);
+        setLoopDelay(0,0);
         GameEvents.Universal.LOBBY_HANDLER.disable();
 
         //add(new Task1(this));

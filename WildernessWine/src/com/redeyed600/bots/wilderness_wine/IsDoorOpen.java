@@ -45,7 +45,7 @@ public class IsDoorOpen extends Task {
                 //After interacting with our gate, we can add a check if it's still valid
                 //This isn't required, you can check for player animation also
                 //If you'd use player animation, you'd check if it went back to idle after opening the gate
-                Execution.delayWhile(() -> door.isValid(), 3000, 4000);
+            System.out.println("Open door");
         } else {
 
             System.out.println("Looking for door");
