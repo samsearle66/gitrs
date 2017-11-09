@@ -65,7 +65,6 @@ public class GrabWine extends Task{
                                 //After interacting with our flax, we can add a check if it's still valid
                                 //This isn't required, you can check for player animation also
                                 //If you'd use player animation, you'd check if it went back to idle after picking the flax
-                                Execution.delayWhile(() -> wine.isValid(), 3000, 4000);
                             } else {
                                 System.out.println("Cant cast?");
                             }

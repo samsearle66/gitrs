@@ -31,7 +31,6 @@ public class Teleport extends Task {
         //spell selected
         if(InterfaceWindows.getInventory().isOpen()) {
             if (Magic.VARROCK_TELEPORT.activate()) {
-                Execution.delayWhile(() -> Magic.VARROCK_TELEPORT.getSpriteIdWhenAvailable()!=-1, 3000, 4000);
                 System.out.println("Teleport to varrock");
             } else {
                 System.out.println("Cant teleport?.. teleblocked?...wildernessdepth");

@@ -22,7 +22,7 @@ public class EnergyPotion extends Task {
 
         energyPotion = Inventory.getItems(ww.GC.ENERGYPOTION);
 
-        return !ww.GC.isAnimating() && ww.GC.underAttackPker() && !ww.GC.hasEnoughEnergy();
+        return !ww.GC.Is829Delay() && !ww.GC.isAnimating() && ww.GC.underAttackPker() && !ww.GC.hasEnoughEnergy();
     }
 
     @Override
@@ -36,7 +36,6 @@ public class EnergyPotion extends Task {
                 if(InterfaceWindows.getInventory().isOpen()) {
                     if (energyPotion.first().interact("Drink")) {
                         System.out.println("Drinking energy potion");
-                        Execution.delayWhile(() -> energyPotion.first().isValid(), 3000, 4000);
                     }
                 }else{
                     InterfaceWindows.getInventory().open();

@@ -36,6 +36,7 @@ public class GC {
     public int LAWRUNE = 563;
     public int LEVEL20WILDERNESS = 3668;
     public long underAttackTimer = 0;
+    public long is829 = 0;
     public int SOUTHOFDITCH = 3510;
     public wilderness_wine ww;
 
@@ -115,18 +116,18 @@ public class GC {
 
     }
 
-//    public boolean IsHealingOrEnergyDelay(){
-//        Player me = Players.getLocal();
-//
-//        long currentTime = System.currentTimeMillis();
-//
-//        if(me !=null && me.getAnimationId()!=-1 && me.getAnimationId()==829 && (underAttackTimer < currentTime)) {
-//            System.out.println("Under attack");
-//            setUnderAttackTimer(currentTime + 60000);//10sec 1min 40sec
-//        }
-//
-//        return underAttackTimer > currentTime;
-//    }
+    public boolean Is829Delay(){
+        Player me = Players.getLocal();
+
+        long currentTime = System.currentTimeMillis();
+
+        if(me !=null && me.getAnimationId()!=-1 && me.getAnimationId()==829 && (is829 < currentTime)) {
+            System.out.println("Under attack");
+            is829 = currentTime + (ww.rand.nextInt(1500)+1460);//10sec 1min 40sec
+        }
+
+        return is829 > currentTime;
+    }
 
     public boolean underAttackNpc(){
         Player me = Players.getLocal();
