@@ -236,6 +236,8 @@ public class GC {
         this.newWorld = world;
     }
 
+
+
 //    public boolean IsBroken(){
 //        if
 //    }
