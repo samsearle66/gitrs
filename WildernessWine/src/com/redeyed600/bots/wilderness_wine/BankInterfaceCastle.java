@@ -69,13 +69,13 @@ public class BankInterfaceCastle extends Task {
                 }
 
                 //CAPE
-                if(!Equipment.containsAnyOf(ww.GC.funkyCape))
+                if(!Equipment.containsAnyOf(ww.GC.funkyCape) && Inventory.getItems(ww.GC.funkyCape).first()==null)
                 {
                     Bank.withdraw(ww.GC.funkyCape[ww.rand.nextInt(ww.GC.funkyCape.length)],1);
                 }
 
                 //HEAD
-                if(!Equipment.containsAnyOf(ww.GC.funkyHead))
+                if(!Equipment.containsAnyOf(ww.GC.funkyHead) && Inventory.getItems(ww.GC.funkyHead).first()==null)
                 {
                     Bank.withdraw(ww.GC.funkyHead[ww.rand.nextInt(ww.GC.funkyHead.length)],1);
                 }
