@@ -63,7 +63,7 @@ public class WalkToLevel20Wilderness extends Task {
         WebPath path = null;
 
         if (web != null) { // Make sure the web got loaded properly
-            path = web.getPathBuilder().buildTo(level20Wilderness.getRandomCoordinate());
+            path = web.getPathBuilder().buildTo(level20Wilderness);
         }else{System.out.println("dis web is null");}
 
 
