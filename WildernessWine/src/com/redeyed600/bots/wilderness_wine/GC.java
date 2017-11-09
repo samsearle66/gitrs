@@ -115,6 +115,19 @@ public class GC {
 
     }
 
+//    public boolean IsHealingOrEnergyDelay(){
+//        Player me = Players.getLocal();
+//
+//        long currentTime = System.currentTimeMillis();
+//
+//        if(me !=null && me.getAnimationId()!=-1 && me.getAnimationId()==829 && (underAttackTimer < currentTime)) {
+//            System.out.println("Under attack");
+//            setUnderAttackTimer(currentTime + 60000);//10sec 1min 40sec
+//        }
+//
+//        return underAttackTimer > currentTime;
+//    }
+
     public boolean underAttackNpc(){
         Player me = Players.getLocal();
         LocatableEntityQueryResults target = Npcs.getLoaded(me);

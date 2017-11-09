@@ -143,68 +143,18 @@ public class Task1 extends Task {
             394};
     private Random rand = new Random();
     private int randomWorld;
+    private long is829 = 0;
 
     @Override
     public void execute() {
+        Player me = Players.getLocal();
 
-//        if(NUMBEROFTRIES > 10) {
-//            randomWorld = worlds[rand.nextInt(worlds.length)];
-//            NUMBEROFTRIES = 0;
-//        }
-//
-//
-//        if(!WorldSelect.isOpen() && Worlds.getCurrent() != randomWorld)
-//        {
-//            WorldSelect.open();
-//            GameEvents.Universal.LOGIN_HANDLER.disable();
-//            GameEvents.Universal.LOBBY_HANDLER.disable();
-//            System.out.println("nothing at all :./");
-//        }
-//        if(WorldSelect.isOpen() && Worlds.getCurrent() != randomWorld){
-//            Worlds.setPreferred(randomWorld);
-//            GameEvents.Universal.LOGIN_HANDLER.enable();
-//            GameEvents.Universal.LOBBY_HANDLER.enable();
-//            System.out.println("Attempt "+NUMBEROFTRIES);
-//            NUMBEROFTRIES++;
-//        }
-//        if(Worlds.getCurrent() == randomWorld)
-//            System.out.println("yay");
+        long prevTime = System.currentTimeMillis();
 
-//        if(WorldSelect.isSelected(326) && !WorldSelect.isOpen()) {
-//            GameEvents.Universal.LOBBY_HANDLER.disable();
-//            GameEvents.Universal.LOGIN_HANDLER.enable();
-//        }
-//            if(!WorldSelect.isSelected(326)) {
-//                point.click();
-//                System.out.println("Attempt "+ NUMBEROFTRIES++);
-//            }else{
-//                System.out.println("yay");
-//                NUMBEROFTRIES=0;
-//            }
-
-
-
-            //
-//            for(int attempts = 0; attempts < NUMBEROFTRIES; attempts++) {
-//                if(!point.click()){
-//                    System.out.println("Attempt "+ attempts);
-//                }else{break;}
-//            }
-
-
-            //WorldSelect.select(346);
-
-            //301
-            //250/64
-            //334/79
-
-            //px - 93 //25 - py .. 93 - px// px - 25
-            //InteractableRectangle point = new InteractableRectangle(63, 13, 148, 29);
-            //InteractableRectangle point = new InteractableRectangle(155, 16, 241, 31);
-            //InteractableRectangle point = new InteractableRectangle(341, 400, 426, 415);
-
-
-            //point.click();
+        if(me !=null && me.getAnimationId()!=-1 && me.getAnimationId()==829){ //&& (is829 < currentTime)) {
+            long currentTime = System.currentTimeMillis();
+            System.out.println(currentTime - prevTime);
+        }
 
     }
 }
