@@ -20,7 +20,7 @@ public class WalkToAlterDoor extends Task {
     //private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2959,3820,0), 1 );//was 4
 
     private final Area.Rectangular alterDoor = new Area.Rectangular(new Coordinate(2959,3818,0), new Coordinate(2960,3822,0));
-
+//2959
     //3816
 
     private Player me;
@@ -53,7 +53,7 @@ public class WalkToAlterDoor extends Task {
 
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
 
-            if(ww.alterDoorArea.contains(me))
+            if(!alterDoor.contains(me))
                 add(new IsDoorOpen(ww));
 
             path.step();

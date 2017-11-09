@@ -41,7 +41,6 @@ public class Heal extends Task {
             if(InterfaceWindows.getInventory().isOpen()) {
                 if (food.first().interact("Drink") || food.first().interact("Eat")) {
                     System.out.println("Healing");
-                    Execution.delayWhile(() -> food.first().isValid(), 3000, 4000);
                 }
             }else{
                 InterfaceWindows.getInventory().open();
