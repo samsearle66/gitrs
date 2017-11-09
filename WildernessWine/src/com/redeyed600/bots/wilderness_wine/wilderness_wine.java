@@ -8,11 +8,13 @@ import com.runemate.game.api.script.framework.task.TaskBot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class wilderness_wine extends TaskBot {
 
     public GC GC = new GC(this);
    // public  ConsoleWrite CW = new ConsoleWrite(this);
+    public Random rand = new Random();
 
     public Map<String, String> listOfPkers;
 

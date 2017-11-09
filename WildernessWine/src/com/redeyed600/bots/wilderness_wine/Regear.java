@@ -18,6 +18,8 @@ public class Regear extends Task {
     private wilderness_wine ww;
     private SpriteItemQueryResults armour;
     private SpriteItemQueryResults airStaff;
+    private SpriteItemQueryResults funkyHead;
+    private SpriteItemQueryResults funkyCape;
 
     public Regear(wilderness_wine ww){
         this.ww = ww;
@@ -31,8 +33,11 @@ public class Regear extends Task {
         armour = Inventory.getItems(ww.GC.ARMOUR);
         airStaff = Inventory.getItems(ww.GC.AIRSTAFF);
 
+        funkyHead = Inventory.getItems(ww.GC.funkyHead);
+        funkyCape = Inventory.getItems(ww.GC.funkyCape);
+
         //may check if has armour on already or has air staff equiped already
-        return me!=null && !Bank.isOpen() && ((armour.first()!=null && armour.size() > 0) || airStaff.first()!=null);
+        return me!=null && !Bank.isOpen() && ((armour.first()!=null && armour.size() > 0) || (airStaff.first()!=null) || (funkyHead.first()!=null) || (funkyCape.first()!=null));
     }
 
     @Override
@@ -52,6 +57,15 @@ public class Regear extends Task {
                 System.out.println("Weild staff");
                 airStaff.first().interact("Wield");
             }
+            if(funkyHead.first()!=null){
+                System.out.println("equip funky head");
+                funkyHead.first().interact("Wear");
+            }
+            if(funkyCape.first()!=null){
+                System.out.println("equip funky head");
+                funkyCape.first().interact("Wear");
+            }
+
         }else{
             InterfaceWindows.getInventory().open();
         }

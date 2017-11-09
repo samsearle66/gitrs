@@ -49,7 +49,8 @@ public class BankInterfaceCastle extends Task {
             System.out.println("Opening bank");
             if (Bank.isOpen()) {
 
-                Bank.depositAllExcept(ww.GC.LAWRUNE,ww.GC.FIRERUNE, ww.GC.AIRRUNE,ww.GC.AIRSTAFF,ww.GC.ENERGYPOTION[0],ww.GC.FOODIDS[0], ww.GC.ARMOUR[0],ww.GC.ARMOUR[1],ww.GC.ARMOUR[2]);
+                Bank.depositAllExcept(ww.GC.LAWRUNE,ww.GC.FIRERUNE, ww.GC.AIRRUNE,ww.GC.AIRSTAFF,ww.GC.ENERGYPOTION[0],ww.GC.FOODIDS[0], ww.GC.ARMOUR[0],ww.GC.ARMOUR[1],ww.GC.ARMOUR[2],ww.GC.ARMOUR[3],ww.GC.ARMOUR[4],ww.GC.ARMOUR[5],ww.GC.ARMOUR[6],
+                        ww.GC.funkyHead[0],ww.GC.funkyHead[1],ww.GC.funkyHead[2],ww.GC.funkyHead[3],ww.GC.funkyCape[0],ww.GC.funkyCape[1],ww.GC.funkyCape[2],ww.GC.funkyCape[3],ww.GC.funkyCape[4]);
 
                 if(energyPotion.size() < ww.GC.ENERGYPOTIONQUANTITY){
                     Bank.withdraw(Bank.getItems(ww.GC.ENERGYPOTION[0]).first(), ww.GC.ENERGYPOTIONQUANTITY - energyPotion.size());
@@ -65,6 +66,18 @@ public class BankInterfaceCastle extends Task {
 
                 if(!Equipment.contains(ww.GC.STAFFOFAIR) && Inventory.getItems(ww.GC.STAFFOFAIR).first()==null){
                     Bank.withdraw(ww.GC.AIRSTAFF, 1);
+                }
+
+                //CAPE
+                if(!Equipment.containsAnyOf(ww.GC.funkyCape))
+                {
+                    Bank.withdraw(ww.GC.funkyCape[ww.rand.nextInt(ww.GC.funkyCape.length)],1);
+                }
+
+                //HEAD
+                if(!Equipment.containsAnyOf(ww.GC.funkyHead))
+                {
+                    Bank.withdraw(ww.GC.funkyHead[ww.rand.nextInt(ww.GC.funkyHead.length)],1);
                 }
 
                 if(!Bank.contains(ww.GC.STAFFOFAIR))

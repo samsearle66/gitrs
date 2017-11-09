@@ -25,7 +25,7 @@ public class WalkToSouthOfDitch extends Task {
     public WalkToSouthOfDitch(wilderness_wine ww){
         this.ww = ww;
         try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray("C:\\Users\\Skippy\\gitrs\\WildernessWine\\src\\Resources\\varrockToEdgeville.nav"));
+            web = SerializableWeb.deserialize(ww.GC.getByteArray("C:\\Users\\Ben\\gitrs\\WildernessWine\\src\\Resources\\varrockToEdgeville.nav"));
         } catch (Exception e) {
             e.printStackTrace();
             web = null;
