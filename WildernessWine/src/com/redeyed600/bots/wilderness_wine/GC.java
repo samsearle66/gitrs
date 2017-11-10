@@ -116,17 +116,32 @@ public class GC {
 
     }
 
+    //healing, energy potion
     public boolean Is829Delay(){
         Player me = Players.getLocal();
 
         long currentTime = System.currentTimeMillis();
 
         if(me !=null && me.getAnimationId()!=-1 && me.getAnimationId()==829 && (is829 < currentTime)) {
-            System.out.println("Under attack");
             is829 = currentTime + (ww.rand.nextInt(1500)+1460);//10sec 1min 40sec
         }
 
         return is829 > currentTime;
+    }
+
+    private long is723 = 0;
+
+    //telegrab
+    public boolean is723Delay(){
+        Player me = Players.getLocal();
+
+        long currentTime = System.currentTimeMillis();
+
+        if(me !=null && me.getAnimationId()!=-1 && me.getAnimationId()==723 && (is723 < currentTime)) {
+            is723 = currentTime + (ww.rand.nextInt(1800)+2000);//10sec 1min 40sec
+        }
+
+        return is723 > currentTime;
     }
 
     public boolean underAttackNpc(){

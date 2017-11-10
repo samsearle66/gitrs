@@ -143,18 +143,20 @@ public class Task1 extends Task {
             394};
     private Random rand = new Random();
     private int randomWorld;
-    private long is829 = 0;
+    private long startTime = 0;
 
     @Override
     public void execute() {
         Player me = Players.getLocal();
 
-        long prevTime = System.currentTimeMillis();
-
-        if(me !=null && me.getAnimationId()!=-1 && me.getAnimationId()==723){ //&& (is829 < currentTime)) {
+        if(me.getAnimationId()!=-1){ //&& (is829 < currentTime)) {
             long currentTime = System.currentTimeMillis();
-            System.out.println(currentTime - prevTime);
+            System.out.println(currentTime - startTime);
+        }else{
+            startTime = System.currentTimeMillis();
+            System.out.println(startTime);
         }
+
 
     }
 }

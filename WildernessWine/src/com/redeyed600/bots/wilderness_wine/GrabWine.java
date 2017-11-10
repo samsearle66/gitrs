@@ -36,6 +36,7 @@ public class GrabWine extends Task{
     private SpriteItemQueryResults wineOfZamarak;
     private final Area.Rectangular wineWithin = new Area.Rectangular(new Coordinate(2949,3817,0), new Coordinate(2952,3824,0));
     private int wineOfZamorakInvPrev = 0;
+    private boolean canCast = true;
 
     @Override
     public boolean validate() {
@@ -67,7 +68,7 @@ public class GrabWine extends Task{
                         System.out.println("Dropping food");
                     }
                 }
-                if (!WorldHop.isOpen() && wine==null)
+                if (!WorldHop.isOpen() && wine==null && !ww.GC.is723Delay())
                     WorldHop.open();
             } else {
                 if (Magic.TELEKINETIC_GRAB.isSelected()) {
@@ -93,8 +94,7 @@ public class GrabWine extends Task{
                         }
                     }
                 } else {
-                    if(!ww.GC.isAnimating()) {
-                        System.out.println("Is animating: " + ww.GC.isAnimating());
+                    if(!ww.GC.is723Delay()) {
                         if (InterfaceWindows.getMagic().isOpen()) {
                             Magic.TELEKINETIC_GRAB.activate();
                             System.out.println("Telegrab selected");
