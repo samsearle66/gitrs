@@ -104,11 +104,11 @@ public class GrabWine extends Task{
                             food.first().interact("Drop");
                             System.out.println("Dropping food");
                         }
-                    }else{
-                        if (!WorldHop.isOpen())
-                            WorldHop.open();
                     }
+                    
 
+                    if (!WorldHop.isOpen() && wine==null || me.getAnimationId() != -1)
+                        WorldHop.open();
 
                 }
 
