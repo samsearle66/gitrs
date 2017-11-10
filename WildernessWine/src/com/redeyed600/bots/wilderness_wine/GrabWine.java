@@ -77,12 +77,7 @@ public class GrabWine extends Task{
                         }else{
                             Camera.turnTo(wine);
                         }
-                    } else {
-                        System.out.println("no wine here mate!");
                     }
-
-
-                    //maybe do antiban?
                 } else if(wine!=null) {
                     if(InterfaceWindows.getMagic().isOpen()) {
                         Magic.TELEKINETIC_GRAB.activate();
@@ -105,16 +100,11 @@ public class GrabWine extends Task{
                             System.out.println("Dropping food");
                         }
                     }
-                    
-
                     if (!WorldHop.isOpen() && wine==null)
                         WorldHop.open();
-
                 }
-
             } else {
             Magic.TELEKINETIC_GRAB.deactivate();
-            //Click somewhere randomly on the screen.
             System.out.println("DONE");
         }
     }
