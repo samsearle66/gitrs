@@ -49,7 +49,7 @@ public class GrabWine extends Task{
         wine = GroundItems.newQuery().within(wineWithin).names("Wine of zamorak").results().nearest();
 
         //Banking completed means have runes
-        return (!ww.GC.isAnimating() && !ww.GC.underAttackPker() && me != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies());
+        return (!ww.GC.is723Delay() && !ww.GC.underAttackPker() && me != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies());
     }
 
     @Override
@@ -94,13 +94,11 @@ public class GrabWine extends Task{
                         }
                     }
                 } else {
-                    if(!ww.GC.is723Delay()) {
-                        if (InterfaceWindows.getMagic().isOpen()) {
-                            Magic.TELEKINETIC_GRAB.activate();
-                            System.out.println("Telegrab selected");
-                        } else
-                            InterfaceWindows.getMagic().open();
-                    }
+                    if (InterfaceWindows.getMagic().isOpen()) {
+                        Magic.TELEKINETIC_GRAB.activate();
+                        System.out.println("Telegrab selected");
+                    } else
+                        InterfaceWindows.getMagic().open();
                 }
             }
         }
