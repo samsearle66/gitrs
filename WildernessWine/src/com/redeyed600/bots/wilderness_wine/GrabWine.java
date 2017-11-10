@@ -56,56 +56,59 @@ public class GrabWine extends Task{
     {
         if(!Inventory.isFull())
         {
+            if(wine==null){
+                if((food.first() != null && Inventory.getUsedSlots() > 26) || (jug != null && jug.first() != null)) {
+                    if (jug != null && jug.first() != null) {
+                        jug.first().interact("Drop");
+                        System.out.println("Dropping a Jug");
+                    }
+                    if (food.first() != null && Inventory.getUsedSlots() > 26) {
+                        food.first().interact("Drop");
+                        System.out.println("Dropping food");
+                    }
+                }
+                if (!WorldHop.isOpen() && wine==null)
+                    WorldHop.open();
+            }
+
+            if(wine!=null && !Magic.TELEKINETIC_GRAB.isSelected()) {
+                if(InterfaceWindows.getMagic().isOpen()) {
+                    Magic.TELEKINETIC_GRAB.activate();
+                    System.out.println("Telegrab selected");
+                }
+                else
+                    InterfaceWindows.getMagic().open();
+
+            }
+
             if (Magic.TELEKINETIC_GRAB.isSelected()) {
-                    if (wine != null) {
-                        wineOfZamorakInvPrev = wineOfZamarak.size();
-                        if(wine.isVisible()) {
-                            if (wine.interact("Cast")) {
-                                System.out.println("Grabbing wine");
-                                //After interacting with our flax, we can add a check if it's still valid
-                                //This isn't required, you can check for player animation also
-                                //If you'd use player animation, you'd check if it went back to idle after picking the flax
-                            } else {
-                                System.out.println("Cant cast?");
-                            }
-                            if(wineOfZamorakInvPrev > wineOfZamarak.size())
-                                ww.NUMBEROFWINETELEGRABED++;
-                            else {
-                                ww.NUMBEROFWINELOST++;
-                                ww.WINELOSTATTEMP--;
-                            }
-                        }else{
-                            Camera.turnTo(wine);
+                if (wine != null) {
+                    wineOfZamorakInvPrev = wineOfZamarak.size();
+                    if(wine.isVisible()) {
+                        if (wine.interact("Cast")) {
+                            System.out.println("Grabbing wine");
+                            //After interacting with our flax, we can add a check if it's still valid
+                            //This isn't required, you can check for player animation also
+                            //If you'd use player animation, you'd check if it went back to idle after picking the flax
+                        } else {
+                            System.out.println("Cant cast?");
                         }
+                        if(wineOfZamorakInvPrev > wineOfZamarak.size())
+                            ww.NUMBEROFWINETELEGRABED++;
+                        else {
+                            ww.NUMBEROFWINELOST++;
+                            ww.WINELOSTATTEMP--;
+                        }
+                    }else{
+                        Camera.turnTo(wine);
                     }
-                } else if(wine!=null) {
-                    if(InterfaceWindows.getMagic().isOpen()) {
-                        Magic.TELEKINETIC_GRAB.activate();
-                        System.out.println("Telegrab selected");
-                    }
-                    else
-                        InterfaceWindows.getMagic().open();
-
                 }
+            }
 
-                if(wine==null){
 
-                    if((food.first() != null && Inventory.getUsedSlots() > 26) || (jug != null && jug.first() != null)) {
-                        if (jug != null && jug.first() != null) {
-                            jug.first().interact("Drop");
-                            System.out.println("Dropping a Jug");
-                        }
-                        if (food.first() != null && Inventory.getUsedSlots() > 26) {
-                            food.first().interact("Drop");
-                            System.out.println("Dropping food");
-                        }
-                    }
-                    if (!WorldHop.isOpen() && wine==null)
-                        WorldHop.open();
-                }
-            } else {
-            Magic.TELEKINETIC_GRAB.deactivate();
-            System.out.println("DONE");
+
+
+
         }
     }
 }
