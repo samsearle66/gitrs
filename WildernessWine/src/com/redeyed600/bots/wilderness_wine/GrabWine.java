@@ -93,7 +93,7 @@ public class GrabWine extends Task{
 
                 }
 
-                if(wine==null || me.getAnimationId() != -1){
+                if(wine==null){
 
                     if((food.first() != null && Inventory.getUsedSlots() > 26) || (jug != null && jug.first() != null)) {
                         if (jug != null && jug.first() != null) {
@@ -107,7 +107,7 @@ public class GrabWine extends Task{
                     }
                     
 
-                    if (!WorldHop.isOpen() && wine==null || me.getAnimationId() != -1)
+                    if (!WorldHop.isOpen() && wine==null)
                         WorldHop.open();
 
                 }
