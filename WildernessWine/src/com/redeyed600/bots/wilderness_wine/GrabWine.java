@@ -93,12 +93,14 @@ public class GrabWine extends Task{
                         }
                     }
                 } else {
-
-                    if (InterfaceWindows.getMagic().isOpen()) {
-                        Magic.TELEKINETIC_GRAB.activate();
-                        System.out.println("Telegrab selected");
-                    } else
-                        InterfaceWindows.getMagic().open();
+                    if(!ww.GC.isAnimating()) {
+                        System.out.println("Is animating: " + ww.GC.isAnimating());
+                        if (InterfaceWindows.getMagic().isOpen()) {
+                            Magic.TELEKINETIC_GRAB.activate();
+                            System.out.println("Telegrab selected");
+                        } else
+                            InterfaceWindows.getMagic().open();
+                    }
                 }
             }
         }

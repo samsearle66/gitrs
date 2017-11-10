@@ -151,7 +151,7 @@ public class Task1 extends Task {
 
         long prevTime = System.currentTimeMillis();
 
-        if(me !=null && me.getAnimationId()!=-1 && me.getAnimationId()==829){ //&& (is829 < currentTime)) {
+        if(me !=null && me.getAnimationId()!=-1 && me.getAnimationId()==723){ //&& (is829 < currentTime)) {
             long currentTime = System.currentTimeMillis();
             System.out.println(currentTime - prevTime);
         }
