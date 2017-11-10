@@ -1,6 +1,7 @@
 package com.redeyed600.bots.wilderness_wine;
 import com.runemate.game.api.hybrid.GameEvents;
 import com.runemate.game.api.hybrid.RuneScape;
+import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.region.Players;

@@ -1,5 +1,6 @@
 package com.redeyed600.bots.wilderness_wine;
 
+import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
@@ -7,6 +8,7 @@ import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.location.navigation.Path;
 import com.runemate.game.api.hybrid.location.navigation.Traversal;
 import com.runemate.game.api.hybrid.location.navigation.basic.BresenhamPath;
+import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
 
@@ -22,9 +24,11 @@ public class WalkToAlter extends Task {
     //private final Area.Circular alter = new Area.Circular(new Coordinate(2950,3821,0),2);
     //2955,2821
     private Player me;
+    private GameObject door;
 
     @Override
     public boolean validate() {
+        door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
         me = Players.getLocal();
         return (me != null && !ww.alter.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanAlter());//good
     }
@@ -35,9 +39,12 @@ public class WalkToAlter extends Task {
         final BresenhamPath path = BresenhamPath.buildTo(ww.alter);
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
             if(!ww.alter.contains(me)) {
-                add(new IsDoorOpen(ww));
+                if(door!=null && door.isValid())
+                    add(new IsDoorOpen(ww));
+                else
+                    path.step();
             }
-            path.step();
+
         }
     }
 }
