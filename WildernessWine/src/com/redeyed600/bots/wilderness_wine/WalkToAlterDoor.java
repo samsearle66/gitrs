@@ -32,13 +32,13 @@ public class WalkToAlterDoor extends Task {
 
         door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
 
-        System.out.println((me != null) +"&&"+ !alterDoor.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanDitch() +"&&"+ ww.GC.greaterThanNorthOfDitch() +"&&"+ !ww.GC.greaterThanAlter());
+        System.out.println("1WTAD:"+(me != null) +"&&"+ !alterDoor.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanDitch() +"&&"+ ww.GC.greaterThanNorthOfDitch() +"&&"+ !ww.GC.greaterThanAlter());
         if (me != null && !alterDoor.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanDitch() && ww.GC.greaterThanNorthOfDitch() && !ww.GC.greaterThanAlter())//good
         {
             return true;
         }
 
-        System.out.println("WTAD:"+(me != null)  +"&&"+ !alterDoor.contains(me) +"&&"+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanAlter());//good
+        System.out.println("2WTAD:"+(me != null)  +"&&"+ !alterDoor.contains(me) +"&&"+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanAlter());//good
         if(me != null  && !alterDoor.contains(me) && ww.GC.outOfSuppies() && ww.GC.greaterThanAlter())//good
         {
             return true;
@@ -55,7 +55,7 @@ public class WalkToAlterDoor extends Task {
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
 
             if(!alterDoor.contains(me)) {
-                if (door != null && door.isValid())
+                if(door!=null && door.isValid() && door.isVisible())
                     add(new IsDoorOpen(ww));
                 else
                     path.step();

@@ -61,6 +61,7 @@ public class WalkToBank extends Task {
         }else{
             System.out.println("dis path is null");
         }
+
 //        final BresenhamPath path = BresenhamPath.buildTo(edgevilleBank);
 //
 //        if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
@@ -69,5 +70,6 @@ public class WalkToBank extends Task {
 //            else
 //                path.step();
 //        }
+
     }
 }
