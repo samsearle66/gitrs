@@ -69,46 +69,38 @@ public class GrabWine extends Task{
                 }
                 if (!WorldHop.isOpen() && wine==null)
                     WorldHop.open();
-            }
-
-            if(wine!=null && !Magic.TELEKINETIC_GRAB.isSelected()) {
-                if(InterfaceWindows.getMagic().isOpen()) {
-                    Magic.TELEKINETIC_GRAB.activate();
-                    System.out.println("Telegrab selected");
-                }
-                else
-                    InterfaceWindows.getMagic().open();
-
-            }
-
-            if (Magic.TELEKINETIC_GRAB.isSelected()) {
-                if (wine != null) {
-                    wineOfZamorakInvPrev = wineOfZamarak.size();
-                    if(wine.isVisible()) {
-                        if (wine.interact("Cast")) {
-                            System.out.println("Grabbing wine");
-                            //After interacting with our flax, we can add a check if it's still valid
-                            //This isn't required, you can check for player animation also
-                            //If you'd use player animation, you'd check if it went back to idle after picking the flax
-                        } else {
-                            System.out.println("Cant cast?");
+            } else {
+                if (Magic.TELEKINETIC_GRAB.isSelected()) {
+                    if (wine != null) {
+                        wineOfZamorakInvPrev = wineOfZamarak.size();
+                        if(wine.isVisible()) {
+                            if (wine.interact("Cast")) {
+                                System.out.println("Grabbing wine");
+                                //After interacting with our flax, we can add a check if it's still valid
+                                //This isn't required, you can check for player animation also
+                                //If you'd use player animation, you'd check if it went back to idle after picking the flax
+                            } else {
+                                System.out.println("Cant cast?");
+                            }
+                            if(wineOfZamorakInvPrev > wineOfZamarak.size())
+                                ww.NUMBEROFWINETELEGRABED++;
+                            else {
+                                ww.NUMBEROFWINELOST++;
+                                ww.WINELOSTATTEMP--;
+                            }
+                        }else{
+                            Camera.turnTo(wine);
                         }
-                        if(wineOfZamorakInvPrev > wineOfZamarak.size())
-                            ww.NUMBEROFWINETELEGRABED++;
-                        else {
-                            ww.NUMBEROFWINELOST++;
-                            ww.WINELOSTATTEMP--;
-                        }
-                    }else{
-                        Camera.turnTo(wine);
                     }
+                } else {
+
+                    if (InterfaceWindows.getMagic().isOpen()) {
+                        Magic.TELEKINETIC_GRAB.activate();
+                        System.out.println("Telegrab selected");
+                    } else
+                        InterfaceWindows.getMagic().open();
                 }
             }
-
-
-
-
-
         }
     }
 }
