@@ -87,6 +87,8 @@ public class GrabWine extends Task{
                         InterfaceWindows.getMagic().open();
                 }
             } else {
+                if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
+                    Magic.getSelected().deactivate();
                 if(InterfaceWindows.getInventory().isOpen()) {
                     if (food.first() != null && Inventory.getUsedSlots() > 26) {
                         food.first().interact("Drop");

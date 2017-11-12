@@ -13,6 +13,7 @@ import com.runemate.game.api.hybrid.local.hud.interfaces.InterfaceWindows;
 import com.runemate.game.api.hybrid.local.hud.interfaces.WorldHop;
 import com.runemate.game.api.hybrid.local.hud.interfaces.WorldSelect;
 import com.runemate.game.api.hybrid.region.Players;
+import com.runemate.game.api.osrs.local.hud.interfaces.Magic;
 import com.runemate.game.api.script.framework.task.Task;
 
 import java.awt.*;
@@ -51,6 +52,9 @@ public class SwitchWorld extends Task {
 
     @Override
     public void execute() {
+        if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
+            Magic.getSelected().deactivate();
+
         if(ww.GC.pkersSpotted() && RuneScape.isLoggedIn() )
             randomWorld = worlds[rand.nextInt(worlds.length)];
 
