@@ -55,20 +55,11 @@ public class GrabWine extends Task{
     @Override
     public void execute()
     {
+        System.out.println("Exectute Wine:"+(wine!=null) +"&&"+ !ww.GC.is723Delay());
+
         if(!Inventory.isFull())
         {
-            if(wine==null){
-                if (jug != null && jug.first() != null) {
-                    jug.first().interact("Drop");
-                    System.out.println("Dropping a Jug");
-                }
-                if (food.first() != null && Inventory.getUsedSlots() > 26) {
-                    food.first().interact("Drop");
-                    System.out.println("Dropping food");
-                }
-                if (!WorldHop.isOpen() && wine==null)
-                    WorldHop.open();
-            } else {
+            if(wine!=null && !ww.GC.is723Delay()){
                 if (Magic.TELEKINETIC_GRAB.isSelected()) {
                     if (wine != null) {
                         wineOfZamorakInvPrev = wineOfZamarak.size();
@@ -92,12 +83,23 @@ public class GrabWine extends Task{
                         }
                     }
                 } else {
-                    if (InterfaceWindows.getMagic().isOpen() && !ww.GC.is723Delay()) {
+                    if (InterfaceWindows.getMagic().isOpen()) {
                         Magic.TELEKINETIC_GRAB.activate();
                         System.out.println("Telegrab selected");
                     } else
                         InterfaceWindows.getMagic().open();
                 }
+            } else {
+                if (jug != null && jug.first() != null) {
+                    jug.first().interact("Drop");
+                    System.out.println("Dropping a Jug");
+                }
+                if (food.first() != null && Inventory.getUsedSlots() > 26) {
+                    food.first().interact("Drop");
+                    System.out.println("Dropping food");
+                }
+                if (!WorldHop.isOpen() && wine==null)
+                    WorldHop.open();
             }
         }
     }

@@ -32,6 +32,8 @@ public class Teleport extends Task {
         if(InterfaceWindows.getInventory().isOpen()) {
             if (Magic.VARROCK_TELEPORT.activate()) {
                 System.out.println("Teleport to varrock");
+                Execution.delayWhile(() -> ww.GC.hasVarrockTeleportRunes(), 3000, 4000);
+
             } else {
                 System.out.println("Cant teleport?.. teleblocked?...wildernessdepth");
             }

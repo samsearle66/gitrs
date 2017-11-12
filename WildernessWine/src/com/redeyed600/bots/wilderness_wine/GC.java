@@ -20,14 +20,13 @@ public class GC {
     public int[] ENERGYPOTION = {3008,3010,3012,3014};//ENERGYPOTION,1,2,3,4
     public int ENERGYPOTIONQUANTITY = 1;
     public int MINIMUMHP = 25;
-    public int MINIMUMFOOD = 16;
+    public int MINIMUMFOOD = 21;
     public int LAWRUNEQUANTITY = 16;
     public int AIRRUNEQUANTITY = 84;
-    public int FIRERUNEQUANTITY = 2;
+    public int FIRERUNEQUANTITY = 1;
     public int AIRSTAFF = 1381;
     public final int NOTHOFDITCH = 3544;
     public int wildernessDitch = 3522;
-    public int ALTERDOORX = 2959;
     public int ALTERDOORY = 3816;
     public int STAFFOFAIR = 1381;
     public int AIRRUNE = 556;
@@ -122,8 +121,9 @@ public class GC {
 
         long currentTime = System.currentTimeMillis();
 
-        if(me !=null && me.getAnimationId()!=-1 && me.getAnimationId()==829 && (is829 < currentTime)) {
-            is829 = currentTime + (ww.rand.nextInt(1500)+1460);//10sec 1min 40sec
+        if(me !=null &&  me.getAnimationId()==829 && (is829 < currentTime)) {
+            System.out.println("Food delayed");
+            is829 = currentTime + (ww.rand.nextInt((1500 - 1450) + 1) + 1450);;//10sec 1min 40sec
         }
 
         return is829 > currentTime;
@@ -137,9 +137,12 @@ public class GC {
 
         long currentTime = System.currentTimeMillis();
 
-        if(me !=null && me.getAnimationId()!=-1 && me.getAnimationId()==723 && (is723 < currentTime)) {
-            is723 = currentTime + (ww.rand.nextInt(8000)+5000);//10sec 1min 40sec
+        if(me !=null && me.getAnimationId()==723 && (is723 < currentTime)) {
+            System.out.println("telegrab delayed");
+            is723 = currentTime + (ww.rand.nextInt((8000 - 5000) + 1) + 5000);;//10sec 1min 40sec
         }
+
+        System.out.println("is723");
 
         return is723 > currentTime;
     }
