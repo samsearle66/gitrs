@@ -3,7 +3,6 @@ package com.redeyed600.bots.wilderness_wine;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.input.Mouse;
 import com.runemate.game.api.hybrid.local.Skill;
-import com.runemate.game.api.hybrid.local.Worlds;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.navigation.Traversal;
@@ -27,7 +26,8 @@ public class GC {
     public int AIRSTAFF = 1381;
     public final int NOTHOFDITCH = 3544;
     public int wildernessDitch = 3522;
-    public int ALTERDOORY = 3816;
+    public int ALTERY = 3816;
+    public int ALTERX = 2958;
     public int STAFFOFAIR = 1381;
     public int AIRRUNE = 556;
     public int WINEOFZAMORAK = 245;
@@ -76,10 +76,10 @@ public class GC {
                     if(Mouse.getSpeedMultiplier()==1.0)
                         Mouse.setSpeedMultiplier(2.5);
 
-//                    if(ww.GC.greaterThanAlter()) {
+//                    if(ww.GC.greaterThanAlterY()) {
 //                       // ww.listOfPkers.put(p.getName(), "Alter World: " + Worlds.getCurrent() + ", Player Name:" + p.getName() + ", Combat:" + p.getCombatLevel() +"/n");
 //                    }
-//                    if(!ww.GC.greaterThanAlter() && ww.GC.greaterThanLevel20Wilderness()) {
+//                    if(!ww.GC.greaterThanAlterY() && ww.GC.greaterThanLevel20Wilderness()) {
 //                      //  ww.listOfPkers.put(p.getName(), "Wilderness  World: " + Worlds.getCurrent() + ", Player Name: " + p.getName() + ", Combat: " + p.getCombatLevel() +"/n");
 //                    }
 
@@ -224,9 +224,13 @@ public class GC {
         return Skill.CONSTITUTION.getCurrentLevel() > MINIMUMHP;
     }
 
-    public boolean greaterThanAlter(){
+    public boolean greaterThanAlterY(){
         Player me = Players.getLocal();
-        return me != null && me.getPosition().getY() > ALTERDOORY;
+        return me != null && me.getPosition().getY() > ALTERY;
+    }
+    public boolean lessThanAlterX(){
+        Player me = Players.getLocal();
+        return me != null && me.getPosition().getX() < ALTERX;
     }
 
     public boolean isAnimating() {

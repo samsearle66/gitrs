@@ -2,11 +2,6 @@ package com.redeyed600.bots.wilderness_wine;
 
 import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.entities.Player;
-import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
-import com.runemate.game.api.hybrid.location.Area;
-import com.runemate.game.api.hybrid.location.Coordinate;
-import com.runemate.game.api.hybrid.location.navigation.Path;
-import com.runemate.game.api.hybrid.location.navigation.Traversal;
 import com.runemate.game.api.hybrid.location.navigation.basic.BresenhamPath;
 import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.Players;
@@ -30,7 +25,7 @@ public class WalkToAlter extends Task {
     public boolean validate() {
         door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
         me = Players.getLocal();
-        return (me != null && !ww.alter.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanAlter());//good
+        return (me != null && !ww.alter.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanAlterY());//good
     }
 
     @Override

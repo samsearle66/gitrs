@@ -3,20 +3,16 @@ package com.redeyed600.bots.wilderness_wine;
 import com.runemate.game.api.hybrid.entities.GroundItem;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.local.Camera;
-import com.runemate.game.api.hybrid.local.Worlds;
 import com.runemate.game.api.hybrid.local.hud.interfaces.InterfaceWindows;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.local.hud.interfaces.WorldHop;
-import com.runemate.game.api.hybrid.local.hud.interfaces.WorldSelect;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.queries.results.SpriteItemQueryResults;
 import com.runemate.game.api.hybrid.region.GroundItems;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.osrs.local.hud.interfaces.Magic;
-import com.runemate.game.api.script.Execution;
 import com.runemate.game.api.script.framework.task.Task;
-import com.sun.webkit.event.WCMouseEvent;
 
 public class GrabWine extends Task{
 
@@ -48,8 +44,8 @@ public class GrabWine extends Task{
 
         wine = GroundItems.newQuery().within(wineWithin).names("Wine of zamorak").results().nearest();
 
-        System.out.println ("GW:"+!ww.GC.underAttackPker() +"&&"+ (me != null) +"&&"+ alter.contains(me) +"&&"+ ww.GC.greaterThanAlter() +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies());
-        return (!ww.GC.underAttackPker() && me != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies());
+        System.out.println ("GW:"+!ww.GC.underAttackPker() +"&&"+ (me != null) +"&&"+ alter.contains(me) +"&&"+ ww.GC.greaterThanAlterY() +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies());
+        return (!ww.GC.underAttackPker() && me != null && alter.contains(me) && ww.GC.greaterThanAlterY() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies());
     }
 
     @Override
@@ -91,22 +87,23 @@ public class GrabWine extends Task{
                         InterfaceWindows.getMagic().open();
                 }
             } else {
-                if (jug != null && jug.first() != null) {
-                    jug.first().interact("Drop");
-                    System.out.println("Dropping a Jug");
-                }
-
                 if(InterfaceWindows.getInventory().isOpen()) {
                     if (food.first() != null && Inventory.getUsedSlots() > 26) {
                         food.first().interact("Drop");
                         System.out.println("Dropping food");
                     }
+                    if (jug != null && jug.first() != null) {
+                        jug.first().interact("Drop");
+                        System.out.println("Dropping a Jug");
+                    }
                 }else if(food.first() != null && Inventory.getUsedSlots() > 26){
                     InterfaceWindows.getInventory().open();
+                }else{
+                    if (!WorldHop.isOpen() && wine==null)
+                        WorldHop.open();
                 }
 
-                if (!WorldHop.isOpen() && wine==null)
-                    WorldHop.open();
+
             }
         }
     }
