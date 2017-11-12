@@ -5,6 +5,7 @@ import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.region.Players;
+import com.runemate.game.api.hybrid.util.StopWatch;
 import com.runemate.game.api.script.framework.task.TaskBot;
 
 import java.util.HashMap;
@@ -22,6 +23,7 @@ public class wilderness_wine extends TaskBot {
     public int NUMBEROFWINETELEGRABED;
     public int NUMBEROFWINELOST;
     public int WINELOSTATTEMP;
+    public final StopWatch runtime;
     //public final Area.Circular alterDoorArea = new Area.Circular(new Coordinate(2956,3820,0), 4);//was 4
 
     public final Area.Rectangular alterDoorArea = new Area.Rectangular(new Coordinate(2957,3819,0),new Coordinate(2958,3822,0));
@@ -29,6 +31,7 @@ public class wilderness_wine extends TaskBot {
 
 
     public wilderness_wine(){
+        runtime = new StopWatch();
         listOfPkers = new HashMap<>();
         NUMBEROFWINETELEGRABED = 0;
         WINELOSTATTEMP = 5;
@@ -40,6 +43,7 @@ public class wilderness_wine extends TaskBot {
         super.onStart(strings);
         setLoopDelay(0,0);
         GameEvents.Universal.LOBBY_HANDLER.disable();
+        runtime.start();
 
         //add(new Task1(this));
         //add(new Heal(this), new WalkToBank(this), new BankInterface(this), new WalkToNorthOfDitch(this), new WalkToLevel20Wilderness(this), new WalkToAlterDoor(this), new WalkToAlter(this), new GrabWine(this), new WalkToAlterDoor(this), new WalkToLevel20Wilderness(this), new WalkToNorthOfDitch(this), new WalkToSouthOfDitch(this), new WalkToLumbridgeCastleStairs(this));
@@ -49,7 +53,7 @@ public class wilderness_wine extends TaskBot {
         //add(new Regear(this), new Teleport(this), new WalkToLumbridgeCastleStairs(this) ,new IsAtStairs(this),new WalkToLumbridgeCastleBank(this), new BankInterfaceCastle(this), new Regear(this), new Teleport(this), new WalkToSouthOfDitch(this));
 
 
-        add(new SwitchWorld(this), new Heal(this), new Teleport(this), new EnergyPotion(this),new RunEnergy(this),new Regear(this), new WalkToBank(this), new BankInterfaceCastle(this), new WalkToNorthOfDitch(this), new WalkToLevel20Wilderness(this), new WalkToAlterDoor(this), new WalkToAlter(this), new GrabWine(this), new WalkToAlterDoor(this), new WalkToLevel20Wilderness(this), new WalkToNorthOfDitch(this), new WalkToSouthOfDitch(this), new WalkToLumbridgeCastleStairs(this) ,new IsAtStairs(this),new WalkToLumbridgeCastleBank(this), new BankInterfaceCastle(this), new WalkToSouthOfDitch(this));
+        add(new EndBot(this),new SwitchWorld(this), new Heal(this), new Teleport(this), new EnergyPotion(this),new RunEnergy(this),new Regear(this), new WalkToBank(this), new BankInterfaceCastle(this), new WalkToNorthOfDitch(this), new WalkToLevel20Wilderness(this), new WalkToAlterDoor(this), new WalkToAlter(this), new GrabWine(this), new WalkToAlterDoor(this), new WalkToLevel20Wilderness(this), new WalkToNorthOfDitch(this), new WalkToSouthOfDitch(this), new WalkToLumbridgeCastleStairs(this) ,new IsAtStairs(this),new WalkToLumbridgeCastleBank(this), new BankInterfaceCastle(this), new WalkToSouthOfDitch(this));
 
         //add(new SwitchWorld(this));
 
