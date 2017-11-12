@@ -138,7 +138,7 @@ public class GC {
         long currentTime = System.currentTimeMillis();
 
         if(me !=null && me.getAnimationId()!=-1 && me.getAnimationId()==723 && (is723 < currentTime)) {
-            is723 = currentTime + (ww.rand.nextInt(1800)+2000);//10sec 1min 40sec
+            is723 = currentTime + (ww.rand.nextInt(8000)+5000);//10sec 1min 40sec
         }
 
         return is723 > currentTime;
