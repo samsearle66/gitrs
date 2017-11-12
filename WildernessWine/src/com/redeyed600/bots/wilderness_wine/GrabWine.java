@@ -55,7 +55,7 @@ public class GrabWine extends Task{
 
         if(!Inventory.isFull())
         {
-            if(wine!=null && !ww.GC.is723Delay()){
+            if(wine!=null && !ww.GC.is723Delay() && wine.isVisible()){
                 if (Magic.TELEKINETIC_GRAB.isSelected()) {
                     if (wine != null) {
                         wineOfZamorakInvPrev = wineOfZamarak.size();
@@ -89,16 +89,18 @@ public class GrabWine extends Task{
             } else {
                 if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
                     Magic.getSelected().deactivate();
-                if(InterfaceWindows.getInventory().isOpen()) {
-                    if (food.first() != null && Inventory.getUsedSlots() > 26) {
-                        food.first().interact("Drop");
-                        System.out.println("Dropping food");
+
+                if(((food.first() != null && Inventory.getUsedSlots() > 26) || (jug != null && jug.first() != null))) {
+                    if(InterfaceWindows.getInventory().isOpen()) {
+                        if (food.first() != null && Inventory.getUsedSlots() > 26) {
+                            food.first().interact("Drop");
+                            System.out.println("Dropping food");
+                        }
+                        if (jug != null && jug.first() != null) {
+                            jug.first().interact("Drop");
+                            System.out.println("Dropping a Jug");
+                        }
                     }
-                    if (jug != null && jug.first() != null) {
-                        jug.first().interact("Drop");
-                        System.out.println("Dropping a Jug");
-                    }
-                }else if(food.first() != null && Inventory.getUsedSlots() > 26){
                     InterfaceWindows.getInventory().open();
                 }else{
                     if (!WorldHop.isOpen() && wine==null)

@@ -116,6 +116,7 @@ public class GC {
     }
 
     //healing, energy potion
+    //1460
     public boolean Is829Delay(){
         Player me = Players.getLocal();
 
@@ -123,7 +124,7 @@ public class GC {
 
         if(me !=null &&  me.getAnimationId()==829 && (is829 < currentTime)) {
             System.out.println("Food delayed");
-            is829 = currentTime + (ww.rand.nextInt((1500 - 1450) + 1) + 1450);;//10sec 1min 40sec
+            is829 = currentTime + (ww.rand.nextInt((1800 - 1500) + 1) + 1500);//10sec 1min 40sec
         }
 
         return is829 > currentTime;
