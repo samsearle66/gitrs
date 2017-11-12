@@ -140,7 +140,7 @@ public class GC {
 
         if(me !=null && me.getAnimationId()==723 && (is723 < currentTime)) {
             System.out.println("telegrab delayed");
-            is723 = currentTime + (ww.rand.nextInt((8000 - 5000) + 1) + 5000);;//10sec 1min 40sec
+            is723 = currentTime + (ww.rand.nextInt((8000 - 5000) + 1) + 5000);//10sec 1min 40sec
         }
 
         System.out.println("is723");
