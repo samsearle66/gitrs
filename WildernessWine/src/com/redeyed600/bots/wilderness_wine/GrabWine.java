@@ -48,8 +48,8 @@ public class GrabWine extends Task{
 
         wine = GroundItems.newQuery().within(wineWithin).names("Wine of zamorak").results().nearest();
 
-        //Banking completed means have runes
-        return (!ww.GC.is723Delay() && !ww.GC.underAttackPker() && me != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies());
+        System.out.println ("GW:"+!ww.GC.underAttackPker() +"&&"+ (me != null) +"&&"+ alter.contains(me) +"&&"+ ww.GC.greaterThanAlter() +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies());
+        return (!ww.GC.underAttackPker() && me != null && alter.contains(me) && ww.GC.greaterThanAlter() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies());
     }
 
     @Override
@@ -58,17 +58,15 @@ public class GrabWine extends Task{
         if(!Inventory.isFull())
         {
             if(wine==null){
-                if((food.first() != null && Inventory.getUsedSlots() > 26) || (jug != null && jug.first() != null)) {
-                    if (jug != null && jug.first() != null) {
-                        jug.first().interact("Drop");
-                        System.out.println("Dropping a Jug");
-                    }
-                    if (food.first() != null && Inventory.getUsedSlots() > 26) {
-                        food.first().interact("Drop");
-                        System.out.println("Dropping food");
-                    }
+                if (jug != null && jug.first() != null) {
+                    jug.first().interact("Drop");
+                    System.out.println("Dropping a Jug");
                 }
-                if (!WorldHop.isOpen() && wine==null && !ww.GC.is723Delay())
+                if (food.first() != null && Inventory.getUsedSlots() > 26) {
+                    food.first().interact("Drop");
+                    System.out.println("Dropping food");
+                }
+                if (!WorldHop.isOpen() && wine==null)
                     WorldHop.open();
             } else {
                 if (Magic.TELEKINETIC_GRAB.isSelected()) {
