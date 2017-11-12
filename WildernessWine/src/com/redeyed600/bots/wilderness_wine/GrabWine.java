@@ -94,10 +94,16 @@ public class GrabWine extends Task{
                     jug.first().interact("Drop");
                     System.out.println("Dropping a Jug");
                 }
-                if (food.first() != null && Inventory.getUsedSlots() > 26) {
-                    food.first().interact("Drop");
-                    System.out.println("Dropping food");
+
+                if(InterfaceWindows.getInventory().isOpen()) {
+                    if (food.first() != null && Inventory.getUsedSlots() > 26) {
+                        food.first().interact("Drop");
+                        System.out.println("Dropping food");
+                    }
+                }else if(food.first() != null && Inventory.getUsedSlots() > 26){
+                    InterfaceWindows.getInventory().open();
                 }
+
                 if (!WorldHop.isOpen() && wine==null)
                     WorldHop.open();
             }
