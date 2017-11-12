@@ -12,6 +12,7 @@ import com.runemate.game.api.hybrid.queries.results.SpriteItemQueryResults;
 import com.runemate.game.api.hybrid.region.GroundItems;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.osrs.local.hud.interfaces.Magic;
+import com.runemate.game.api.script.Execution;
 import com.runemate.game.api.script.framework.task.Task;
 
 public class GrabWine extends Task{
@@ -63,6 +64,7 @@ public class GrabWine extends Task{
                             if (wine.interact("Cast")) {
                                 System.out.println("Grabbing wine");
                                 ww.GC.is723Delay();
+                                Execution.delayWhile(() -> wine.isVisible(), 300, 700);//delay is broken
                                 //After interacting with our flax, we can add a check if it's still valid
                                 //This isn't required, you can check for player animation also
                                 //If you'd use player animation, you'd check if it went back to idle after picking the flax
