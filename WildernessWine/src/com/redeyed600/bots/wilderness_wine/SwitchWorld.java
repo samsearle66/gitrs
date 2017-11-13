@@ -5,7 +5,6 @@ import com.runemate.game.api.hybrid.RuneScape;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.entities.details.Interactable;
 import com.runemate.game.api.hybrid.input.Mouse;
-import com.runemate.game.api.hybrid.local.Rune;
 import com.runemate.game.api.hybrid.local.Worlds;
 import com.runemate.game.api.hybrid.local.hud.InteractablePoint;
 import com.runemate.game.api.hybrid.local.hud.InteractableRectangle;

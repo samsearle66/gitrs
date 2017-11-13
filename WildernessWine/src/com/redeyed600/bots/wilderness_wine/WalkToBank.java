@@ -14,6 +14,7 @@ import com.runemate.game.api.hybrid.location.navigation.web.WebPath;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
 
+import java.io.File;
 import java.net.URL;
 
 public class WalkToBank extends Task {
@@ -26,7 +27,7 @@ public class WalkToBank extends Task {
     public WalkToBank(wilderness_wine ww){
         this.ww = ww;
         try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray("..\\..\\..\\..\\Resources\\varrockToEdgeville.nav"));
+            web = SerializableWeb.deserialize(ww.GC.getByteArray("src\\Resources\\varrockToEdgeville.nav"));
         } catch (Exception e) {
             e.printStackTrace();
             web = null;
@@ -36,6 +37,8 @@ public class WalkToBank extends Task {
     @Override
     //if bank no where to be found
     public boolean validate() {
+        System.out.println(new File("").getAbsolutePath());
+
         me = Players.getLocal();
         return (me != null && !edgevilleBank.contains(me) && ww.GC.outOfSuppies() && !ww.GC.greaterThanDitch() && ww.GC.greaterThanVarrockCenter());
     }
