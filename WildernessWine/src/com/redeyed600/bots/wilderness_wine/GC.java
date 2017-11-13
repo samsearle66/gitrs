@@ -19,7 +19,8 @@ public class GC {
     public int[] ENERGYPOTION = {3008,3010,3012,3014};//ENERGYPOTION,1,2,3,4
     public int ENERGYPOTIONQUANTITY = 1;
     public int MINIMUMHP = 25;
-    public int MINIMUMFOOD = 21;
+    public int MINIMUMBANKFOOD = 21;
+    public int MINIMUMFOOD = 7;
     public int LAWRUNEQUANTITY = 16;
     public int AIRRUNEQUANTITY = 84;
     public int FIRERUNEQUANTITY = 1;
@@ -115,38 +116,36 @@ public class GC {
 
     }
 
-    //healing, energy potion
-    //1460
-    public boolean Is829Delay(){
-        Player me = Players.getLocal();
-
-        long currentTime = System.currentTimeMillis();
-
-        if(me !=null &&  me.getAnimationId()==829 && (is829 < currentTime)) {
-            System.out.println("Food delayed");
-            is829 = currentTime + (ww.rand.nextInt((1800 - 1500) + 1) + 1500);//10sec 1min 40sec
-        }
-
-        return is829 > currentTime;
-    }
-
-    private long is723 = 0;
-
-    //telegrab
-    public boolean is723Delay(){
-        Player me = Players.getLocal();
-
-        long currentTime = System.currentTimeMillis();
-
-        if(me !=null && me.getAnimationId()==723 && (is723 < currentTime)) {
-            System.out.println("telegrab delayed");
-            is723 = currentTime + (ww.rand.nextInt((8000 - 5000) + 1) + 5000);//10sec 1min 40sec
-        }
-
-        System.out.println("is723");
-
-        return is723 > currentTime;
-    }
+//    //healing, energy potion
+//    //1460
+//    public boolean Is829Delay(){
+//        Player me = Players.getLocal();
+//
+//        long currentTime = System.currentTimeMillis();
+//
+//        if(me !=null &&  me.getAnimationId()==829 && (is829 < currentTime)) {
+//            System.out.println("Food delayed");
+//            is829 = currentTime + (ww.rand.nextInt((1800 - 1500) + 1) + 1500);//10sec 1min 40sec
+//        }
+//
+//        return is829 > currentTime;
+//    }
+//
+//    private long is723 = 0;
+//
+//    //telegrab
+//    public boolean is723Delay(){
+//        Player me = Players.getLocal();
+//
+//        long currentTime = System.currentTimeMillis();
+//
+//        if(me !=null && me.getAnimationId()==723 && (is723 < currentTime)) {
+//            System.out.println("telegrab delayed");
+//            is723 = currentTime + (ww.rand.nextInt((8000 - 5000) + 1) + 5000);//10sec 1min 40sec
+//        }
+//
+//        return is723 > currentTime;
+//    }
 
     public boolean underAttackNpc(){
         Player me = Players.getLocal();

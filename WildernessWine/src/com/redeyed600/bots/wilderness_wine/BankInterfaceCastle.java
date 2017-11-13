@@ -6,11 +6,9 @@ import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
-import com.runemate.game.api.hybrid.queries.BankQueryBuilder;
 import com.runemate.game.api.hybrid.queries.results.SpriteItemQueryResults;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
-import java.util.Arrays;
 
 
 public class BankInterfaceCastle extends Task {
@@ -83,8 +81,8 @@ public class BankInterfaceCastle extends Task {
                 if(!Bank.contains(ww.GC.STAFFOFAIR))
                     Bank.withdraw(ww.GC.AIRRUNE,ww.GC.AIRRUNEQUANTITY - Inventory.getQuantity(ww.GC.AIRRUNE));
 
-                if(food.size() < ww.GC.MINIMUMFOOD)
-                    Bank.withdraw(Bank.getItems(ww.GC.FOODIDS).first(),ww.GC.MINIMUMFOOD - food.size());
+                if(food.size() < ww.GC.MINIMUMBANKFOOD)
+                    Bank.withdraw(Bank.getItems(ww.GC.FOODIDS).first(),ww.GC.MINIMUMBANKFOOD - food.size());
 
 
             } else {

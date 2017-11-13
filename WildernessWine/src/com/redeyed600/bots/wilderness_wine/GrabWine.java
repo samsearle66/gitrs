@@ -46,28 +46,23 @@ public class GrabWine extends Task{
         wine = GroundItems.newQuery().within(wineWithin).names("Wine of zamorak").results().nearest();
 
         System.out.println ("GW:"+!ww.GC.underAttackPker() +"&&"+ (me != null) +"&&"+ alter.contains(me) +"&&"+ ww.GC.greaterThanAlterY() +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies());
-        return (!ww.GC.underAttackPker() && me != null && alter.contains(me) && ww.GC.greaterThanAlterY() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies());
+        return (!ww.GC.pkersSpotted()&&!ww.GC.underAttackPker() && me != null && alter.contains(me) && ww.GC.greaterThanAlterY() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies());
     }
 
     @Override
     public void execute()
     {
-        System.out.println("Exectute Wine:"+(wine!=null) +"&&"+ !ww.GC.is723Delay());
 
         if(!Inventory.isFull())
         {
-            if(wine!=null && !ww.GC.is723Delay() && wine.isVisible()){
+            if(wine!=null){
                 if (Magic.TELEKINETIC_GRAB.isSelected()) {
                     if (wine != null) {
                         wineOfZamorakInvPrev = wineOfZamarak.size();
                         if(wine.isVisible()) {
                             if (wine.interact("Cast")) {
                                 System.out.println("Grabbing wine");
-                                ww.GC.is723Delay();
-                                Execution.delayWhile(() -> wine.isVisible(), 300, 700);//delay is broken
-                                //After interacting with our flax, we can add a check if it's still valid
-                                //This isn't required, you can check for player animation also
-                                //If you'd use player animation, you'd check if it went back to idle after picking the flax
+                                Execution.delayUntil(() -> wine.isVisible()&&!ww.GC.pkersSpotted(), 1800, 2500);
                             } else {
                                 System.out.println("Cant cast?");
                             }

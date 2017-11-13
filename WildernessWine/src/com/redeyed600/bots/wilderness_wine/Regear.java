@@ -11,6 +11,7 @@ import com.runemate.game.api.hybrid.queries.results.SpriteItemQueryResults;
 import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.osrs.local.hud.interfaces.Magic;
+import com.runemate.game.api.script.Execution;
 import com.runemate.game.api.script.framework.task.Task;
 
 public class Regear extends Task {
@@ -52,18 +53,26 @@ public class Regear extends Task {
             if (armour.size() > 0) {
                 System.out.println("Equip armour");
                 armour.first().interact("Wear");
+                Execution.delayUntil(() -> Inventory.getSelectedItem()!=null, 1400, 1600);
+
             }
             if (airStaff.first() != null) {
                 System.out.println("Weild staff");
                 airStaff.first().interact("Wield");
+                Execution.delayUntil(() -> Inventory.getSelectedItem()!=null, 1400, 1600);
+
             }
             if(funkyHead.first()!=null){
                 System.out.println("equip funky head");
                 funkyHead.first().interact("Wear");
+                Execution.delayUntil(() -> Inventory.getSelectedItem()!=null, 1400, 1600);
+
             }
             if(funkyCape.first()!=null){
                 System.out.println("equip funky head");
                 funkyCape.first().interact("Wear");
+                Execution.delayUntil(() -> Inventory.getSelectedItem()!=null, 1400, 1600);
+
             }
 
         }else{

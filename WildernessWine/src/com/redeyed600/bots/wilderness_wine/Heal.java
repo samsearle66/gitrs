@@ -26,7 +26,8 @@ public class Heal extends Task {
     @Override
     public boolean validate() {
         food = Inventory.getItems(ww.GC.FOODIDS);
-        return !ww.GC.Is829Delay() && !ww.GC.isAnimating() && (!Bank.isOpen() && food!=null && food.size() > 0) && !ww.GC.hasEnoughHealth();
+        return !ww.GC.isAnimating() && (!Bank.isOpen() && food!=null && food.size() > 0) && !ww.GC.hasEnoughHealth();
+        //ww.GC.Is829Delay &&
     }
 
     @Override
@@ -40,6 +41,7 @@ public class Heal extends Task {
         {
             if(InterfaceWindows.getInventory().isOpen()) {
                 if (food.first().interact("Drink") || food.first().interact("Eat")) {
+                    Execution.delayUntil(() -> Inventory.getSelectedItem()!=null, 1400, 1600);
                     System.out.println("Healing");
                 }
             }else{
