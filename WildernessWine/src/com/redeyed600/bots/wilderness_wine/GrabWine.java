@@ -61,8 +61,8 @@ public class GrabWine extends Task{
                         wineOfZamorakInvPrev = wineOfZamarak.size();
                         if(wine.isVisible()) {
                             if (wine.interact("Cast")) {
-                                System.out.println("Grabbing wine");
                                 Execution.delayUntil(() -> wine.isVisible()&&!ww.GC.pkersSpotted(), 1800, 2500);
+                                System.out.println("Grabbing wine");
                             } else {
                                 System.out.println("Cant cast?");
                             }
@@ -78,17 +78,18 @@ public class GrabWine extends Task{
                     }
                 } else {
                     if (InterfaceWindows.getMagic().isOpen()) {
+                        Execution.delayUntil(() -> !wine.isVisible()&&!ww.GC.pkersSpotted(), 600, 800);
                         Magic.TELEKINETIC_GRAB.activate();
                         System.out.println("Telegrab selected");
                     } else
                         InterfaceWindows.getMagic().open();
                 }
-            } else {
-                if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
-                    Magic.getSelected().deactivate();
+            } else if(wine==null){
 
                 if(((food.first() != null && Inventory.getUsedSlots() > 26) || (jug != null && jug.first() != null))) {
                     if(InterfaceWindows.getInventory().isOpen()) {
+                        if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
+                            Magic.getSelected().deactivate();
                         if (food.first() != null && Inventory.getUsedSlots() > 26) {
                             food.first().interact("Drop");
                             System.out.println("Dropping food");

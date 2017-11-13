@@ -55,7 +55,7 @@ public class GC {
 
     public boolean outOfSuppies(){
 
-        return (Inventory.isFull() || Inventory.getQuantity(LAWRUNE) < 1 ||
+        return (Inventory.isFull() || Inventory.getQuantity(LAWRUNE) < 2 ||
                 Inventory.getQuantity(FIRERUNE) < 1|| Inventory.getItems(FOODIDS).size() < MINIMUMFOOD || underAttackPker()|| Inventory.getItems(ENERGYPOTION).size() < 1 ||
         (!Equipment.contains(STAFFOFAIR) && !Inventory.contains(STAFFOFAIR) && Inventory.getQuantity(AIRRUNE) < 3));
     }

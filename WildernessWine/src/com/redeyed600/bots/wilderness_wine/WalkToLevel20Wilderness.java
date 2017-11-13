@@ -47,14 +47,14 @@ public class WalkToLevel20Wilderness extends Task {
 
         if(me!=null && !level20Wilderness.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanDitch() && !ww.GC.greaterThanLevel20Wilderness())//good
         {
-            isAtAlter = false;
+            //isAtAlter = false;
             return true;
         }
 
         System.out.println ("WTL20W:"+(me != null) +"&&"+ !level20Wilderness.contains(me) +"&&"+ ww.GC.greaterThanDitch() +"&&"+ ww.GC.greaterThanLevel20Wilderness() +"&&"+ ww.GC.outOfSuppies() +"&&"+ !(door!=null && door.isVisible()));
 
         if (me != null && !level20Wilderness.contains(me) && ww.GC.greaterThanDitch() && ww.GC.greaterThanLevel20Wilderness() && ww.GC.outOfSuppies() && !(door!=null && door.isVisible() && ww.GC.greaterThanAlterY()&& ww.GC.lessThanAlterX())){
-            isAtAlter = true;
+            //isAtAlter = true;
             return true;
         }
         return false;
