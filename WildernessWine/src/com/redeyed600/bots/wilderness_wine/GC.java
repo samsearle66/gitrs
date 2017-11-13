@@ -23,7 +23,7 @@ public class GC {
     public int MINIMUMFOOD = 7;
     public int LAWRUNEQUANTITY = 16;
     public int AIRRUNEQUANTITY = 84;
-    public int FIRERUNEQUANTITY = 1;
+    public int FIRERUNEQUANTITY = 2;
     public int AIRSTAFF = 1381;
     public final int NOTHOFDITCH = 3544;
     public int wildernessDitch = 3522;
@@ -55,8 +55,8 @@ public class GC {
 
     public boolean outOfSuppies(){
 
-        return (Inventory.isFull() || Inventory.getQuantity(LAWRUNE) < MINIMUMFOOD ||
-                Inventory.getQuantity(FIRERUNE) < 1|| Inventory.getItems(FOODIDS).size() < 6 || underAttackPker()|| Inventory.getItems(ENERGYPOTION).size() < 1 ||
+        return (Inventory.isFull() || Inventory.getQuantity(LAWRUNE) < 1 ||
+                Inventory.getQuantity(FIRERUNE) < 1|| Inventory.getItems(FOODIDS).size() < MINIMUMFOOD || underAttackPker()|| Inventory.getItems(ENERGYPOTION).size() < 1 ||
         (!Equipment.contains(STAFFOFAIR) && !Inventory.contains(STAFFOFAIR) && Inventory.getQuantity(AIRRUNE) < 3));
     }
 

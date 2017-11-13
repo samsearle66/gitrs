@@ -36,7 +36,7 @@ public class EnergyPotion extends Task {
             {
                 if(InterfaceWindows.getInventory().isOpen()) {
                     if (energyPotion.first().interact("Drink")) {
-                        Execution.delayUntil(() -> Inventory.getSelectedItem()!=null, 1400, 1600);
+                        Execution.delayUntil(() -> Inventory.getSelectedItem()!=null, 700, 800);
                         System.out.println("Drinking energy potion");
                     }
                 }else{
