@@ -14,6 +14,7 @@ import com.runemate.game.api.hybrid.region.GroundItems;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.osrs.local.hud.interfaces.Magic;
 import com.runemate.game.api.script.Execution;
+import com.runemate.game.api.script.framework.listeners.InventoryListener;
 import com.runemate.game.api.script.framework.task.Task;
 
 public class GrabWine extends Task{
@@ -53,29 +54,29 @@ public class GrabWine extends Task{
     @Override
     public void execute()
     {
-        System.out.println("L#"+ww.NUMBEROFWINELOST+"N#-"+ ww.NUMBEROFWINETELEGRABED +","+wineOfZamarak.size() +">"+ wineOfZamorakInvPrev +"//"+hasCasted);
-        if (hasCasted && wineOfZamarak.size() > wineOfZamorakInvPrev){
-            wineOfZamorakInvPrev = wineOfZamarak.size();
-            ww.NUMBEROFWINETELEGRABED++;
-        }
-        if(hasCasted && wineOfZamarak.size() == wineOfZamorakInvPrev){//inventory is the same that means you lost one. :(
-            ww.NUMBEROFWINELOST++;
-            ww.WINELOSTATTEMP--;
-        }
-
         if(!Inventory.isFull())
         {
+            wineOfZamorakInvPrev = wineOfZamarak.size();
             if(wine!=null){
                 if (Magic.TELEKINETIC_GRAB.isSelected()) {
                     if (wine != null) {
                         if(wine.isVisible()) {
                             if (wine.interact("Cast")) {
                                 //()->wineOfZamarak.size()
-                                wineOfZamorakInvPrev = wineOfZamarak.size();
-                                hasCasted = true;
-                                Execution.delayUntil(() -> wine!=null && wine.isVisible() && !ww.GC.pkersSpotted(), 2500, 3000);
+                               // hasCasted = true;
+                                if(Execution.delayUntil(() -> wine==null || ww.GC.pkersSpotted(),3000,3500)){
+                                    System.out.println("L#"+ww.NUMBEROFWINELOST+"N#"+ ww.NUMBEROFWINETELEGRABED +","+wineOfZamarak.size() +">"+ wineOfZamorakInvPrev +"//"+hasCasted);
+                                    if (wineOfZamarak.size() > wineOfZamorakInvPrev){
+                                        ww.NUMBEROFWINETELEGRABED++;
+                                        System.out.println("Yay 1+ to wine: " + ww.NUMBEROFWINETELEGRABED);
+                                    }
+                                    if(wineOfZamarak.size() == wineOfZamorakInvPrev){//inventory is the same that means you lost one. :(
+                                        ww.NUMBEROFWINELOST++;
+                                        System.out.println("Dang we lost one: "+ ww.NUMBEROFWINELOST);
+                                        //ww.WINELOSTATTEMP--;
+                                    }
+                                }
 
-                                System.out.println("Grabbing wine");
                             } else {
                                 System.out.println("Cant cast?");
                             }
@@ -86,10 +87,10 @@ public class GrabWine extends Task{
                         }
                     }
                 } else {
-                    if (InterfaceWindows.getMagic().isOpen() && wineOfZamarak.size() == wineOfZamorakInvPrev ) {
+                    if (InterfaceWindows.getMagic().isOpen()) {
                         Magic.TELEKINETIC_GRAB.activate();
                         System.out.println("Telegrab selected");
-                        hasCasted = false;
+                        //hasCasted = false;
                     } else
                         InterfaceWindows.getMagic().open();
                 }
