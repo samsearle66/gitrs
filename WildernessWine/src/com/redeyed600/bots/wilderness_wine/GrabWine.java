@@ -3,6 +3,7 @@ package com.redeyed600.bots.wilderness_wine;
 import com.runemate.game.api.hybrid.entities.GroundItem;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.local.Camera;
+import com.runemate.game.api.hybrid.local.hud.interfaces.Chatbox;
 import com.runemate.game.api.hybrid.local.hud.interfaces.InterfaceWindows;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.local.hud.interfaces.WorldHop;
@@ -33,7 +34,7 @@ public class GrabWine extends Task{
     private SpriteItemQueryResults wineOfZamarak;
     private final Area.Rectangular wineWithin = new Area.Rectangular(new Coordinate(2949,3817,0), new Coordinate(2952,3824,0));
     private int wineOfZamorakInvPrev = 0;
-    private boolean canCast = true;
+    private boolean hasCasted = false;
 
     @Override
     public boolean validate() {
@@ -52,34 +53,43 @@ public class GrabWine extends Task{
     @Override
     public void execute()
     {
+        System.out.println("L#"+ww.NUMBEROFWINELOST+"N#-"+ ww.NUMBEROFWINETELEGRABED +","+wineOfZamarak.size() +">"+ wineOfZamorakInvPrev +"//"+hasCasted);
+        if (hasCasted && wineOfZamarak.size() > wineOfZamorakInvPrev){
+            wineOfZamorakInvPrev = wineOfZamarak.size();
+            ww.NUMBEROFWINETELEGRABED++;
+        }
+        if(hasCasted && wineOfZamarak.size() == wineOfZamorakInvPrev){//inventory is the same that means you lost one. :(
+            ww.NUMBEROFWINELOST++;
+            ww.WINELOSTATTEMP--;
+        }
+
         if(!Inventory.isFull())
         {
             if(wine!=null){
                 if (Magic.TELEKINETIC_GRAB.isSelected()) {
                     if (wine != null) {
-                        wineOfZamorakInvPrev = wineOfZamarak.size();
                         if(wine.isVisible()) {
                             if (wine.interact("Cast")) {
+                                //()->wineOfZamarak.size()
+                                wineOfZamorakInvPrev = wineOfZamarak.size();
+                                hasCasted = true;
                                 Execution.delayUntil(() -> wine!=null && wine.isVisible() && !ww.GC.pkersSpotted(), 2500, 3000);
+
                                 System.out.println("Grabbing wine");
                             } else {
                                 System.out.println("Cant cast?");
                             }
-                            if (wineOfZamarak.size() != wineOfZamorakInvPrev){
-                                ww.NUMBEROFWINETELEGRABED++;
-                            }else{//inventory is the same that means you lost one. :(
-                                ww.NUMBEROFWINELOST++;
-                                ww.WINELOSTATTEMP--;
-                            }
+
                         }else{
                             System.out.println("Camera is turning");
                             Camera.turnTo(wine);
                         }
                     }
                 } else {
-                    if (InterfaceWindows.getMagic().isOpen()) {
+                    if (InterfaceWindows.getMagic().isOpen() && wineOfZamarak.size() == wineOfZamorakInvPrev ) {
                         Magic.TELEKINETIC_GRAB.activate();
                         System.out.println("Telegrab selected");
+                        hasCasted = false;
                     } else
                         InterfaceWindows.getMagic().open();
                 }
