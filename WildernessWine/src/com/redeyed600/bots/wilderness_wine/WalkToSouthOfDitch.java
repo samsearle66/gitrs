@@ -36,11 +36,14 @@ public class WalkToSouthOfDitch extends Task {
 
         me = Players.getLocal();
 
+
+        System.out.println("1WTSOD"+(me!= null) +"&&"+ !SouthOfDitch.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.greaterThanSouthOfDitch() +"&&"+ ww.GC.greaterThanVarrockCenter() +"&&"+ !ww.GC.outOfSuppies());
         if(me!= null && !SouthOfDitch.contains(me) && ww.GC.bankingCompleted() && !ww.GC.greaterThanSouthOfDitch() && ww.GC.greaterThanVarrockCenter() && !ww.GC.outOfSuppies()){//good
             southOfDitch = true;
             return true;
         }
 
+        System.out.println("2WTSOD"+(me != null) +"&&"+ !SouthOfDitch.contains(me) +"&&"+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanDitch() +"&&"+ !ww.GC.greaterThanLevel20Wilderness());
         if(me != null && !SouthOfDitch.contains(me) && ww.GC.outOfSuppies() && ww.GC.greaterThanDitch() && !ww.GC.greaterThanLevel20Wilderness()){//good
             southOfDitch = false;
             return true;
@@ -56,11 +59,6 @@ public class WalkToSouthOfDitch extends Task {
         {
             System.out.println("Walking to south of ditch - CUSTOM ");
 
-            if(web != null)
-            {
-                System.out.println(web.getVertices().size());
-            }else System.out.println("shes fucked");
-
             WebPath path = null;
 
             if (web != null) { // Make sure the web got loaded properly
@@ -72,7 +70,7 @@ public class WalkToSouthOfDitch extends Task {
 //                if(ww.GC.underAttackPker()) {
                 if(!Traversal.isRunEnabled() && Traversal.getRunEnergy() > 10)
                     Traversal.toggleRun();
-                path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
+                    path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
 //                }
 //                path.step();
             }else{

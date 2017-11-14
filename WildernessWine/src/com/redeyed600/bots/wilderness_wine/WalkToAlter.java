@@ -25,6 +25,7 @@ public class WalkToAlter extends Task {
     public boolean validate() {
         door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
         me = Players.getLocal();
+        System.out.println("WTA:"+(me != null) +"&&"+ !ww.alter.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanAlterY());
         return (me != null && !ww.alter.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanAlterY());//good
     }
 

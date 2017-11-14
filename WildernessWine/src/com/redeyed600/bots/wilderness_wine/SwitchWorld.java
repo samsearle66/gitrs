@@ -23,6 +23,7 @@ public class SwitchWorld extends Task {
 
     public SwitchWorld(wilderness_wine ww){
         this.ww = ww;
+        randomWorld = worlds[rand.nextInt(worlds.length)];
     }
     private Player me;
     private Random rand = new Random();
@@ -42,9 +43,12 @@ public class SwitchWorld extends Task {
 
     @Override
     public boolean validate() {
+
         me = Players.getLocal();
+
+        System.out.println("SW:("+(ww.WINELOSTATTEMP==0) +"||"+ ww.GC.pkersSpotted()+") &&"+ !ww.GC.underAttackPker() +"&&"+ !ww.GC.underAttackNpc());
         if(ww.GC.greaterThanLevel20Wilderness())
-            return (ww.WINELOSTATTEMP<0 || ww.GC.pkersSpotted()) && !ww.GC.underAttackPker() && !ww.GC.underAttackNpc();
+            return (ww.WINELOSTATTEMP==0 || ww.GC.pkersSpotted()) && !ww.GC.underAttackPker() && !ww.GC.underAttackNpc();
         return false;
     }
 
@@ -53,16 +57,15 @@ public class SwitchWorld extends Task {
         if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
             Magic.getSelected().deactivate();
 
-        if(ww.GC.pkersSpotted() && RuneScape.isLoggedIn())
+        if(ww.WINELOSTATTEMP==0 || ww.GC.pkersSpotted() && RuneScape.isLoggedIn())
             randomWorld = worlds[rand.nextInt(worlds.length)];
 
         if(Worlds.getCurrent() != randomWorld)
         {
             if(WorldHop.isOpen()) {
                 System.out.println("Switch to world " + randomWorld);
-                if(!ww.GC.underAttackPker() && !ww.GC.underAttackNpc())
-                    ww.WINELOSTATTEMP=0;
-                    WorldHop.hopTo(randomWorld);
+                ww.WINELOSTATTEMP=5;
+                WorldHop.hopTo(randomWorld);
             }else{
                 WorldHop.open();
             }

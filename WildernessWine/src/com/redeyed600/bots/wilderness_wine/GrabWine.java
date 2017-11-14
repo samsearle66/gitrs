@@ -52,7 +52,6 @@ public class GrabWine extends Task{
     @Override
     public void execute()
     {
-
         if(!Inventory.isFull())
         {
             if(wine!=null){
@@ -61,24 +60,24 @@ public class GrabWine extends Task{
                         wineOfZamorakInvPrev = wineOfZamarak.size();
                         if(wine.isVisible()) {
                             if (wine.interact("Cast")) {
-                                Execution.delayUntil(() -> wine.isVisible()&&!ww.GC.pkersSpotted(), 1800, 2500);
+                                Execution.delayUntil(() -> wine!=null && wine.isVisible() && !ww.GC.pkersSpotted(), 2500, 3000);
                                 System.out.println("Grabbing wine");
                             } else {
                                 System.out.println("Cant cast?");
                             }
-                            if(wineOfZamorakInvPrev > wineOfZamarak.size())
+                            if (wineOfZamarak.size() != wineOfZamorakInvPrev){
                                 ww.NUMBEROFWINETELEGRABED++;
-                            else {
+                            }else{//inventory is the same that means you lost one. :(
                                 ww.NUMBEROFWINELOST++;
                                 ww.WINELOSTATTEMP--;
                             }
                         }else{
+                            System.out.println("Camera is turning");
                             Camera.turnTo(wine);
                         }
                     }
                 } else {
                     if (InterfaceWindows.getMagic().isOpen()) {
-                        Execution.delayUntil(() -> !wine.isVisible()&&!ww.GC.pkersSpotted(), 600, 800);
                         Magic.TELEKINETIC_GRAB.activate();
                         System.out.println("Telegrab selected");
                     } else
@@ -86,10 +85,12 @@ public class GrabWine extends Task{
                 }
             } else if(wine==null){
 
+                if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
+                    Magic.getSelected().deactivate();
+
                 if(((food.first() != null && Inventory.getUsedSlots() > 26) || (jug != null && jug.first() != null))) {
                     if(InterfaceWindows.getInventory().isOpen()) {
-                        if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
-                            Magic.getSelected().deactivate();
+
                         if (food.first() != null && Inventory.getUsedSlots() > 26) {
                             food.first().interact("Drop");
                             System.out.println("Dropping food");
@@ -100,9 +101,11 @@ public class GrabWine extends Task{
                         }
                     }
                     InterfaceWindows.getInventory().open();
-                }else{
+                } else{
                     if (!WorldHop.isOpen() && wine==null)
                         WorldHop.open();
+                    else
+                        System.out.println("World hop is open.");
                 }
 
 
