@@ -22,7 +22,7 @@ public class WalkToAlterDoor extends Task {
         this.ww = ww;
 
         try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray("src\\Resources\\wildernessUpper.nav"));
+            web = SerializableWeb.deserialize(ww.GC.getByteArray("src\\Resources\\nav.nav"));
         } catch (Exception e) {
             e.printStackTrace();
             web = null;

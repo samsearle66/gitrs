@@ -27,7 +27,7 @@ public class WalkToBank extends Task {
     public WalkToBank(wilderness_wine ww){
         this.ww = ww;
         try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray("src\\Resources\\varrockToEdgeville.nav"));
+            web = SerializableWeb.deserialize(ww.GC.getByteArray("src\\Resources\\nav.nav"));
         } catch (Exception e) {
             e.printStackTrace();
             web = null;
