@@ -4,7 +4,10 @@ import com.runemate.game.api.hybrid.RuneScape;
 import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
+import com.runemate.game.api.hybrid.location.navigation.web.SerializableWeb;
+import com.runemate.game.api.hybrid.location.navigation.web.Web;
 import com.runemate.game.api.hybrid.region.Players;
+import com.runemate.game.api.hybrid.util.Resources;
 import com.runemate.game.api.hybrid.util.StopWatch;
 import com.runemate.game.api.script.framework.task.TaskBot;
 
@@ -28,6 +31,8 @@ public class wilderness_wine extends TaskBot {
 
     public final Area.Rectangular alterDoorArea = new Area.Rectangular(new Coordinate(2957,3819,0),new Coordinate(2958,3822,0));//2957.2958
     public final Area.Circular alter = new Area.Circular(new Coordinate(2951,3818,0),2);
+    public Web varrock;
+    public Web wilderness;
 
 
     public wilderness_wine(){
@@ -36,6 +41,15 @@ public class wilderness_wine extends TaskBot {
         NUMBEROFWINETELEGRABED = 0;
         WINELOSTATTEMP = 5;
         NUMBEROFWINELOST = 0;
+        try {
+            //web = SerializableWeb.deserialize(Resources.getAsByteArray("src\\Resources\\nav.nav"));
+            varrock = SerializableWeb.deserialize(GC.getByteArray("src\\Resources\\varrockToEdgeville.nav"));
+            wilderness = SerializableWeb.deserialize(GC.getByteArray("src\\Resources\\wildernessUpper.nav"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            varrock = null;
+            wilderness = null;
+        }
     }
 
     @Override

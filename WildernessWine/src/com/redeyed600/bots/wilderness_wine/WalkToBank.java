@@ -12,6 +12,7 @@ import com.runemate.game.api.hybrid.location.navigation.web.SerializableWeb;
 import com.runemate.game.api.hybrid.location.navigation.web.Web;
 import com.runemate.game.api.hybrid.location.navigation.web.WebPath;
 import com.runemate.game.api.hybrid.region.Players;
+import com.runemate.game.api.hybrid.util.Resources;
 import com.runemate.game.api.script.framework.task.Task;
 
 import java.io.File;
@@ -20,18 +21,11 @@ import java.net.URL;
 public class WalkToBank extends Task {
     private wilderness_wine ww;
     Boolean southOfDitch = false;
-    Web web;
     private final Area.Circular edgevilleBank = new Area.Circular(new Coordinate(3096,3494,0), 2);
     private Player me;
 
     public WalkToBank(wilderness_wine ww){
         this.ww = ww;
-        try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray("src\\Resources\\nav.nav"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            web = null;
-        }
     }
 
     @Override
@@ -48,8 +42,8 @@ public class WalkToBank extends Task {
 
         WebPath path = null;
 
-        if (web != null) { // Make sure the web got loaded properly
-            path = web.getPathBuilder().buildTo(edgevilleBank);
+        if (ww.varrock != null) { // Make sure the web got loaded properly
+            path = ww.varrock.getPathBuilder().buildTo(edgevilleBank);
         }else{System.out.println("dis web is null");}
 
         if (path != null) { // IMPORTANT: if the path should be null, the pathbuilder could not manage to build a path with the given web, so always nullcheck!
@@ -58,15 +52,5 @@ public class WalkToBank extends Task {
         }else{
             System.out.println("dis path is null");
         }
-
-//        final BresenhamPath path = BresenhamPath.buildTo(edgevilleBank);
-//
-//        if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-//            if(ww.GC.underAttackPker())
-//                path.step(Path.TraversalOption.MANAGE_RUN);
-//            else
-//                path.step();
-//        }
-
     }
 }

@@ -21,21 +21,12 @@ public class WalkToLevel20Wilderness extends Task {
 
     private Area.Rectangular level20Wilderness = new Area.Rectangular(new Coordinate(2949,3660,0), new Coordinate(3022, 3667,0));
             //3663 if you want to be safe
-
-    Web web;
     private Player me;
     private GameObject door;
     private Boolean isAtAlter = true;
 
     public WalkToLevel20Wilderness(wilderness_wine ww){
         this.ww = ww;
-
-        try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray("src\\Resources\\nav.nav"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            web = null;
-        }
     }
 
 
@@ -74,8 +65,8 @@ public class WalkToLevel20Wilderness extends Task {
             System.out.println("Walk to 20 wilderness - Custom");
             WebPath path = null;
 
-            if (web != null) { // Make sure the web got loaded properly
-                path = web.getPathBuilder().buildTo(level20Wilderness);
+            if (ww.wilderness != null) { // Make sure the web got loaded properly
+                path = ww.wilderness.getPathBuilder().buildTo(level20Wilderness);
             } else {
                 System.out.println("dis web is null");
             }

@@ -16,7 +16,6 @@ import com.runemate.game.api.script.framework.task.Task;
 public class WalkToSouthOfDitch extends Task {
 
     private wilderness_wine ww;
-    Web web;
     private final Area.Circular SouthOfDitch = new Area.Circular(new Coordinate(3087,3516,0),6);
     Player me;
     Boolean southOfDitch = false;
@@ -24,12 +23,6 @@ public class WalkToSouthOfDitch extends Task {
 
     public WalkToSouthOfDitch(wilderness_wine ww){
         this.ww = ww;
-        try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray("src\\Resources\\nav.nav"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            web = null;
-        }
     }
     @Override
     public boolean validate() {
@@ -61,8 +54,8 @@ public class WalkToSouthOfDitch extends Task {
 
             WebPath path = null;
 
-            if (web != null) { // Make sure the web got loaded properly
-                path = web.getPathBuilder().buildTo(SouthOfDitch);
+            if (ww.varrock != null) { // Make sure the web got loaded properly
+                path = ww.varrock.getPathBuilder().buildTo(SouthOfDitch);
             }else{System.out.println("dis web is null");}
 
             if (path != null) { // IMPORTANT: if the path should be null, the pathbuilder could not manage to build a path with the given web, so always nullcheck!
