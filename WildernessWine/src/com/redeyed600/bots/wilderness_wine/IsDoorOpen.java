@@ -19,7 +19,6 @@ public class IsDoorOpen extends Task {
         this.ww = ww;
     }
 
-    private final Area.Circular alterDoor = new Area.Circular(new Coordinate(2958,3820,0),10);
 
     private GameObject door;
     private Player me;
@@ -35,7 +34,7 @@ public class IsDoorOpen extends Task {
 
         //System.out.println(me + "///" + potatoGate.contains(me) + "///" + gate);
 
-        return  me != null && alterDoor.contains(me) && door != null;
+        return  me != null && ww.alterDoor.contains(me) && door != null;
     }
 
     @Override

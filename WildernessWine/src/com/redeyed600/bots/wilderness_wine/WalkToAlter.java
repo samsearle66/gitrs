@@ -34,12 +34,13 @@ public class WalkToAlter extends Task {
         System.out.println("Walking to alter");
         final BresenhamPath path = BresenhamPath.buildTo(ww.alter);
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-            if(!ww.alter.contains(me)) {
-                if(door!=null && door.isValid())
-                    add(new IsDoorOpen(ww));
-                else
-                    path.step();
-            }
+            //if it walks back put
+            //if !alter.contains(me){
+            if (ww.alterDoor.contains(me) && door != null && door.isValid())
+                add(new IsDoorOpen(ww));
+            else
+                path.step();
+            //}
 
         }
     }
