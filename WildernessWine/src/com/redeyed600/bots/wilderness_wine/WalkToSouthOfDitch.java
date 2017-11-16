@@ -59,13 +59,11 @@ public class WalkToSouthOfDitch extends Task {
             }else{System.out.println("dis web is null");}
 
             if (path != null) { // IMPORTANT: if the path should be null, the pathbuilder could not manage to build a path with the given web, so always nullcheck!
-                add(new IsAtDitch(ww));
-//                if(ww.GC.underAttackPker()) {
-                if(!Traversal.isRunEnabled() && Traversal.getRunEnergy() > 10)
-                    Traversal.toggleRun();
-                    path.step(Path.TraversalOption.MANAGE_STAMINA_ENHANCERS);
-//                }
-//                path.step();
+
+                if(ww.wildernessDitchArea.contains(me))
+                    add(new IsAtDitch(ww));
+                else
+                    path.step();
             }else{
                 System.out.println("dis path is null");
             }

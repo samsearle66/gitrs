@@ -22,17 +22,15 @@ public class IsAtDitch extends Task {
 
 
     GameObject wildernessDitch;
-    private static Area.Rectangular wildernessDitchArea;
     public Player me;
 
     @Override
     public boolean validate() {
         wildernessDitch = GameObjects.newQuery().names("Wilderness Ditch").actions("Cross").results().nearest();
-        wildernessDitchArea = new Area.Rectangular(new Coordinate(3069,3515,0), new Coordinate(3122,3528,0)); //BROKEN NEED FIXING
 
         me = Players.getLocal();
 
-        return wildernessDitch!=null && wildernessDitchArea.contains(me) &&
+        return wildernessDitch!=null && ww.wildernessDitchArea.contains(me) &&
                 ((ww.GC.greaterThanDitch() && ww.GC.outOfSuppies())
                 ||
                 (!ww.GC.greaterThanDitch() && !ww.GC.outOfSuppies()));
