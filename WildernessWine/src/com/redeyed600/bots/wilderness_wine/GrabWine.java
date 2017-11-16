@@ -64,18 +64,11 @@ public class GrabWine extends Task{
                             if (wine.interact("Cast")) {
                                 //()->wineOfZamarak.size()
                                // hasCasted = true;
-                                if(Execution.delayUntil(() -> wine==null || ww.GC.pkersSpotted(),3000,3500)){
-                                    System.out.println("L#"+ww.NUMBEROFWINELOST+"N#"+ ww.NUMBEROFWINETELEGRABED +","+wineOfZamarak.size() +">"+ wineOfZamorakInvPrev +"//"+hasCasted);
-                                    if (wineOfZamarak.size() > wineOfZamorakInvPrev){
-                                        ww.NUMBEROFWINETELEGRABED++;
-                                        System.out.println("Yay 1+ to wine: " + ww.NUMBEROFWINETELEGRABED);
-                                    }
-                                    if(wineOfZamarak.size() == wineOfZamorakInvPrev){//inventory is the same that means you lost one. :(
-                                        ww.NUMBEROFWINELOST++;
-                                        System.out.println("Dang we lost one: "+ ww.NUMBEROFWINELOST);
-                                        //ww.WINELOSTATTEMP--;
-                                    }
-                                }
+                                if(ww.GC.underAttackPker() && ww.GC.underAttackNpc())
+                                    return;
+                                Execution.delayUntil(() -> wine==null || ww.GC.pkersSpotted(),2500,3000);
+
+
 
                             } else {
                                 System.out.println("Cant cast?");

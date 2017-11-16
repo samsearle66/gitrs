@@ -65,8 +65,12 @@ public class SwitchWorld extends Task {
             if(WorldHop.isOpen()) {
                 System.out.println("Switch to world " + randomWorld);
                 ww.WINELOSTATTEMP=5;
+                if(ww.GC.underAttackPker() && ww.GC.underAttackNpc())
+                    return;
                 WorldHop.hopTo(randomWorld);
             }else{
+                if(ww.GC.underAttackPker() && ww.GC.underAttackNpc())
+                    return;
                 WorldHop.open();
             }
         }
