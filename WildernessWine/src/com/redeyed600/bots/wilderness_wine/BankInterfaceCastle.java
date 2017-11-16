@@ -84,7 +84,6 @@ public class BankInterfaceCastle extends Task {
                 if(food.size() < ww.GC.MINIMUMBANKFOOD)
                     Bank.withdraw(Bank.getItems(ww.GC.FOODIDS).first(),ww.GC.MINIMUMBANKFOOD - food.size());
 
-
             } else {
                 System.out.println("Open bank");
                 Bank.open();

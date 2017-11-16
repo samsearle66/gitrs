@@ -111,9 +111,8 @@ public class GrabWine extends Task{
                     else
                         System.out.println("World hop is open.");
                 }
-
-
             }
+            add(new SwitchWorld(ww));
         }
     }
 }

@@ -29,9 +29,9 @@ public class WalkToAlterDoor extends Task {
         }
     }
 
-    //private final Area.Circular outsideAlterDoor = new Area.Circular(new Coordinate(2959,3820,0), 1 );//was 4
+    private final Area.Circular outsideAlterDoor = new Area.Circular(new Coordinate(2961,3820,0), 3);//was 4
 
-    private final Area.Rectangular outsideAlterDoor = new Area.Rectangular(new Coordinate(2959,3818,0), new Coordinate(2960,3822,0));
+    //private final Area.Rectangular outsideAlterDoor = new Area.Rectangular(new Coordinate(2959,3818,0), new Coordinate(2960,3822,0));
 //2959
     //3816
 
@@ -70,16 +70,13 @@ public class WalkToAlterDoor extends Task {
 
             if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
 
-                //if it walks back put
-                //if !outsideAlterDoor.contains(me){
                 if (ww.alterDoor.contains(me) && door != null && door.isValid())
                     add(new IsDoorOpen(ww));
                 else
                     path.step();
-                //}
             }
         }else {
-
+            ww.GC.setAlterPosition();
             System.out.println("Walk to alter door - Custom");
             WebPath path = null;
 
@@ -96,5 +93,6 @@ public class WalkToAlterDoor extends Task {
                 System.out.println("dis path is null");
             }
         }
+        add( new Heal(ww), new EnergyPotion(ww),new RunEnergy(ww));
     }
 }

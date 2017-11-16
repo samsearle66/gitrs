@@ -79,6 +79,8 @@ public class WalkToSouthOfDitch extends Task {
                 path.step();
             }
         }
+        add(new Heal(ww), new EnergyPotion(ww));
+
     }
 
 

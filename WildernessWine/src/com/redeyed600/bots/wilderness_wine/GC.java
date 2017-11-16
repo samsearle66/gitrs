@@ -5,6 +5,8 @@ import com.runemate.game.api.hybrid.input.Mouse;
 import com.runemate.game.api.hybrid.local.Skill;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Equipment;
 import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
+import com.runemate.game.api.hybrid.location.Area;
+import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.location.navigation.Traversal;
 import com.runemate.game.api.hybrid.queries.results.LocatableEntityQueryResults;
 import com.runemate.game.api.hybrid.region.Npcs;
@@ -15,11 +17,11 @@ import java.util.List;
 
 public class GC {
 
-    public int[] FOODIDS = {1993};//Jug of wine,needs swordfish!!
+    public int[] FOODIDS = {1993};//Jug of wine,needs swordfish!! 373=swordfish
     public int[] ENERGYPOTION = {3008,3010,3012,3014};//ENERGYPOTION,1,2,3,4
     public int ENERGYPOTIONQUANTITY = 1;
     public int MINIMUMHP = 25;
-    public int MINIMUMBANKFOOD = 15;
+    public int MINIMUMBANKFOOD = 13;
     public int MINIMUMFOOD = 6;
     public int LAWRUNEQUANTITY = 20;
     public int AIRRUNEQUANTITY = 84;
@@ -268,13 +270,21 @@ public class GC {
     }
 
 
-    public int newWorld = 0;
+    public final Area.Circular alterBottom = new Area.Circular(new Coordinate(2951,3818,0),2);
+    public final Area.Rectangular alterTop = new Area.Rectangular(new Coordinate(2949,3823,0), new Coordinate(2952,3823,0));
+    public final Area.Absolute doorLeftBottom = new Area.Absolute(new Coordinate(2957,3819,0));
+    public final Area.Absolute doorLeftTop = new Area.Absolute(new Coordinate(2957,3819,0));
 
-    public int getNewWorld(){
-        return this.newWorld;
+    public Area[] alterAreaArray = {alterBottom,alterTop,doorLeftBottom,doorLeftTop};
+
+    private int alterPositionIndex = 0;
+
+    public void setAlterPosition(){
+        this.alterPositionIndex = ww.rand.nextInt(4);
     }
-    public void setNewWorld(int world){
-        this.newWorld = world;
+
+    public Area getAlterPosition(){
+        return alterAreaArray[alterPositionIndex];
     }
 
 

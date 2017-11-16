@@ -78,9 +78,6 @@ public class WalkToLevel20Wilderness extends Task {
                 System.out.println("dis path is null");
             }
         }
-
-
-
-
+        add( new Heal(ww), new EnergyPotion(ww),new RunEnergy(ww));
     }
 }

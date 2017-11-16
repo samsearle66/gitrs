@@ -40,10 +40,14 @@ public class Heal extends Task {
         if(food.first() != null)
         {
             if(InterfaceWindows.getInventory().isOpen()) {
-                if (food.first().interact("Drink") || food.first().interact("Eat")) {
-                    Execution.delayUntil(() -> Inventory.getSelectedItem()!=null, 700, 800);
-                    System.out.println("Healing");
-                }
+//               if(!ww.GC.underAttackPker()) {
+                    if (food.first().interact("Drink")) {
+                        Execution.delayUntil(() -> Inventory.getSelectedItem() != null, 500, 700);
+                        System.out.println("Healing");
+                    }
+//                }else{
+//
+//                }
             }else{
                 InterfaceWindows.getInventory().open();
             }
