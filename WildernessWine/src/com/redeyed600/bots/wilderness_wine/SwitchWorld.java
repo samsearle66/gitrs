@@ -46,9 +46,9 @@ public class SwitchWorld extends Task {
 
         me = Players.getLocal();
 
-        System.out.println("SW:("+(ww.WINELOSTATTEMP==0) +"||"+ ww.GC.pkersSpotted()+") &&"+ !ww.GC.underAttackPker() +"&&"+ !ww.GC.underAttackNpc());
+        System.out.println("SW:("+ww.GC.pkersSpotted()+"&&"+ !ww.GC.underAttackPker() +"&&"+ !ww.GC.underAttackNpc());
         if(ww.GC.greaterThanLevel20Wilderness())
-            return (ww.WINELOSTATTEMP==0 || ww.GC.pkersSpotted()) && !ww.GC.underAttackPker() && !ww.GC.underAttackNpc();
+            return ww.GC.pkersSpotted() && !ww.GC.underAttackPker() && !ww.GC.underAttackNpc();
         return false;
     }
 
@@ -57,7 +57,7 @@ public class SwitchWorld extends Task {
         if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
             Magic.getSelected().deactivate();
 
-        if(ww.WINELOSTATTEMP==0 || ww.GC.pkersSpotted() && RuneScape.isLoggedIn())
+        if (ww.GC.pkersSpotted() && RuneScape.isLoggedIn())
             randomWorld = worlds[rand.nextInt(worlds.length)];
 
         if(Worlds.getCurrent() != randomWorld)
