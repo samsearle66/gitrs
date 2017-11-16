@@ -21,7 +21,7 @@ public class GC {
     public int MINIMUMHP = 25;
     public int MINIMUMBANKFOOD = 15;
     public int MINIMUMFOOD = 6;
-    public int LAWRUNEQUANTITY = 19;
+    public int LAWRUNEQUANTITY = 20;
     public int AIRRUNEQUANTITY = 84;
     public int FIRERUNEQUANTITY = 2;
     public int AIRSTAFF = 1381;
