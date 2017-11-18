@@ -1,13 +1,18 @@
 package com.redeyed600.bots.wilderness_wine;
 
 import com.runemate.game.api.hybrid.entities.GameObject;
+import com.runemate.game.api.hybrid.entities.GroundItem;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.location.navigation.basic.BresenhamPath;
+import com.runemate.game.api.hybrid.location.navigation.basic.PredefinedPath;
+import com.runemate.game.api.hybrid.location.navigation.basic.ViewportPath;
 import com.runemate.game.api.hybrid.region.GameObjects;
+import com.runemate.game.api.hybrid.region.GroundItems;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.task.Task;
+import com.runemate.game.api.hybrid.local.Camera;
 
 public class WalkToAlter extends Task {
 
@@ -45,10 +50,24 @@ public class WalkToAlter extends Task {
             //if !alter.contains(me){
             if (ww.alterDoor.contains(me) && !leftOfDoor.contains(me) && door != null && door.isValid())//for the telegrab spot beside the door.
                 add(new IsDoorOpen(ww));
-            else
-                path.step();
-            add( new Heal(ww), new EnergyPotion(ww));
+            else {
+               if (ww.GC.getAlterPosition().distanceTo(me) >= 3) {
+                    path.step();//will walk with the minimap
+               }
+               else{
+                   if(Camera.getPitch()>0.65)
 
+                       if(ww.rand.nextInt(1)==0)
+                            ViewportPath.convert(path).step();
+                        else
+                           PredefinedPath.create(ww.GC.getAlterPosition().getPosition()).step();
+
+                   else {
+                       Camera.turnTo(0.8);
+                   }
+               }
+            }
+            add( new Heal(ww), new EnergyPotion(ww));
         }
     }
 }

@@ -26,14 +26,12 @@ public class GrabWine extends Task{
     }
 
    // private final Area.Circular alter = new Area.Circular(new Coordinate(2933,3516,0), 6);
-    private final Area.Circular alter = new Area.Circular(new Coordinate(2951,3818,0),2);
     private final Area.Absolute table = new Area.Absolute(new Coordinate(2930,3515,0));
     private GroundItem wine;
     private SpriteItemQueryResults food;
     private SpriteItemQueryResults jug;
     private Player me;
     private SpriteItemQueryResults wineOfZamarak;
-    private final Area.Rectangular wineWithin = new Area.Rectangular(new Coordinate(2949,3817,0), new Coordinate(2952,3824,0));
     private int wineOfZamorakInvPrev = 0;
     private boolean hasCasted = false;
 
@@ -45,10 +43,10 @@ public class GrabWine extends Task{
         jug = Inventory.getItems("Jug");
         wineOfZamarak = Inventory.getItems(ww.GC.WINEOFZAMORAK);
 
-        wine = GroundItems.newQuery().within(wineWithin).names("Wine of zamorak").results().nearest();
+        wine = GroundItems.newQuery().within(ww.wineWithin).names("Wine of zamorak").results().nearest();
 
-        System.out.println ("GW:"+!ww.GC.underAttackPker() +"&&"+ (me != null) +"&&"+ alter.contains(me) +"&&"+ ww.GC.greaterThanAlterY() +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies());
-        return (!ww.GC.pkersSpotted()&&!ww.GC.underAttackPker() && me != null && alter.contains(me) && ww.GC.greaterThanAlterY() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies());
+        System.out.println ("GW:"+!ww.GC.underAttackPker() +"&&"+ (me != null) +"&&"+ ww.GC.getAlterPosition().contains(me) +"&&"+ ww.GC.greaterThanAlterY() +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies());
+        return (!ww.GC.pkersSpotted()&&!ww.GC.underAttackPker() && me != null && ww.GC.getAlterPosition().contains(me) && ww.GC.greaterThanAlterY() && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies());
     }
 
     @Override

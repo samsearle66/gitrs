@@ -62,7 +62,7 @@ public class GC {
         (!Equipment.contains(STAFFOFAIR) && !Inventory.contains(STAFFOFAIR) && Inventory.getQuantity(AIRRUNE) < 3));
     }
 
-    private final int WILDERNESSALTERDEPTH = 35;
+    private final int WILDERNESSALTERDEPTH = 38;
 
     public boolean pkersSpotted(){
 
@@ -270,6 +270,8 @@ public class GC {
     }
 
 
+    /*THIS SHOULD BE AM ENUM or Id,Area*/
+
     public final Area.Circular alterBottom = new Area.Circular(new Coordinate(2951,3818,0),2);
     public final Area.Rectangular alterTop = new Area.Rectangular(new Coordinate(2949,3823,0), new Coordinate(2952,3823,0));
     public final Area.Absolute doorLeftBottom = new Area.Absolute(new Coordinate(2957,3819,0));
@@ -279,12 +281,17 @@ public class GC {
 
     private int alterPositionIndex = 0;
 
-    public void setAlterPosition(){
-        this.alterPositionIndex = ww.rand.nextInt(4);
+    public void setAlterPosition(int i){
+
+        this.alterPositionIndex = i;
     }
 
     public Area getAlterPosition(){
         return alterAreaArray[alterPositionIndex];
+    }
+
+    public int getAlterPositionIndex(){
+        return this.alterPositionIndex;
     }
 
 

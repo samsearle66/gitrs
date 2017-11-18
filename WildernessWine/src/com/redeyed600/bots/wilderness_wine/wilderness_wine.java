@@ -33,6 +33,8 @@ public class wilderness_wine extends TaskBot {
 
     public final Area.Rectangular wildernessDitchArea = new Area.Rectangular(new Coordinate(3069,3515,0), new Coordinate(3122,3528,0)); //BROKEN NEED FIXING
     public final Area.Circular alterDoor = new Area.Circular(new Coordinate(2958,3820,0),8);
+    public final Area.Rectangular wineWithin = new Area.Rectangular(new Coordinate(2949,3817,0), new Coordinate(2952,3824,0));
+
 
 
     public Web varrock;

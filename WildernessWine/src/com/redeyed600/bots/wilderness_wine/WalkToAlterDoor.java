@@ -76,7 +76,7 @@ public class WalkToAlterDoor extends Task {
                     path.step();
             }
         }else {
-            ww.GC.setAlterPosition();
+            ww.GC.setAlterPosition(ww.rand.nextInt(4));
             System.out.println("Walk to alter door - Custom");
             WebPath path = null;
 
