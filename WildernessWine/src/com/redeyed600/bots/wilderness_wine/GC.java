@@ -52,7 +52,7 @@ public class GC {
 
     public boolean greaterThanSouthOfDitch(){
         Player me = Players.getLocal();
-        return me.getPosition().getY() > SOUTHOFDITCH;
+        return me!=null && me.getPosition().getY() > SOUTHOFDITCH;
     }
 
     public boolean outOfSuppies(){
@@ -293,6 +293,18 @@ public class GC {
     public int getAlterPositionIndex(){
         return this.alterPositionIndex;
     }
+
+//    public Boolean[] wildernessPosition = {greaterThanLevel20Wilderness(),greaterThanDitch()};
+//
+//    private int wildernessPositionIndex = 0;
+//
+//    private void setWildernessPosition(int i){
+//        this.wildernessPositionIndex = i;
+//    }
+//
+//    public int getWildernessPostion(){
+//        return this.wildernessPosition[wildernessPositionIndex];
+//    }
 
 
 

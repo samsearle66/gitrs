@@ -23,7 +23,6 @@ public class WalkToLevel20Wilderness extends Task {
             //3663 if you want to be safe
     private Player me;
     private GameObject door;
-    //private Boolean isAtAlter = true;
 
     public WalkToLevel20Wilderness(wilderness_wine ww){
         this.ww = ww;
@@ -34,7 +33,7 @@ public class WalkToLevel20Wilderness extends Task {
     @Override
     public boolean validate() {
         me = Players.getLocal();
-        door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
+
 
         System.out.println("1WTL2W:"+(me!=null) +"&&"+ !level20Wilderness.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanDitch() +"&&"+ !ww.GC.greaterThanLevel20Wilderness());
         if(me!=null && !level20Wilderness.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanDitch() && !ww.GC.greaterThanLevel20Wilderness())//good
@@ -43,11 +42,14 @@ public class WalkToLevel20Wilderness extends Task {
             return true;
         }
 
-        System.out.println ("2WTL20W:"+(me != null) +"&&"+ !level20Wilderness.contains(me) +"&&"+ ww.GC.greaterThanDitch() +"&&"+ ww.GC.greaterThanLevel20Wilderness() +"&&"+ !(door!=null && door.isVisible() && ww.GC.greaterThanAlterY()&& ww.GC.lessThanAlterX()));
+        if(ww.GC.greaterThanAlterY()) {
+            door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
+            System.out.println("2WTL20W:" + (me != null) + "&&" + !level20Wilderness.contains(me) + "&&" + ww.GC.greaterThanDitch() + "&&" + ww.GC.greaterThanLevel20Wilderness() + "&&" + !(door != null && door.isVisible() && ww.GC.greaterThanAlterY() && ww.GC.lessThanAlterX()));
 
-        if (me != null && !level20Wilderness.contains(me) && ww.GC.greaterThanDitch() && ww.GC.greaterThanLevel20Wilderness() && ww.GC.outOfSuppies() && !(door!=null && door.isVisible() && ww.GC.greaterThanAlterY()&& ww.GC.lessThanAlterX())){
-            //isAtAlter = true;
-            return true;
+            if (me != null && !level20Wilderness.contains(me) && ww.GC.greaterThanDitch() && ww.GC.greaterThanLevel20Wilderness() && ww.GC.outOfSuppies() && !(door != null && door.isVisible() && ww.GC.greaterThanAlterY() && ww.GC.lessThanAlterX())) {
+                //isAtAlter = true;
+                return true;
+            }
         }
         return false;
     }
