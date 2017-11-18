@@ -20,13 +20,6 @@ public class WalkToAlterDoor extends Task {
 
     public WalkToAlterDoor(wilderness_wine ww){
         this.ww = ww;
-
-        try {
-            web = SerializableWeb.deserialize(ww.GC.getByteArray("src\\Resources\\nav.nav"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            web = null;
-        }
     }
 
     private final Area.Circular outsideAlterDoor = new Area.Circular(new Coordinate(2961,3820,0), 3);//was 4
@@ -43,27 +36,12 @@ public class WalkToAlterDoor extends Task {
         me = Players.getLocal();
 
         door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
-
-        System.out.println("1WTAD:"+(me != null) +"&&"+ !outsideAlterDoor.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanDitch() +"&&"+ ww.GC.greaterThanNorthOfDitch() +"&&"+ !ww.GC.greaterThanAlterY());
-        if (me != null && !outsideAlterDoor.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanDitch() && ww.GC.greaterThanNorthOfDitch() && !ww.GC.greaterThanAlterY())//good
-        {
-            isAtAlter = false;
-            return true;
-        }
-
-        System.out.println("2WTAD:"+(me != null)  +"&&"+ !outsideAlterDoor.contains(me) +"&&"+ ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanAlterY());//good
-        if(me != null  && !outsideAlterDoor.contains(me) && ww.GC.outOfSuppies() && ww.GC.greaterThanAlterY())//good
-        {
-            isAtAlter = true;
-            return true;
-        }
-        return false;
+        return(me != null  && !outsideAlterDoor.contains(me) && ww.GC.outOfSuppies() && ww.GC.greaterThanAlterY());//good
     }
 
     @Override
     public void execute() {
 
-        if(isAtAlter) {
             System.out.println("Walk to alter door - BresemhamPath");
 
             final BresenhamPath path = BresenhamPath.buildTo(outsideAlterDoor);
@@ -75,24 +53,6 @@ public class WalkToAlterDoor extends Task {
                 else
                     path.step();
             }
-        }else {
-            ww.GC.setAlterPosition(ww.rand.nextInt(4));
-            System.out.println("Walk to alter door - Custom");
-            WebPath path = null;
-
-            if (web != null) { // Make sure the web got loaded properly
-                path = web.getPathBuilder().buildTo(outsideAlterDoor);
-            } else {
-                System.out.println("dis web is null");
-            }
-
-
-            if (path != null) { // IMPORTANT: if the path should be null, the pathbuilder could not manage to build a path with the given web, so always nullcheck!
-                path.step();
-            } else {
-                System.out.println("dis path is null");
-            }
-        }
         add( new Heal(ww), new EnergyPotion(ww),new RunEnergy(ww));
     }
 }

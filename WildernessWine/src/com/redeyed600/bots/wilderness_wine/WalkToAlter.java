@@ -8,6 +8,7 @@ import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.location.navigation.basic.BresenhamPath;
 import com.runemate.game.api.hybrid.location.navigation.basic.PredefinedPath;
 import com.runemate.game.api.hybrid.location.navigation.basic.ViewportPath;
+import com.runemate.game.api.hybrid.location.navigation.web.WebPath;
 import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.GroundItems;
 import com.runemate.game.api.hybrid.region.Players;
@@ -37,14 +38,18 @@ public class WalkToAlter extends Task {
 
         door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
         me = Players.getLocal();
-        System.out.println("WTA:"+(me != null) +"&&"+ !ww.GC.getAlterPosition().contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanAlterY());
-        return (me != null && !ww.GC.getAlterPosition().contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanAlterY());//good
+        return (me != null && !ww.GC.getAlterPosition().contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies()); //&& ww.GC.greaterThanAlterY());//good
     }
 
     @Override
     public void execute() {
         System.out.println("Walking to alter");
-        final BresenhamPath path = BresenhamPath.buildTo(ww.GC.getAlterPosition());
+        WebPath path = null;
+
+        if (ww.wilderness != null) { // Make sure the web got loaded properly
+            path = ww.wilderness.getPathBuilder().buildTo(ww.GC.getAlterPosition());
+        }
+
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
             //if it walks back put
             //if !alter.contains(me){
@@ -52,17 +57,19 @@ public class WalkToAlter extends Task {
                 add(new IsDoorOpen(ww));
             else {
                if (ww.GC.getAlterPosition().distanceTo(me) >= 3) {
-                    path.step();//will walk with the minimap
+                    path.step();//will walk with the minimap with custom path
                }
                else{
-                   if(Camera.getPitch()>0.65)
+                   if(Camera.getPitch()>0.65) {
 
-                       if(ww.rand.nextInt(1)==0)
-                            ViewportPath.convert(path).step();
-                        else
+                       if (ww.rand.nextInt(10) < 3) {//occurs 30% of the time
+                           final BresenhamPath path1 = BresenhamPath.buildTo(ww.GC.getAlterPosition());
+                           if(path1!=null)
+                                ViewportPath.convert(path1).step();//bresenhamPath is required for this step
+                       }else
                            PredefinedPath.create(ww.GC.getAlterPosition().getPosition()).step();
 
-                   else {
+                   }else {
                        Camera.turnTo(0.8);
                    }
                }
