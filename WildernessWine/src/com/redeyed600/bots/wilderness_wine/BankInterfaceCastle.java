@@ -49,6 +49,18 @@ public class BankInterfaceCastle extends Task {
 
                 Bank.depositAllExcept(ww.GC.LAWRUNE,ww.GC.FIRERUNE, ww.GC.AIRRUNE,ww.GC.STAFFOFAIR,ww.GC.ENERGYPOTION[0],ww.GC.FOODIDS[0], ww.GC.ARMOUR[0],ww.GC.ARMOUR[1],ww.GC.ARMOUR[2],ww.GC.ARMOUR[3],ww.GC.ARMOUR[4],ww.GC.ARMOUR[5],ww.GC.ARMOUR[6],ww.GC.ARMOUR[7],ww.GC.ARMOUR[8],ww.GC.ARMOUR[9],
                         ww.GC.funkyHead[0],ww.GC.funkyHead[1],ww.GC.funkyHead[2],ww.GC.funkyHead[3],ww.GC.funkyCape[0],ww.GC.funkyCape[1],ww.GC.funkyCape[2],ww.GC.funkyCape[3],ww.GC.funkyCape[4]);
+                
+
+                if(energyPotion.size() < ww.GC.ENERGYPOTIONQUANTITY){
+                    Bank.withdraw(Bank.getItems(ww.GC.ENERGYPOTION[0]).first(), ww.GC.ENERGYPOTIONQUANTITY - energyPotion.size());
+                }
+
+                if (Inventory.getQuantity(ww.GC.LAWRUNE) < ww.GC.LAWRUNEQUANTITY) {
+                    Bank.withdraw(ww.GC.LAWRUNE, ww.GC.LAWRUNEQUANTITY - Inventory.getQuantity(ww.GC.LAWRUNE));
+                }
+
+                if (Inventory.getQuantity(ww.GC.FIRERUNE) < 1)
+                    Bank.withdraw(ww.GC.FIRERUNE, ww.GC.FIRERUNEQUANTITY);
 
 
                 if(!Equipment.contains(ww.GC.STAFFOFAIR) && Inventory.getItems(ww.GC.STAFFOFAIR).first()==null){
