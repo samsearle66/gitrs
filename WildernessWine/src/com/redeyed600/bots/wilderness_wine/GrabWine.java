@@ -52,6 +52,7 @@ public class GrabWine extends Task{
     @Override
     public void execute()
     {
+        new SwitchWorld(ww);
         if(!Inventory.isFull())
         {
             wineOfZamorakInvPrev = wineOfZamarak.size();
