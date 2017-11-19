@@ -12,8 +12,11 @@ import com.runemate.game.api.hybrid.location.navigation.web.WebPath;
 import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.GroundItems;
 import com.runemate.game.api.hybrid.region.Players;
+import com.runemate.game.api.script.Execution;
 import com.runemate.game.api.script.framework.task.Task;
 import com.runemate.game.api.hybrid.local.Camera;
+
+import java.util.concurrent.Delayed;
 
 public class WalkToAlter extends Task {
 
@@ -62,19 +65,21 @@ public class WalkToAlter extends Task {
                else{
                    if(Camera.getPitch()>0.65) {
 
-                       if (ww.rand.nextInt(10) < 3) {//occurs 30% of the time
+                       if (ww.rand.nextInt(1)==0) {
                            final BresenhamPath path1 = BresenhamPath.buildTo(ww.GC.getAlterPosition());
                            if(path1!=null)
                                 ViewportPath.convert(path1).step();//bresenhamPath is required for this step
                        }else
                            PredefinedPath.create(ww.GC.getAlterPosition().getPosition()).step();
 
+                       Execution.delayUntil(() -> ww.GC.getAlterPosition().contains(me) || ww.GC.pkersSpotted(),600,1000);
+
                    }else {
                        Camera.turnTo(0.8);
                    }
                }
             }
-            add( new Heal(ww), new EnergyPotion(ww));
+            add( new Heal(ww), new EnergyPotion(ww),new RunEnergy(ww));
         }
     }
 }

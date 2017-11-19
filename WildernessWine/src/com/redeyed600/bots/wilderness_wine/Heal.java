@@ -42,7 +42,7 @@ public class Heal extends Task {
             if(InterfaceWindows.getInventory().isOpen()) {
 //               if(!ww.GC.underAttackPker()) {
                     if (food.first().interact("Drink")) {
-                        Execution.delayUntil(() -> Inventory.getSelectedItem() != null, 500, 700);
+                        Execution.delayUntil(() -> Inventory.getSelectedItem() != null, 300, 500);
                         System.out.println("Healing");
                     }
 //                }else{

@@ -275,11 +275,11 @@ public class GC {
     public final Area.Circular alterBottom = new Area.Circular(new Coordinate(2951,3818,0),2);
     public final Area.Rectangular alterTop = new Area.Rectangular(new Coordinate(2949,3823,0), new Coordinate(2952,3823,0));
     public final Area.Absolute doorLeftBottom = new Area.Absolute(new Coordinate(2957,3819,0));
-    public final Area.Absolute doorLeftTop = new Area.Absolute(new Coordinate(2957,3819,0));
+    //public final Area.Absolute doorLeftTop = new Area.Absolute(new Coordinate(2957,3819,0));
 
-    public Area[] alterAreaArray = {alterBottom,alterTop,doorLeftBottom,doorLeftTop};
+    public Area[] alterAreaArray = {alterBottom,alterTop,doorLeftBottom};
 
-    private int alterPositionIndex = 0;
+    private int alterPositionIndex = 2;
 
     public void setAlterPosition(int i){
 
