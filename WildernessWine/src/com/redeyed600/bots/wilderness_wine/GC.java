@@ -186,7 +186,7 @@ public class GC {
 
     public final int[] LUMBRIDGECASTLESTAIRS = {16671,16672};
 
-    public final int[] ARMOUR = {1199,1073,1123,2599,2601,2603,1091};
+    public final int[] ARMOUR = {1199,1073,1123,2599,2601,2603,1091,1113,1201,1079};
 
     public final int[] funkyHead = {1949,1167,1169,5525};
 
