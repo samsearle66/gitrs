@@ -16,7 +16,7 @@ import com.runemate.game.api.script.framework.task.Task;
 public class WalkToSouthOfDitch extends Task {
 
     private wilderness_wine ww;
-    private final Area.Circular SouthOfDitch = new Area.Circular(new Coordinate(3087,3516,0),6);
+    private final Area.Circular SouthOfDitch = new Area.Circular(new Coordinate(3087,3512,0),6);
     Player me;
     Boolean southOfDitch = false;
 

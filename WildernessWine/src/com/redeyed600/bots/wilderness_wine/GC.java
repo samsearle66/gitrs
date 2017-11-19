@@ -45,6 +45,10 @@ public class GC {
         this.ww = ww;
     }
 
+    public void setMINIMUMHP(int hp){
+        this.MINIMUMHP = hp;
+    }
+
     public void setUnderAttackTimer(long underAttackTimer){
         this.underAttackTimer = underAttackTimer;
     }
@@ -222,7 +226,7 @@ public class GC {
 
 
     public boolean hasEnoughHealth() {
-        return Skill.CONSTITUTION.getCurrentLevel() > MINIMUMHP;
+        return Skill.CONSTITUTION.getCurrentLevel() > Skill.CONSTITUTION.getBaseLevel()-4 ;
     }
 
     public boolean greaterThanAlterY(){

@@ -2,6 +2,7 @@ package com.redeyed600.bots.wilderness_wine;
 import com.runemate.game.api.hybrid.GameEvents;
 import com.runemate.game.api.hybrid.RuneScape;
 import com.runemate.game.api.hybrid.entities.GameObject;
+import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.location.navigation.web.SerializableWeb;
@@ -63,6 +64,7 @@ public class wilderness_wine extends TaskBot {
         super.onStart(strings);
         setLoopDelay(300,666);
         GameEvents.Universal.LOBBY_HANDLER.disable();
+
         runtime.start();
 
         //add(new Task1(this));
@@ -73,7 +75,7 @@ public class wilderness_wine extends TaskBot {
         //add(new Regear(this), new Teleport(this), new WalkToLumbridgeCastleStairs(this) ,new IsAtStairs(this),new WalkToLumbridgeCastleBank(this), new BankInterfaceCastle(this), new Regear(this), new Teleport(this), new WalkToSouthOfDitch(this));
 
 
-        add(new EndBot(this),new RunEnergy(this),new Teleport(this),new Regear(this), new WalkToBank(this), new BankInterfaceCastle(this), new WalkToNorthOfDitch(this), new WalkToLevel20Wilderness(this), new WalkToAlterDoor(this), new WalkToAlter(this), new GrabWine(this), new WalkToAlterDoor(this), new WalkToLevel20Wilderness(this), new WalkToNorthOfDitch(this), new WalkToSouthOfDitch(this), new WalkToLumbridgeCastleStairs(this) ,new IsAtStairs(this),new WalkToLumbridgeCastleBank(this), new BankInterfaceCastle(this), new WalkToSouthOfDitch(this));
+        add(new EndBot(this),new RunEnergy(this),new Teleport(this),new Regear(this), new WalkToBank(this), new BankInterfaceCastle(this), new WalkToNorthOfDitch(this), new WalkToLevel20Wilderness(this), new WalkToAlterDoor(this), new SwitchWorld(this), new WalkToAlter(this), new GrabWine(this), new WalkToAlterDoor(this), new WalkToLevel20Wilderness(this), new WalkToNorthOfDitch(this), new WalkToSouthOfDitch(this), new WalkToLumbridgeCastleStairs(this) ,new IsAtStairs(this),new WalkToLumbridgeCastleBank(this), new BankInterfaceCastle(this), new WalkToSouthOfDitch(this));
         //add(new SwitchWorld(this));
 
         //add(new WalkToNorthOfDitch(this));

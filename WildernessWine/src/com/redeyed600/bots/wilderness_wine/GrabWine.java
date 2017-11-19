@@ -112,5 +112,6 @@ public class GrabWine extends Task{
                 }
             }
         }
+        new SwitchWorld(ww);
     }
 }
