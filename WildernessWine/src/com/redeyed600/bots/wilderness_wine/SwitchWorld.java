@@ -68,6 +68,7 @@ public class SwitchWorld extends Task {
                 if(ww.GC.underAttackPker() && ww.GC.underAttackNpc())
                     return;
                 WorldHop.hopTo(randomWorld);
+                ww.GC.setAlterPosition(ww.rand.nextInt(3));
             }else{
                 if(ww.GC.underAttackPker() && ww.GC.underAttackNpc())
                     return;

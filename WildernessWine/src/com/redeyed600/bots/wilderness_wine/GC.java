@@ -26,7 +26,6 @@ public class GC {
     public int LAWRUNEQUANTITY = 20;
     public int AIRRUNEQUANTITY = 84;
     public int FIRERUNEQUANTITY = 2;
-    public int AIRSTAFF = 1381;
     public final int NOTHOFDITCH = 3544;
     public int wildernessDitch = 3522;
     public int ALTERY = 3816;
@@ -200,7 +199,7 @@ public class GC {
     }
 
     public boolean hasVarrockTeleportRunes(){
-        return((Inventory.getQuantity(AIRRUNE)>=3||Equipment.contains(AIRSTAFF))&&Inventory.getQuantity(FIRERUNE)>=1&&Inventory.getQuantity(LAWRUNE)>=1);
+        return((Inventory.getQuantity(AIRRUNE)>=3||Equipment.contains(STAFFOFAIR))&&Inventory.getQuantity(FIRERUNE)>=1&&Inventory.getQuantity(LAWRUNE)>=1);
     }
 
 
