@@ -21,7 +21,7 @@ public class GC {
     public int[] ENERGYPOTION = {3008,3010,3012,3014};//ENERGYPOTION,1,2,3,4
     public int ENERGYPOTIONQUANTITY = 1;
     public int MINIMUMHP = 25;
-    public int MINIMUMBANKFOOD = 13;
+    public int MINIMUMBANKFOOD = 17;
     public int MINIMUMFOOD = 6;
     public int LAWRUNEQUANTITY = 20;
     public int AIRRUNEQUANTITY = 84;

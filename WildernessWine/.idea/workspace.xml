@@ -39,6 +39,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="GC.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/GC.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="WalkToLevel20Wilderness.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToLevel20Wilderness.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -69,21 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WalkToSouthOfDitch.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WalkToSouthOfDitch.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToSouthOfDitch.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="438">
               <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wilderness_wine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/wilderness_wine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="62" column="31" lean-forward="false" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -214,13 +214,13 @@
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToAlter.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/WalkToLevel20Wilderness.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/wilderness_wine.java" />
-        <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/GC.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/BankInterfaceCastle.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/SwitchWorld.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/Regear.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/GrabWine.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/Heal.java" />
         <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/EnergyPotion.java" />
+        <option value="$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/GC.java" />
       </list>
     </option>
   </component>
@@ -652,14 +652,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/GC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="200" column="45" lean-forward="false" selection-start-line="200" selection-start-column="45" selection-end-line="200" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/EnergyPotion.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -752,6 +744,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="438">
           <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/redeyed600/bots/wilderness_wine/GC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
           <folding />
         </state>
       </provider>
