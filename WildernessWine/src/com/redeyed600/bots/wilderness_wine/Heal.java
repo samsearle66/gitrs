@@ -33,21 +33,17 @@ public class Heal extends Task {
     @Override
     public void execute() {
 
-        if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
+        if(Magic.getSelected()!=null && Magic.getSelected().isSelected() && !Magic.VARROCK_TELEPORT.isSelected())
             Magic.getSelected().deactivate();
 
 
         if(food.first() != null)
         {
             if(InterfaceWindows.getInventory().isOpen()) {
-//               if(!ww.GC.underAttackPker()) {
                     if (food.first().interact("Drink")) {
                         Execution.delayUntil(() -> Inventory.getSelectedItem() != null, 300, 500);
                         System.out.println("Healing");
                     }
-//                }else{
-//
-//                }
             }else{
                 InterfaceWindows.getInventory().open();
             }

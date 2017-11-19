@@ -54,7 +54,7 @@ public class SwitchWorld extends Task {
 
     @Override
     public void execute() {
-        if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
+        if(Magic.getSelected()!=null && Magic.getSelected().isSelected() && !Magic.VARROCK_TELEPORT.isSelected())
             Magic.getSelected().deactivate();
 
         if (ww.GC.pkersSpotted() && RuneScape.isLoggedIn())

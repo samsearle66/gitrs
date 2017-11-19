@@ -87,7 +87,7 @@ public class GrabWine extends Task{
                 }
             } else if(wine==null){
 
-                if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
+                if(Magic.getSelected()!=null && Magic.getSelected().isSelected() && !Magic.VARROCK_TELEPORT.isSelected())
                     Magic.getSelected().deactivate();
 
                 if(((food.first() != null && Inventory.getUsedSlots() > 26) || (jug != null && jug.first() != null))) {
@@ -110,7 +110,6 @@ public class GrabWine extends Task{
                         System.out.println("World hop is open.");
                 }
             }
-            add(new SwitchWorld(ww));
         }
     }
 }

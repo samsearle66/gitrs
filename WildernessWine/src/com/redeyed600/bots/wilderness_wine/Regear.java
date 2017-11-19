@@ -48,7 +48,7 @@ public class Regear extends Task {
 
         //need to deactivate spell...
 
-        if(Magic.getSelected()!=null && Magic.getSelected().isSelected())
+        if(Magic.getSelected()!=null && Magic.getSelected().isSelected() && !Magic.VARROCK_TELEPORT.isSelected())
             Magic.getSelected().deactivate();
 
         if(InterfaceWindows.getInventory().isOpen()) {
