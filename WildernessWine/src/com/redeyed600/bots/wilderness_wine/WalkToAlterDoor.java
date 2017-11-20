@@ -48,7 +48,7 @@ public class WalkToAlterDoor extends Task {
 
             if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
 
-                if (ww.alterDoor.contains(me) && door != null && door.isValid())
+                if (ww.alterDoor.contains(me) && door != null && door.isValid() && ww.GC.lessThanAlterX())
                     add(new IsDoorOpen(ww));
                 else
                     path.step();

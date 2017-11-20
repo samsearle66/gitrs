@@ -56,7 +56,7 @@ public class WalkToAlter extends Task {
         if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
             //if it walks back put
             //if !alter.contains(me){
-            if (ww.alterDoor.contains(me) && !leftOfDoor.contains(me) && door != null && door.isValid())//for the telegrab spot beside the door.
+            if (ww.alterDoor.contains(me) && !leftOfDoor.contains(me) && door != null && door.isValid() && !ww.GC.lessThanAlterX())//for the telegrab spot beside the door.
                 add(new IsDoorOpen(ww));
             else {
                if (ww.GC.getAlterPosition().distanceTo(me) >= 3) {
