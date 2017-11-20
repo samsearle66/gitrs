@@ -19,7 +19,7 @@ public class WalkToLevel20Wilderness extends Task {
     private wilderness_wine ww;
     //private Area.Circular level20Wilderness = new Area.Circular(new Coordinate(2954,3665,0),3);
 
-    private Area.Rectangular level20Wilderness = new Area.Rectangular(new Coordinate(2949,3660,0), new Coordinate(3022, 3667,0));
+    private Area.Rectangular level20Wilderness = new Area.Rectangular(new Coordinate(2949,3664,0), new Coordinate(3022, 3667,0));
             //3663 if you want to be safe
     private Player me;
     private GameObject door;
@@ -36,6 +36,8 @@ public class WalkToLevel20Wilderness extends Task {
         me = Players.getLocal();
 
         door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
+
+        System.out.println("wilderness position:"+me.getPosition().getY());
 
         System.out.println("1WTL2W:"+(me!=null) +"&&"+ !level20Wilderness.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanDitch() +"&&"+ !ww.GC.greaterThanLevel20Wilderness());
         if(me!=null && !level20Wilderness.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanDitch() && !ww.GC.greaterThanLevel20Wilderness())//good

@@ -41,7 +41,7 @@ public class WalkToAlter extends Task {
 
         door = GameObjects.newQuery().names("Large door").actions("Open").results().nearest();
         me = Players.getLocal();
-        return (me != null && !ww.GC.getAlterPosition().contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanDitch() && ww.GC.greaterThanDitch()); //&& ww.GC.greaterThanAlterY());//good
+        return (me != null && !ww.GC.getAlterPosition().contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanDitch()); //&& ww.GC.greaterThanAlterY());//good
     }
 
     @Override
