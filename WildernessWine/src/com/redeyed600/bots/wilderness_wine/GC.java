@@ -39,6 +39,17 @@ public class GC {
     public long underAttackTimer = 0;
     public long is829 = 0;
     public int SOUTHOFDITCH = 3510;
+    private final int WILDERNESSALTERDEPTH = 38;
+    public final int VARROCKCENTER = 3400;
+    public final int[] LUMBRIDGECASTLESTAIRS = {16671,16672};
+
+    public final int[] ARMOUR = {1199,1073,1123,2599,2601,2603,1091,1113,1201,1079};
+
+    public final int[] funkyHead = {1949,1167,1169,5525};
+
+    public final int[] funkyCape = {4365,4405,4325,4385,4345};
+
+
     public wilderness_wine ww;
 
     public GC(wilderness_wine ww){
@@ -65,7 +76,6 @@ public class GC {
         (!Equipment.contains(STAFFOFAIR) && !Inventory.contains(STAFFOFAIR) && Inventory.getQuantity(AIRRUNE) < 3));
     }
 
-    private final int WILDERNESSALTERDEPTH = 38;
 
     public boolean pkersSpotted(){
 
@@ -187,15 +197,7 @@ public class GC {
         return me.getPosition().getX() > LUMBRIDGECASTLELEVEL3;
     }
 
-    public final int[] LUMBRIDGECASTLESTAIRS = {16671,16672};
 
-    public final int[] ARMOUR = {1199,1073,1123,2599,2601,2603,1091,1113,1201,1079};
-
-    public final int[] funkyHead = {1949,1167,1169,5525};
-
-    public final int[] funkyCape = {4365,4405,4325,4385,4345};
-
-    public final int VARROCKCENTER = 3410;
 
     public boolean greaterThanVarrockCenter(){
         Player me = Players.getLocal();

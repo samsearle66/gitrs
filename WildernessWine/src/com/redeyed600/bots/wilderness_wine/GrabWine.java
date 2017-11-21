@@ -65,7 +65,7 @@ public class GrabWine extends Task{
                                // hasCasted = true;
                                 if(ww.GC.underAttackPker() && ww.GC.underAttackNpc())
                                     return;
-                                Execution.delayUntil(() -> wine==null || ww.GC.pkersSpotted(),2500,3000);
+                                Execution.delayUntil(() -> wine==null|| ww.GC.pkersSpotted(),2500,3000);
 
 
 
