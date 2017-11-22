@@ -45,7 +45,7 @@ public class GC {
 
     public final int[] ARMOUR = {1199,1073,1123,2599,2601,2603,1091,1113,1201,1079};
 
-    public final int[] funkyHead = {1949,1167,1169,5525};
+    public final int[] funkyHead = {1949,1167,1169,5525,1141};
 
     public final int[] funkyCape = {4365,4405,4325,4385,4345};
 
