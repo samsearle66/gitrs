@@ -39,16 +39,9 @@ public class WalkToLevel20Wilderness extends Task {
 
         System.out.println("wilderness position:"+me.getPosition().getY());
 
-        System.out.println("1WTL2W:"+(me!=null) +"&&"+ !level20Wilderness.contains(me) +"&&"+ ww.GC.bankingCompleted() +"&&"+ !ww.GC.outOfSuppies() +"&&"+ ww.GC.greaterThanDitch() +"&&"+ !ww.GC.greaterThanLevel20Wilderness());
-        if(me!=null && !level20Wilderness.contains(me) && ww.GC.bankingCompleted() && !ww.GC.outOfSuppies() && ww.GC.greaterThanDitch() && !ww.GC.greaterThanLevel20Wilderness())//good
-        {
-            isAtAlter = false;
-            return true;
-        }
         System.out.println("2WTL20W:" + (me != null) + "&&" + !level20Wilderness.contains(me) + "&&" + ww.GC.greaterThanDitch() + "&&" + ww.GC.greaterThanLevel20Wilderness() + "&&" + !(door != null && door.isVisible() && ww.GC.greaterThanAlterY() && ww.GC.lessThanAlterX()));
 
         if (me != null && !level20Wilderness.contains(me) && ww.GC.greaterThanDitch() && ww.GC.greaterThanLevel20Wilderness() && ww.GC.outOfSuppies() && !(door != null && door.isVisible() && ww.GC.greaterThanAlterY() && ww.GC.lessThanAlterX())) {
-            isAtAlter = true;
             return true;
         }
         return false;
@@ -57,30 +50,12 @@ public class WalkToLevel20Wilderness extends Task {
     @Override
     public void execute() {
 
-        if(isAtAlter) {
-            System.out.println("Walk to 20 wilderness - BresenhamPath");
-            final BresenhamPath path = BresenhamPath.buildTo(level20Wilderness);
-            if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
-                path.step();
-            }
-        }else {
-            ww.GC.setAlterPosition(ww.rand.nextInt(3));
-            System.out.println("Walk to 20 wilderness - Custom");
-            WebPath path = null;
-
-            if (ww.wilderness != null) { // Make sure the web got loaded properly
-                path = ww.wilderness.getPathBuilder().buildTo(level20Wilderness);
-            } else {
-                System.out.println("dis web is null");
-            }
-
-
-            if (path != null) { // IMPORTANT: if the path should be null, the pathbuilder could not manage to build a path with the given web, so always nullcheck!
-                path.step();
-            } else {
-                System.out.println("dis path is null");
-            }
+        System.out.println("Walk to 20 wilderness - BresenhamPath");
+        final BresenhamPath path = BresenhamPath.buildTo(level20Wilderness);
+        if (path != null) { // Although BresenhamPath technically always builds a path, it is recommended to nullcheck rather than having the bot crash
+            path.step();
         }
+
         add( new Heal(ww), new EnergyPotion(ww),new RunEnergy(ww));
     }
 }
